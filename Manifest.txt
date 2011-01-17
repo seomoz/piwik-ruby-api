@@ -15,6 +15,6 @@ script/destroy
 script/generate
 script/txt2html
 setup.rb
-spec/piwik_spec.rb
-spec/spec.opts
-spec/spec_helper.rb
+test/files/config/piwik.yml
+test/piwik_test.rb
+test/test_helper.rb
