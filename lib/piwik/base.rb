@@ -27,16 +27,27 @@ EOF
       # Checks for the config, creates it if not found
       def self.load_config_from_file
         config = {}
-        home = ENV['HOME'] || ENV['USERPROFILE'] || ENV['HOMEPATH']
-        if File.exists?(home + "/.piwik")
-          temp_config = YAML::load open(home + "/.piwik")
+        if defined?(RAILS_ROOT) and RAILS_ROOT != nil
+          home =  RAILS_ROOT
+          filename = "config/piwik.yml"
         else
-          open(home + '/.piwik','w') { |f| f.puts @@template }
-          temp_config = YAML::load(@@template)
+          home =  ENV['HOME'] || ENV['USERPROFILE'] || ENV['HOMEPATH'] || "."
+          filename = ".piwik"
+        end
+        temp_config = if File.exists?(File.join(home,filename))
+          YAML::load(open(File.join(home,filename)))
+        else
+          open(File.join(home,filename),'w') { |f| f.puts @@template }
+          YAML::load(@@template)
         end
         temp_config.each { |k,v| config[k.to_sym] = v } if temp_config
         if config[:piwik_url] == nil || config[:auth_token] == nil
-          raise MissingConfiguration, "Please edit ~/.piwik to include your piwik url and auth_key"
+          if defined?(RAILS_ROOT) and RAILS_ROOT != nil
+            raise MissingConfiguration, "Please edit ./config/piwik.yml to include your piwik url and auth_key"
+          else
+            raise MissingConfiguration, "Please edit ~/.piwik to include your piwik url and auth_key"
+          end
+          
         end
         config
       end
