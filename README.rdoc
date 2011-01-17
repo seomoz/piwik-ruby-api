@@ -43,6 +43,8 @@ RubyGems and the following gems (installed automatically if necessary):
   sudo gem install autometal-piwik --source=http://gemcutter.org
 
 == CHANGELOG:
+ * 0.2.3
+   Started adding some tests
  * 0.2.0
    Reworked plugin to also look for a rails config file called piwik.yml, and not just the .piwik user prefs file.
  * 0.0.2 2008-07-22 (riopro)
