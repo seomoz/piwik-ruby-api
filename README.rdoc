@@ -1,11 +1,11 @@
-= piwik
+= autometal-piwik
 
-* http://piwik.rubyforge.org
-* http://github.com/riopro/piwik/tree/master
+* http://github.com/riopro/Achillefs/tree/master
+* http://humbuckercode.co.uk/licks/gems/piwik
 
 == DESCRIPTION:
 
-A simple Ruby client for the Piwik API.
+A simple Ruby client for the Piwik API. This gem is based on Rodrigo Tassinari de Oliveira's piwik gem (https://github.com/riopro/piwik). Since it hasn't been updated since 2008, I took the liberty to fork it, and finish it up.
 
 == FEATURES/PROBLEMS:
 
@@ -36,7 +36,7 @@ and the Piwik API reference (http://dev.piwik.org/trac/wiki/API/Reference).
 
 RubyGems and the following gems (installed automatically if necessary):
 
-  activesupport
+  active_support
   xml-simple
   rest-client
 
