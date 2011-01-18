@@ -50,7 +50,11 @@ module Piwik
       xml = call('UsersManager.addUser', :userLogin => login, :password => password, :email => email, :alias => user_alias)
       result = XmlSimple.xml_in(xml, {'ForceArray' => false})
       @created_at = Time.current
-      result["success"]["message"] == "ok" ? true : false
+      if result["success"]
+        result["success"]["message"] == "ok" ? true : false
+      else
+        false
+      end
     end
     
     # Saves the current user in Piwik, updating it's data.
