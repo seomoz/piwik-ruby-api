@@ -46,6 +46,8 @@ RubyGems and the following gems (installed automatically if necessary):
   sudo gem install autometal-piwik --source=http://gemcutter.org
 
 == CHANGELOG:
+ * 0.4.2
+   Final fix for inconsistent API outputs caused by Rails using its own version of XmlSimple.
  * 0.4.1
    Quick fixed api result parsing in site creation. The API's responses are inconsistent, but I am not sure why.
  * 0.4.0

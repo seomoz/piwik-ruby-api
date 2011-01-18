@@ -48,7 +48,7 @@ module Piwik
       user_alias = login if user_alias.blank?
       
       xml = call('UsersManager.addUser', :userLogin => login, :password => password, :email => email, :alias => user_alias)
-      result = XmlSimple.xml_in(xml, {'ForceArray' => false})
+      result = parse_xml(xml)
       @created_at = Time.current
       if result["success"]
         result["success"]["message"] == "ok" ? true : false
@@ -68,7 +68,7 @@ module Piwik
       user_alias = login if user_alias.blank?
       
       xml = call('UsersManager.updateUser', :userLogin => login, :password => password, :email => email, :alias => user_alias)
-      result = XmlSimple.xml_in(xml, {'ForceArray' => false})
+      result = parse_xml(xml)
       result['success'] ? true : false
     end
     
@@ -78,7 +78,7 @@ module Piwik
     def destroy
       raise UnknownUser, "User not existent in Piwik yet, call 'save' first" if new?
       xml = call('UsersManager.deleteUser', :userLogin => login)
-      result = XmlSimple.xml_in(xml, {'ForceArray' => false})
+      result = parse_xml(xml)
       freeze
       result['success'] ? true : false
     end
@@ -119,15 +119,12 @@ module Piwik
     # Equivalent Piwik API call: UsersManager.getUser (userLogin)
     def self.get_user_attributes_by_login(user_login, piwik_url, auth_token)
       xml = call('UsersManager.getUser', {:userLogin => user_login}, piwik_url, auth_token)
-      result = XmlSimple.xml_in(xml, {'ForceArray' => false})
-      
-      puts result.inspect
-      
+      result = parse_xml(xml)
       attributes = {
         :login => result['row']['login'],
         :user_alias => result['row']['alias'],
         :email => result['row']['email'],
-        :created_at => Time.parse(result['row']['date_registered']),
+        :created_at => Time.parse(result['row']['date_registered'])
       }
       attributes
     end

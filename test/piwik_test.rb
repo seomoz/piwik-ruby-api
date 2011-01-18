@@ -17,12 +17,18 @@ class PiwikTest < Test::Unit::TestCase
     assert_equal @domain, @site.main_url
   end
   
-  def test_can_save_and_destroy_site
+  def test_can_save_load_update_and_destroy_site
     assert_equal nil, @site.id
     @site.save
     assert_not_equal 0, @site.id
     assert_not_equal nil, @site.id
-    assert_equal true, @site.destroy
+    reloaded = Piwik::Site.load(@site.id)
+    assert_equal reloaded.id, @site.id
+    reloaded.name = "Changed Name"
+    reloaded.update
+    reloaded = Piwik::Site.load(@site.id)
+    assert_equal "Changed Name", reloaded.name
+    assert_equal true, reloaded.destroy
   end
   
   def test_can_instantiate_user
@@ -32,8 +38,15 @@ class PiwikTest < Test::Unit::TestCase
     assert_equal @user_alias, @user.user_alias
   end
   
-  def test_can_save_and_destroy_user
+  def test_can_save_load_update_and_destroy_user
     @user.save
+    reloaded = Piwik::User.load(@user.login)
+    assert_equal reloaded.login, @user.login
+    reloaded.email = "changed@mail.com"
+    reloaded.password = "changeme"
+    reloaded.update
+    reloaded = Piwik::User.load(@user.login)
+    assert_equal"changed@mail.com", reloaded.email
     assert_equal true, @user.destroy
   end
   

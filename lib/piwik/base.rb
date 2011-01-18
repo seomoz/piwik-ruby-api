@@ -22,7 +22,16 @@ module Piwik
 piwik_url: 
 auth_token: 
 EOF
-      
+=begin rdoc
+  This is required to normalize the API responses when the Rails XmlSimple version is used
+=end
+  def self.parse_xml xml
+    result = XmlSimple.xml_in(xml, {'ForceArray' => false})
+    result = result['result'] if result['result']
+    result
+  end
+  def parse_xml xml; self.class.parse_xml xml; end
+  
   private
     # Calls the supplied Piwik API method, with the supplied parameters.
     # 
