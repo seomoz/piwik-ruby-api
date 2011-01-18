@@ -46,6 +46,8 @@ RubyGems and the following gems (installed automatically if necessary):
   sudo gem install autometal-piwik --source=http://gemcutter.org
 
 == CHANGELOG:
+ * 0.4.1
+   Quick fixed api result parsing in site creation. The API's responses are inconsistent, but I am not sure why.
  * 0.4.0
    Added Piwik::Trackable controller mixing, pretty much swiped off of halfdan's piwik analytics project (https://github.com/halfdan/piwik_analytics/). The version included in this plugin is not suitable for application tracking, and is instead geared towards tracking multiple websites stored as ActiveRecord models
  * 0.3.0

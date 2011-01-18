@@ -64,8 +64,8 @@ module Piwik
       raise ArgumentError, "Main URL can not be blank" if main_url.blank?
       xml = call('SitesManager.addSite', :siteName => name, :urls => main_url)
       result = XmlSimple.xml_in(xml, {'ForceArray' => false})
-      case result.class
-      when Hash
+      case result.class.to_s
+      when "Hash"
         @id = result["result"].to_i
       else
         @id = result.to_i
