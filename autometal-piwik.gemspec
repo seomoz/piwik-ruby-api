@@ -2,15 +2,15 @@
 
 Gem::Specification.new do |s|
   s.name = %q{autometal-piwik}
-  s.version = "0.2.3"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Achillefs Charmpilas"]
-  s.date = %q{2011-01-17}
+  s.date = %q{2011-01-18}
   s.description = %q{A simple Ruby client for the Piwik API. This gem is based on Rodrigo Tassinari de Oliveira's piwik gem (https://github.com/riopro/piwik). Since it hasn't been updated since 2008, I took the liberty to fork it, and finish it up.}
   s.email = ["ac@humbuckercode.co.uk"]
   s.extra_rdoc_files = ["History.txt", "License.txt", "Manifest.txt", "PostInstall.txt", "Todo.txt"]
-  s.files = ["History.txt", "License.txt", "Manifest.txt", "PostInstall.txt", "README.rdoc", "Rakefile", "Todo.txt", "autometal-piwik.gemspec", "lib/piwik.rb", "lib/piwik/base.rb", "lib/piwik/site.rb", "lib/piwik/user.rb", "script/console", "script/destroy", "script/generate", "script/txt2html", "setup.rb", "spec/piwik_spec.rb", "spec/spec.opts", "spec/spec_helper.rb", "test/test_helper.rb"]
+  s.files = ["History.txt", "License.txt", "Manifest.txt", "PostInstall.txt", "README.rdoc", "Rakefile", "Todo.txt", "autometal-piwik.gemspec", "lib/piwik.rb", "lib/piwik/base.rb", "lib/piwik/site.rb", "lib/piwik/user.rb", "script/console", "script/destroy", "script/generate", "script/txt2html", "setup.rb", "test/files/config/piwik.yml", "test/piwik_test.rb", "test/test_helper.rb"]
   s.homepage = %q{http://github.com/riopro/Achillefs/tree/master}
   s.post_install_message = %q{
 For more information on piwik, see http://piwik.rubyforge.org or 

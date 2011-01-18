@@ -24,6 +24,11 @@ this API in a Ruby-friendly way. For example:
   => #<Piwik::Site:0xb74bf994 @name="Example.com", @config={:auth_token=>"some_auth_key", :piwik_url=>"http://your.piwi.install"}, @id=1, @main_url="http://www.example.com", @created_at=Tue Jul 15 18:55:40 -0300 2008>
   site.pageviews(:month, Date.today)
   => 88
+  
+  user = Piwik::User.load(1, 'http://your.piwi.install', 'some_auth_key')
+  => #<Piwik::User:0xb66bf544 @login="Example.com", @config={:auth_token=>"some_auth_key", :piwik_url=>"http://your.piwi.install"}, @id=1, @main_url="http://www.example.com", @created_at=Tue Jul 15 18:55:40 -0300 2008>
+  site.pageviews(:month, Date.today)
+  => 88
 
 Currently, only Piwik::Site simple new / create / save / update methods have been implemented.
 
@@ -43,6 +48,8 @@ RubyGems and the following gems (installed automatically if necessary):
   sudo gem install autometal-piwik --source=http://gemcutter.org
 
 == CHANGELOG:
+ * 0.3.0
+   UsersManager CRUD implementation, with tests
  * 0.2.3
    Started adding some tests
  * 0.2.0

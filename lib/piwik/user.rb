@@ -117,11 +117,13 @@ module Piwik
       xml = call('UsersManager.getUser', {:userLogin => user_login}, piwik_url, auth_token)
       result = XmlSimple.xml_in(xml, {'ForceArray' => false})
       
+      puts result.inspect
+      
       attributes = {
         :login => result['row']['login'],
         :user_alias => result['row']['alias'],
         :email => result['row']['email'],
-        :created_at => Time.parse(result['row']['ts_created']),
+        :created_at => Time.parse(result['row']['date_registered']),
       }
       attributes
     end
