@@ -4,7 +4,7 @@ $:.unshift(File.dirname(__FILE__)) unless
 require 'piwik/base.rb'
 require 'piwik/site.rb'
 require 'piwik/user.rb'
-
+require 'piwik/trackable.rb'
 module Piwik
-  VERSION = "0.3.1"
+  VERSION = "0.4.0"
 end

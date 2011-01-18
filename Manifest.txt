@@ -9,6 +9,7 @@ autometal-piwik.gemspec
 lib/piwik.rb
 lib/piwik/base.rb
 lib/piwik/site.rb
+lib/piwik/trackable.rb
 lib/piwik/user.rb
 script/console
 script/destroy

@@ -1,6 +1,6 @@
 = autometal-piwik
 
-* http://github.com/riopro/Achillefs/tree/master
+* http://github.com/Achillefs/tree/master
 * http://humbuckercode.co.uk/licks/gems/piwik
 
 == DESCRIPTION:
@@ -27,10 +27,8 @@ this API in a Ruby-friendly way. For example:
   
   user = Piwik::User.load(1, 'http://your.piwi.install', 'some_auth_key')
   => #<Piwik::User:0xb66bf544 @login="Example.com", @config={:auth_token=>"some_auth_key", :piwik_url=>"http://your.piwi.install"}, @id=1, @main_url="http://www.example.com", @created_at=Tue Jul 15 18:55:40 -0300 2008>
-  site.pageviews(:month, Date.today)
-  => 88
 
-Currently, only Piwik::Site simple new / create / save / update methods have been implemented.
+Currently, only Piwik::Site and Piwik::User simple new / create / save / update methods have been implemented.
 
 For more information on Piwik and it's API, see the Piwik website (http://piwik.org) 
 and the Piwik API reference (http://dev.piwik.org/trac/wiki/API/Reference).
@@ -48,6 +46,8 @@ RubyGems and the following gems (installed automatically if necessary):
   sudo gem install autometal-piwik --source=http://gemcutter.org
 
 == CHANGELOG:
+ * 0.4.0
+   Added Piwik::Trackable controller mixing, pretty much swiped off of halfdan's piwik analytics project (https://github.com/halfdan/piwik_analytics/). The version included in this plugin is not suitable for application tracking, and is instead geared towards tracking multiple websites stored as ActiveRecord models
  * 0.3.0
    UsersManager CRUD implementation, with tests
  * 0.2.3

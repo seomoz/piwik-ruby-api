@@ -7,7 +7,7 @@ module Piwik
         <script type="text/javascript">
         var _paq = _paq || [];
         (function(){
-            var u=(("https:" == document.location.protocol) ? "https://#{Config.url}" : "http://#{Config.url}");
+            var u=(("https:" == document.location.protocol) ? "#{Config.url.sub("http:","https:")}/" : "#{Config.url}/");
             _paq.push(['setSiteId', #{@site.piwik_id}]);
             _paq.push(['setTrackerUrl', u+'piwik.php']);
             _paq.push(['trackPageView']);
@@ -27,7 +27,7 @@ module Piwik
         <<-code
         <!-- Piwik -->
         <script type="text/javascript">
-        var pkBaseURL = (("https:" == document.location.protocol) ? "https://#{Config.url}" : "http://#{Config.url}");
+        var pkBaseURL = (("https:" == document.location.protocol) ? "#{Config.url.sub("http:","https:")}/" : "#{Config.url}/");
         document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
         </script><script type="text/javascript">
         try {
@@ -50,8 +50,6 @@ module Piwik
     end
   end
 
-  class PiwikConfigurationError < StandardError; end
-
   class Config
 
     @@use_async = false
@@ -72,7 +70,7 @@ module Piwik
   https://github.com/Achillefs/piwik_analytics/ (this file is actually swiped from that plugin)
 =end
     def self.enabled?(format)
-      raise Piwik::PiwikConfigurationError if (@site and @site.piwik_id.blank?) || url.blank?
+      raise Piwik::MissingConfiguration if url.blank?
       environments.include?(Rails.env) && formats.include?(format.to_sym)
     end
   end
