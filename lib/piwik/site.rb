@@ -7,8 +7,8 @@ module Piwik
     # 
     # You can pass the URL for your Piwik install and an authorization token as 
     # the second and third parameters. If you don't, than it will try to find 
-    # them in a <tt>'~/.piwik'</tt> (and create the file with an empty template if it 
-    # doesn't exists).
+    # them in a <tt>'~/.piwik'</tt> or <tt>RAILS_ROOT/config/piwik.yml</tt> 
+    # (and create the file with an empty template if it doesn't exists).
     # 
     # Valid (and required) attributes are:
     # * <tt>:name</tt> - the site's name
@@ -187,15 +187,6 @@ module Piwik
     alias_method :pageviews, :actions
     
     private
-      # Calls the supplied Piwik API method, with the supplied parameters.
-      # 
-      # Returns a string containing the XML reply from Piwik, or raises a 
-      # <tt>Piwik::ApiError</tt> exception with the error message returned by Piwik 
-      # in case it receives an error.
-      def call(method, params={})
-        self.class.call(method, params, config[:piwik_url], config[:auth_token])
-      end
-    
       # Loads the attributes in the instance variables.
       def load_attributes(attributes)
         @id = attributes[:id]
@@ -215,27 +206,6 @@ module Piwik
         xml = call('UsersManager.setUserAccess', :idSites => id, :access => access.to_s, :userLogin => login.to_s)
         result = XmlSimple.xml_in(xml, {'ForceArray' => false})
         result['success'] ? true : false
-      end
-
-      # Calls the supplied Piwik API method, with the supplied parameters.
-      # 
-      # Returns a string containing the XML reply from Piwik, or raises a 
-      # <tt>Piwik::ApiError</tt> exception with the error message returned by Piwik 
-      # in case it receives an error.
-      def self.call(method, params={}, piwik_url=nil, auth_token=nil)
-        raise MissingConfiguration, "Please edit ~/.piwik to include your piwik url and auth_key" if piwik_url.nil? || auth_token.nil?
-        url = "#{piwik_url}/?module=API&format=xml&method=#{method}"
-        url << "&token_auth=#{auth_token}" unless auth_token.nil?
-        params.each { |k, v| url << "&#{k}=#{CGI.escape(v.to_s)}" }
-        verbose_obj_save = $VERBOSE
-        $VERBOSE = nil # Suppress "warning: peer certificate won't be verified in this SSL session"
-        xml = RestClient.get(url)
-        $VERBOSE = verbose_obj_save
-        if xml =~ /error message=/
-          result = XmlSimple.xml_in(xml, {'ForceArray' => false})
-          raise ApiError, result['error']['message'] if result['error']
-        end
-        xml
       end
 
       # Returns a hash with the attributes of the supplied site, identified 
