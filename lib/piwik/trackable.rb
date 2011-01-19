@@ -39,6 +39,8 @@ module Piwik
         <!-- End Piwik Tag -->
         code
       end
+    rescue NoMethodError
+      # ignore
     end
 
     def add_piwik_analytics_tracking
