@@ -210,6 +210,7 @@ module Piwik
       def self.get_site_attributes_by_id(site_id, piwik_url, auth_token)
         xml = call('SitesManager.getSiteFromId', {:idSite => site_id}, piwik_url, auth_token)
         result = parse_xml(xml)
+        puts result.inspect
         attributes = {
           :id => result['row']['idsite'].to_i,
           :name => result['row']['name'],

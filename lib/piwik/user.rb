@@ -120,10 +120,12 @@ module Piwik
     def self.get_user_attributes_by_login(user_login, piwik_url, auth_token)
       xml = call('UsersManager.getUser', {:userLogin => user_login}, piwik_url, auth_token)
       result = parse_xml(xml)
+      puts result["row"].inspect
       attributes = {
         :login => result['row']['login'],
         :user_alias => result['row']['alias'],
         :email => result['row']['email'],
+        :password => result['row']['password'],
         :created_at => Time.parse(result['row']['date_registered'])
       }
       attributes
