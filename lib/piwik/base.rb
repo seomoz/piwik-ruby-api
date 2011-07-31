@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'cgi'
-require 'active_support'
+require 'active_support/all'
 require 'rest_client'
 require 'xmlsimple'
 

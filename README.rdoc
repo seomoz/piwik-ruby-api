@@ -1,22 +1,14 @@
-= autometal-piwik
+= simple-piwik
 
-* http://github.com/Achillefs/tree/master
-* http://humbuckercode.co.uk/licks/gems/piwik
+* http://github.com/mihael/simple-piwik/tree/master
 
 == DESCRIPTION:
 
-A simple Ruby client for the Piwik API. This gem is based on Rodrigo Tassinari de Oliveira's piwik gem (https://github.com/riopro/piwik). Since it hasn't been updated since 2008, I took the liberty to fork it, and finish it up.
+A client for the Piwik API. 
 
-== FEATURES/PROBLEMS:
-
-* Object-oriented interface to the Piwik API;
-* For now, only a small subset of the API is implemented (only basic actions)
+== FEATURES NO PROBLEMS:
 
 == SYNOPSIS:
-
-Piwik is an open source web analytics software, written in PHP. It provides an 
-extensive REST-like API, and this gem aims to be a simple Ruby wrapper to access 
-this API in a Ruby-friendly way. For example:
 
   require 'rubygems'
   require 'piwik'
@@ -28,14 +20,13 @@ this API in a Ruby-friendly way. For example:
   user = Piwik::User.load(1, 'http://your.piwi.install', 'some_auth_key')
   => #<Piwik::User:0xb66bf544 @login="Example.com", @config={:auth_token=>"some_auth_key", :piwik_url=>"http://your.piwi.install"}, @id=1, @main_url="http://www.example.com", @created_at=Tue Jul 15 18:55:40 -0300 2008>
 
-Currently, only Piwik::Site and Piwik::User simple new / create / save / update methods have been implemented.
 
-For more information on Piwik and it's API, see the Piwik website (http://piwik.org) 
-and the Piwik API reference (http://dev.piwik.org/trac/wiki/API/Reference).
+Piwik website (http://piwik.org) 
+Piwik API reference (http://dev.piwik.org/trac/wiki/API/Reference)
 
 == REQUIREMENTS:
 
-RubyGems and the following gems (installed automatically if necessary):
+RubyGems and (auto installed if necessary):
 
   active_support
   xml-simple
@@ -43,9 +34,11 @@ RubyGems and the following gems (installed automatically if necessary):
 
 == INSTALL:
 
-  sudo gem install autometal-piwik --source=http://gemcutter.org
+  sudo gem install simple-piwik --source=http://gemcutter.org
 
 == CHANGELOG:
+ * 0.5.0
+   Renamed to simple-piwik.
  * 0.4.2
    Final fix for inconsistent API outputs caused by Rails using its own version of XmlSimple.
  * 0.4.1
@@ -70,7 +63,7 @@ RubyGems and the following gems (installed automatically if necessary):
 
 (The MIT License)
 
-Copyright (c) 2011 Achillefs Charmpilas, Humbucker Ltd
+Copyright (c) 2011 Mihael
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
