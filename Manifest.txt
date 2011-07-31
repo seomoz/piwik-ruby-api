@@ -4,7 +4,6 @@ PostInstall.txt
 README.rdoc
 Rakefile
 Todo.txt
-autometal-piwik.gemspec
 lib/piwik.rb
 lib/piwik/base.rb
 lib/piwik/site.rb
@@ -15,6 +14,7 @@ script/destroy
 script/generate
 script/txt2html
 setup.rb
+simple-piwik.gemspec
 test/files/config/piwik.yml
 test/piwik_test.rb
 test/test_helper.rb
