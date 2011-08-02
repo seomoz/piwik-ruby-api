@@ -29,16 +29,16 @@ http://github.com/mihael/simple-piwik/
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<activesupport>, [">= 3.0.9"])
-      s.add_runtime_dependency(%q<xml-simple>, [">= 1.0.11"])
+      s.add_runtime_dependency(%q<json>, [">= 1.4.6"])
       s.add_runtime_dependency(%q<rest-client>, [">= 1.6.1"])
     else
       s.add_dependency(%q<activesupport>, [">= 3.0.9"])
-      s.add_dependency(%q<xml-simple>, [">= 1.0.11"])
+      s.add_dependency(%q<json>, [">= 1.4.6"])
       s.add_dependency(%q<rest-client>, [">= 1.6.1"])
     end
   else
     s.add_dependency(%q<activesupport>, [">= 3.0.9"])
-    s.add_dependency(%q<xml-simple>, [">= 1.0.11"])
+    s.add_dependency(%q<json>, [">= 1.4.6"])
     s.add_dependency(%q<rest-client>, [">= 1.6.1"])
   end
 end

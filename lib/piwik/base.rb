@@ -1,8 +1,8 @@
 require 'rubygems'
 require 'cgi'
 require 'active_support/all'
+require 'json/ext'
 require 'rest_client'
-require 'xmlsimple'
 
 module Piwik
   class ApiError < StandardError; end
@@ -25,12 +25,14 @@ EOF
 =begin rdoc
   This is required to normalize the API responses when the Rails XmlSimple version is used
 =end
-  def self.parse_xml xml
-    result = XmlSimple.xml_in(xml, {'ForceArray' => false})
-    result = result['result'] if result['result']
-    result
+  def self.parse_json json
+    #puts "parse_json: #{json}"
+    JSON.parse json
+    #result = JSON.parse json
+    #result = result['result'] if result['result']
+    #result
   end
-  def parse_xml xml; self.class.parse_xml xml; end
+  def parse_json json; self.class.parse_json json; end
   
   private
     # Calls the supplied Piwik API method, with the supplied parameters.
@@ -44,23 +46,25 @@ EOF
     
     # Calls the supplied Piwik API method, with the supplied parameters.
     # 
-    # Returns a string containing the XML reply from Piwik, or raises a 
+    # Returns the object parsed from JSON reply from Piwik, or raises a 
     # <tt>Piwik::ApiError</tt> exception with the error message returned by Piwik 
     # in case it receives an error.
     def self.call(method, params={}, piwik_url=nil, auth_token=nil)
       raise MissingConfiguration, "Please edit ~/.piwik to include your piwik url and auth_key" if piwik_url.nil? || auth_token.nil?
-      url = "#{piwik_url}/?module=API&format=xml&method=#{method}"
+      url = "#{piwik_url}/?module=API&format=json&method=#{method}"
       url << "&token_auth=#{auth_token}" unless auth_token.nil?
       params.each { |k, v| url << "&#{k}=#{CGI.escape(v.to_s)}" }
       verbose_obj_save = $VERBOSE
       $VERBOSE = nil # Suppress "warning: peer certificate won't be verified in this SSL session"
-      xml = RestClient.get(url)
+      json = RestClient.get(url)
       $VERBOSE = verbose_obj_save
-      if xml =~ /error message=/
-        result = XmlSimple.xml_in(xml, {'ForceArray' => false})
+      #result = JSON.parse json 
+      result = self.parse_json json
+      if json =~ /error message=/
+        #result = XmlSimple.xml_in(xml, {'ForceArray' => false})
         raise ApiError, result['error']['message'] if result['error']
       end
-      xml
+      result
     end
     
     # Checks for the config, creates it if not found
