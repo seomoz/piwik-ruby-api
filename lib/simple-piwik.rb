@@ -4,6 +4,3 @@ require 'piwik/base.rb'
 require 'piwik/site.rb'
 require 'piwik/user.rb'
 require 'piwik/trackable.rb'
-module Piwik
-  VERSION = "0.5.0"
-end

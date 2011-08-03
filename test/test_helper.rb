@@ -1,4 +1,12 @@
-%W[ stringio test/unit open-uri #{File.dirname(__FILE__)}/../lib/piwik.rb ].each { |r| require r }
+require 'rubygems'
+require 'test/unit'
+#require 'stringio'
+#require 'open-uri'
+#require 'shoulda'
+
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+require 'simple-piwik'
 
 class Test::Unit::TestCase
   def stub_rails_env &block

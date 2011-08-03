@@ -1,85 +1,18 @@
 = simple-piwik
 
-* http://github.com/mihael/simple-piwik/tree/master
+Description goes here.
 
-== DESCRIPTION:
+== Note on Patches/Pull Requests
+ 
+* Fork the project.
+* Make your feature addition or bug fix.
+* Add tests for it. This is important so I don't break it in a
+  future version unintentionally.
+* Commit, do not mess with rakefile, version, or history.
+  (if you want to have your own version, that is fine but
+   bump version in a commit by itself I can ignore when I pull)
+* Send me a pull request. Bonus points for topic branches.
 
-A client for the Piwik API. 
+== Copyright
 
-== FEATURES NO PROBLEMS:
-
-== SYNOPSIS:
-
-  require 'rubygems'
-  require 'piwik'
-  site = Piwik::Site.load(1, 'http://your.piwi.install', 'some_auth_key')
-  => #<Piwik::Site:0xb74bf994 @name="Example.com", @config={:auth_token=>"some_auth_key", :piwik_url=>"http://your.piwi.install"}, @id=1, @main_url="http://www.example.com", @created_at=Tue Jul 15 18:55:40 -0300 2008>
-  site.pageviews(:month, Date.today)
-  => 88
-  
-  user = Piwik::User.load(1, 'http://your.piwi.install', 'some_auth_key')
-  => #<Piwik::User:0xb66bf544 @login="Example.com", @config={:auth_token=>"some_auth_key", :piwik_url=>"http://your.piwi.install"}, @id=1, @main_url="http://www.example.com", @created_at=Tue Jul 15 18:55:40 -0300 2008>
-
-
-Piwik website (http://piwik.org) 
-Piwik API reference (http://dev.piwik.org/trac/wiki/API/Reference)
-
-== REQUIREMENTS:
-
-RubyGems and (auto installed if necessary):
-
-  active_support
-  xml-simple
-  rest-client
-
-== INSTALL:
-
-  sudo gem install simple-piwik --source=http://gemcutter.org
-
-== CHANGELOG:
- * 0.5.0
-   Renamed to simple-piwik.
- * 0.4.2
-   Final fix for inconsistent API outputs caused by Rails using its own version of XmlSimple.
- * 0.4.1
-   Quick fixed api result parsing in site creation. The API's responses are inconsistent, but I am not sure why.
- * 0.4.0
-   Added Piwik::Trackable controller mixing, pretty much swiped off of halfdan's piwik analytics project (https://github.com/halfdan/piwik_analytics/). The version included in this plugin is not suitable for application tracking, and is instead geared towards tracking multiple websites stored as ActiveRecord models
- * 0.3.0
-   UsersManager CRUD implementation, with tests
- * 0.2.3
-   Started adding some tests
- * 0.2.0
-   Reworked plugin to also look for a rails config file called piwik.yml, and not just the .piwik user prefs file.
- * 0.0.2 2008-07-22 (riopro)
-   * Added specs for existing API methods
-   * Created RubyForge project at http://rubyforge.org/projects/piwik/
- * 0.0.1 2008-07-21 (riopro)
-   * major enhancement:
-   * Initial release
-
-
-== LICENSE:
-
-(The MIT License)
-
-Copyright (c) 2011 Mihael
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Copyright (c) 2011 mihael. See LICENSE for details.
