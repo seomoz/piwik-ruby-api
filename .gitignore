@@ -3,3 +3,4 @@ nbproject
 *~
 .rvmrc
 test/files/config/piwik.yml
+*.gem
