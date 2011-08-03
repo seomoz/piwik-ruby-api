@@ -1,5 +1,5 @@
-require 'rubygems'
-require 'cgi'
+#require 'rubygems'
+#require 'cgi'
 require 'active_support/all'
 require 'json/ext'
 require 'rest_client'
@@ -22,17 +22,28 @@ module Piwik
 piwik_url: 
 auth_token: 
 EOF
-=begin rdoc
-  This is required to normalize the API responses when the Rails XmlSimple version is used
-=end
-  def self.parse_json json
-    #puts "parse_json: #{json}"
-    JSON.parse json
-    #result = JSON.parse json
-    #result = result['result'] if result['result']
-    #result
+
+  def self.on_rails?
+    (defined?(::Rails) && ::Rails.respond_to?(:root)) || (defined?(RAILS_ROOT) && RAILS_ROOT!=nil)
   end
-  def parse_json json; self.class.parse_json json; end
+
+  def self.config_file
+    if defined?(::Rails) && ::Rails.respond_to?(:root)
+      File.join(::Rails.root, 'config', 'piwik.yml')
+    elsif defined?(RAILS_ROOT) && RAILS_ROOT!=nil
+      File.join(RAILS_ROOT, 'config', 'piwik.yml')
+    else
+      File.join( ENV['HOME'] || ENV['USERPROFILE'] || ENV['HOMEPATH'] || ".", '.piwik' )
+    end
+  end
+
+  def self.parse_json json
+    JSON.parse json
+  end
+  
+  def parse_json json 
+    self.class.parse_json json
+  end
   
   private
     # Calls the supplied Piwik API method, with the supplied parameters.
@@ -58,10 +69,8 @@ EOF
       $VERBOSE = nil # Suppress "warning: peer certificate won't be verified in this SSL session"
       json = RestClient.get(url)
       $VERBOSE = verbose_obj_save
-      #result = JSON.parse json 
       result = self.parse_json json
       if json =~ /error message=/
-        #result = XmlSimple.xml_in(xml, {'ForceArray' => false})
         raise ApiError, result['error']['message'] if result['error']
       end
       result
@@ -70,28 +79,15 @@ EOF
     # Checks for the config, creates it if not found
     def self.load_config_from_file
       config = {}
-      if defined?(RAILS_ROOT) and RAILS_ROOT != nil
-        home =  RAILS_ROOT
-        filename = "config/piwik.yml"
+      config_file = self.config_file
+      temp_config = if File.exists?(config_file)
+        YAML::load(open(config_file))
       else
-        home =  ENV['HOME'] || ENV['USERPROFILE'] || ENV['HOMEPATH'] || "."
-        filename = ".piwik"
-      end
-      temp_config = if File.exists?(File.join(home,filename))
-        YAML::load(open(File.join(home,filename)))
-      else
-        open(File.join(home,filename),'w') { |f| f.puts @@template }
+        open(config_file,'w') { |f| f.puts @@template }
         YAML::load(@@template)
       end
       temp_config.each { |k,v| config[k.to_sym] = v } if temp_config
-      if config[:piwik_url] == nil || config[:auth_token] == nil
-        if defined?(RAILS_ROOT) and RAILS_ROOT != nil
-          raise MissingConfiguration, "Please edit ./config/piwik.yml to include your piwik url and auth_key"
-        else
-          raise MissingConfiguration, "Please edit ~/.piwik to include your piwik url and auth_key"
-        end
-        
-      end
+      raise MissingConfiguration, "Please edit #{config_file} to include piwik url and auth_key" if config[:piwik_url] == nil || config[:auth_token] == nil
       config
     end
   end

@@ -2,3 +2,4 @@ pkg/*
 nbproject
 *~
 .rvmrc
+test/files/config/piwik.yml

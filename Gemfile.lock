@@ -76,4 +76,5 @@ PLATFORMS
 DEPENDENCIES
   json
   rails (>= 3.0.9)
+  rake
   rest-client (>= 1.6.1)
