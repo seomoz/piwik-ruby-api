@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "lib/piwik/user.rb",
     "lib/simple-piwik.rb",
     "script/console",
+    "simple-piwik.gemspec",
     "test/files/config/example_piwik.yml",
     "test/simple-piwik_test.rb",
     "test/test_helper.rb"
