@@ -1,4 +1,4 @@
-#require 'rubygems'
+require 'rubygems'
 #require 'cgi'
 require 'active_support/all'
 require 'json/ext'
@@ -23,16 +23,15 @@ piwik_url:
 auth_token: 
 EOF
 
-  def self.on_rails?
-    (defined?(::Rails) && ::Rails.respond_to?(:root)) || (defined?(RAILS_ROOT) && RAILS_ROOT!=nil)
-  end
-
   def self.config_file
-    if defined?(::Rails) && ::Rails.respond_to?(:root)
-      File.join(::Rails.root, 'config', 'piwik.yml')
-    elsif defined?(RAILS_ROOT) && RAILS_ROOT!=nil
-      File.join(RAILS_ROOT, 'config', 'piwik.yml')
+    if defined?(Rails.root) && Rails.root!=nil
+#     puts "config_file from Rails.root: #{Rails.root.to_s}"
+      Rails.root.join('config', 'piwik.yml')
+#   elsif defined?(RAILS_ROOT) && RAILS_ROOT!=nil
+#     puts "config_file from RAILS_ROOT: #{RAILS_ROOT}"
+#     File.join(RAILS_ROOT, 'config', 'piwik.yml')
     else
+#     puts "config_file from ~/.piwik"
       File.join( ENV['HOME'] || ENV['USERPROFILE'] || ENV['HOMEPATH'] || ".", '.piwik' )
     end
   end
@@ -80,14 +79,16 @@ EOF
     def self.load_config_from_file
       config = {}
       config_file = self.config_file
-      temp_config = if File.exists?(config_file)
-        YAML::load(open(config_file))
-      else
-        open(config_file,'w') { |f| f.puts @@template }
-        YAML::load(@@template)
+      if config_file
+        temp_config = if File.exists?(config_file)
+          YAML::load(open(config_file))
+        else
+          open(config_file,'w') { |f| f.puts @@template }
+          YAML::load(@@template)
+        end
+        temp_config.each { |k,v| config[k.to_sym] = v } if temp_config
+        raise MissingConfiguration, "Please edit #{config_file} to include piwik url and auth_key" if config[:piwik_url] == nil || config[:auth_token] == nil
       end
-      temp_config.each { |k,v| config[k.to_sym] = v } if temp_config
-      raise MissingConfiguration, "Please edit #{config_file} to include piwik url and auth_key" if config[:piwik_url] == nil || config[:auth_token] == nil
       config
     end
   end
