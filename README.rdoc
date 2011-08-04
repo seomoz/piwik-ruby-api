@@ -1,10 +1,12 @@
 = simple-piwik
 
+A client for the Piwik API. 
+
 * http://github.com/mihael/simple-piwik
 
 == DESCRIPTION:
 
-A client for the Piwik API. 
+Provides simple access to the Piwik API.
 
 == FEATURES NO PROBLEMS
 
@@ -21,6 +23,7 @@ A client for the Piwik API.
   => #<Piwik::User:0xb66bf544 @login="Example.com", @config={:auth_token=>"some_auth_key", :piwik_url=>"http://your.piwi.install"}, @id=1, @main_url="http://www.example.com", @created_at=Tue Jul 15 18:55:40 -0300 2008>
 
 Piwik website (http://piwik.org) 
+
 Piwik API reference (http://dev.piwik.org/trac/wiki/API/Reference)
 
 == REQUIREMENTS:
