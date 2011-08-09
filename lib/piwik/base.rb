@@ -10,6 +10,13 @@ module Piwik
   class UnknownSite < ArgumentError; end
   class UnknownUser < ArgumentError; end
 
+  mattr_accessor :piwik_url
+  mattr_accessor :auth_token
+
+  def self.is_configured?
+    @@piwik_url!=nil && @@auth_token!=nil
+  end
+
   class Base
     @@template  = <<-EOF
 # .piwik
@@ -76,18 +83,25 @@ EOF
     end
     
     # Checks for the config, creates it if not found
-    def self.load_config_from_file
+    def self.load_config
       config = {}
-      config_file = self.config_file
-      if config_file
-        temp_config = if File.exists?(config_file)
-          YAML::load(open(config_file))
-        else
-          open(config_file,'w') { |f| f.puts @@template }
-          YAML::load(@@template)
+      if Piwik.is_configured?
+        config = { :piwik_url => Piwik.piwik_url, :auth_token => Piwik.auth_token }
+      else
+        config_file = self.config_file
+        if config_file
+          temp_config = if File.exists?(config_file)
+            YAML::load(open(config_file))
+          else
+            open(config_file,'w') { |f| f.puts @@template }
+            YAML::load(@@template)
+          end
+          temp_config.each { |k,v| config[k.to_sym] = v } if temp_config
         end
-        temp_config.each { |k,v| config[k.to_sym] = v } if temp_config
         raise MissingConfiguration, "Please edit #{config_file} to include piwik url and auth_key" if config[:piwik_url] == nil || config[:auth_token] == nil
+        #cache settings
+        Piwik.piwik_url = config[:piwik_url]
+        Piwik.auth_token = config[:auth_token]
       end
       config
     end

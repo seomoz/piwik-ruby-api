@@ -54,16 +54,32 @@ class PiwikTest < Test::Unit::TestCase
   def test_can_read_standalone_config
     File.open(File.join(ENV["HOME"],".piwik"), "w") { p.puts(File.read("./files/config/piwik/yml")) } unless File.join(ENV["HOME"],".piwik")
     assert_nothing_raised do
-      Piwik::Base.load_config_from_file
+      Piwik::Base.load_config
     end
   end
-  
   
   def test_can_read_rails_config
     stub_rails_env do
       assert_nothing_raised do
-        Piwik::Base.load_config_from_file
+        Piwik::Base.load_config
       end
     end
   end
+
+  def test_can_be_configured
+    stub_rails_env do
+      #configuring manualy overrides the config file settings, if any
+      Piwik.piwik_url  = "url"
+      Piwik.auth_token = "token"
+      assert_equal true, Piwik.is_configured?
+      assert_nothing_raised do
+        Piwik::Base.load_config
+        assert_equal "url", Piwik.piwik_url 
+        assert_equal "token", Piwik.auth_token
+      end
+      Piwik.piwik_url  = nil
+      Piwik.auth_token = nil
+    end
+  end
+
 end

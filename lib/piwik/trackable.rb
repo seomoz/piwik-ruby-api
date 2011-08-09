@@ -58,7 +58,7 @@ module Piwik
     cattr_accessor :use_async
     
     #at point of starting up a rails project Rails.root points to nil, and this config loading breakes a rails app
-    @@url = Piwik::Base.load_config_from_file[:piwik_url]
+    @@url = Piwik::Base.load_config[:piwik_url]
     cattr_accessor :url
     
     @@environments = ["production","development"]

@@ -18,7 +18,7 @@ module Piwik
     def initialize(attributes={}, piwik_url=nil, auth_token=nil)
       raise ArgumentError, "expected an attributes Hash, got #{attributes.inspect}" unless attributes.is_a?(Hash)
       @config = if piwik_url.nil? || auth_token.nil?
-        self.class.load_config_from_file
+        self.class.load_config
       else
         {:piwik_url => piwik_url, :auth_token => auth_token}
       end
@@ -94,7 +94,7 @@ module Piwik
     def self.load(user_login, piwik_url=nil, auth_token=nil)
       raise ArgumentError, "expected a user Login" if user_login.nil?
       @config = if piwik_url.nil? || auth_token.nil?
-        load_config_from_file
+        load_config
       else
         {:piwik_url => piwik_url, :auth_token => auth_token}
       end
