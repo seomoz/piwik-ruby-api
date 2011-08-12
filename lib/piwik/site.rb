@@ -174,7 +174,18 @@ module Piwik
       result.to_i
     end
     alias_method :pageviews, :actions
-    
+
+    # Returns a string with the javascript tracking code for the supplied site, identified 
+    # by it's Id in <tt>site_id</tt>.
+    # 
+    # Equivalent Piwik API call: SitesManager.getJavascriptTag (idSite)
+    def get_javascript_tag
+      raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
+      result = call('SitesManager.getJavascriptTag', :idSite => id)
+      puts "get_javascript_tag #{result.to_s}"
+      result
+    end    
+
     private
       # Loads the attributes in the instance variables.
       def load_attributes(attributes)
@@ -212,5 +223,6 @@ module Piwik
         }
         attributes
       end
+
   end
 end
