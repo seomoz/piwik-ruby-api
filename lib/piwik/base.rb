@@ -67,7 +67,7 @@ EOF
     # <tt>Piwik::ApiError</tt> exception with the error message returned by Piwik 
     # in case it receives an error.
     def self.call(method, params={}, piwik_url=nil, auth_token=nil)
-      raise MissingConfiguration, "Please edit ~/.piwik to include your piwik url and auth_key" if piwik_url.nil? || auth_token.nil?
+      raise MissingConfiguration, "Please edit #{config_file} to include your piwik url and auth_token or configure Piwik.piwik_url and Piwik.auth_token before use" if piwik_url.nil? || auth_token.nil?
       url = "#{piwik_url}/?module=API&format=json&method=#{method}"
       url << "&token_auth=#{auth_token}" unless auth_token.nil?
       params.each { |k, v| url << "&#{k}=#{CGI.escape(v.to_s)}" }
@@ -98,7 +98,7 @@ EOF
           end
           temp_config.each { |k,v| config[k.to_sym] = v } if temp_config
         end
-        raise MissingConfiguration, "Please edit #{config_file} to include piwik url and auth_key" if config[:piwik_url] == nil || config[:auth_token] == nil
+        raise MissingConfiguration, "Please edit #{config_file} to include piwik url and auth_token or configure Piwik.piwik_url and Piwik.auth_token before use" if config[:piwik_url] == nil || config[:auth_token] == nil
         #cache settings
         Piwik.piwik_url = config[:piwik_url]
         Piwik.auth_token = config[:auth_token]

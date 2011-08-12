@@ -1,28 +1,30 @@
 = simple-piwik
 
-A client for the Piwik API. 
-
-* http://github.com/mihael/simple-piwik
-
-== DESCRIPTION:
-
-Provides simple access to the Piwik API.
-
-== FEATURES NO PROBLEMS
-
-== SYNOPSIS:
+A client for the Piwik API compatible with Rails 3.x
 
   require 'rubygems'
   require 'piwik'
-  site = Piwik::Site.load(1, 'http://your.piwi.install', 'some_auth_key')
-  => #<Piwik::Site:0xb74bf994 @name="Example.com", @config={:auth_token=>"some_auth_key", :piwik_url=>"http://your.piwi.install"}, @id=1, @main_url="http://www.example.com", @created_at=Tue Jul 15 18:55:40 -0300 2008>
+  Piwik.auth_token = "i need to configure simple-piwik with my auth_token here"
+  Piwik.piwik_url = "http://piwik.mypiwikdomain.org"
+  site = Piwik::Site.load(1)
+  => #<Piwik::Site:0xb36ax935 @name="Examples.com", @config={:auth_token=>"my_auth_key", :piwik_url=>"http://piwik.mypiwikdomain.org"}, @id=1, @main_url="http://www.examples.com", @created_at=Thu Oct 20 22:55:42 +0100 2023>
   site.pageviews(:month, Date.today)
-  => 88
-  
-  user = Piwik::User.load(1, 'http://your.piwi.install', 'some_auth_key')
-  => #<Piwik::User:0xb66bf544 @login="Example.com", @config={:auth_token=>"some_auth_key", :piwik_url=>"http://your.piwi.install"}, @id=1, @main_url="http://www.example.com", @created_at=Tue Jul 15 18:55:40 -0300 2008>
+  => 3002378
+  user = Piwik::User.load(1, 'http://piwik.mypiwikdomain.org', 'my_auth_key')
+  => #<Piwik::User:0xa108ac955 @login="Examples.com", @config={:auth_token=>"my_auth_key", :piwik_url=>"http://piwik.mypiwikdomain.org"}, @id=1, @main_url="http://www.examples.com", @created_at=Thu Oct 20 22:55:43 -0100 2023>
 
-Piwik website (http://piwik.org) 
+Configuring with initializer config/initializers/simple-piwik.rb :
+  
+  if Rails.env.production? 
+    Piwik.piwik_url  = "http://piwik.mypiwikdomain.org"
+    Piwik.auth_token = "2ad590308b1efa590a9a43ad86d3ac1s"
+  elsif Rails.env.development?
+    #this is currently set to the same as production
+    Piwik.piwik_url  = "http://piwik.mypiwikdomain.org"
+    Piwik.auth_token = "2ad590308b1efa590a9a43ad86d3ac1s"
+  end
+
+Piwik website (http://piwik.org)
 
 Piwik API reference (http://dev.piwik.org/trac/wiki/API/Reference)
 
@@ -42,7 +44,3 @@ activesupport, rest-client, json
   future version unintentionally.
 * Commit, do not mess with rakefile, version, or history.  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
-
-== Copyright
-
-Copyright (c) 2011 mihael. See LICENSE for details.
