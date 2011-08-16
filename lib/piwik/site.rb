@@ -215,6 +215,7 @@ module Piwik
       def self.get_site_attributes_by_id(site_id, piwik_url, auth_token)
         result = call('SitesManager.getSiteFromId', {:idSite => site_id}, piwik_url, auth_token)
         #puts "get_site_attributes_by_id #{result.to_s}"
+        raise UnknownSite, "Site not existent in Piwik" if result.kind_of?(Hash) && result['value'] == false
         attributes = {
           :id => result[0]['idsite'].to_i,
           :name => result[0]['name'],

@@ -51,6 +51,12 @@ class PiwikTest < Test::Unit::TestCase
     assert_equal true, @user.destroy
   end
   
+  def test_unknown_site
+    assert_raises Piwik::UnknownSite do
+      Piwik::Site.load(0)
+    end
+  end
+  
   def test_can_read_standalone_config
     File.open(File.join(ENV["HOME"],".piwik"), "w") { p.puts(File.read("./files/config/piwik/yml")) } unless File.join(ENV["HOME"],".piwik")
     assert_nothing_raised do
