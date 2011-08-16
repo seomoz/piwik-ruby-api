@@ -57,6 +57,17 @@ class PiwikTest < Test::Unit::TestCase
     end
   end
   
+  def test_site_javascript_tag
+    assert_equal nil, @site.id
+    @site.save
+    assert_not_equal 0, @site.id
+    assert_not_equal nil, @site.id
+    reloaded = Piwik::Site.load(@site.id)
+    assert_equal reloaded.id, @site.id
+    assert_equal 0, reloaded.get_javascript_tag =~ /^<!-- Piwik -->/
+    assert_equal true, reloaded.destroy
+  end  
+  
   def test_can_read_standalone_config
     File.open(File.join(ENV["HOME"],".piwik"), "w") { p.puts(File.read("./files/config/piwik/yml")) } unless File.join(ENV["HOME"],".piwik")
     assert_nothing_raised do

@@ -182,8 +182,8 @@ module Piwik
     def get_javascript_tag
       raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
       result = call('SitesManager.getJavascriptTag', :idSite => id)
-      puts "get_javascript_tag #{result.to_s}"
-      result
+      #puts "get_javascript_tag #{result.to_s}"
+      result['value']
     end    
 
     private
