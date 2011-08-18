@@ -1,5 +1,5 @@
 require 'rubygems'
-#require 'cgi'
+require 'cgi'
 require 'active_support/all'
 require 'json/ext'
 require 'rest_client'

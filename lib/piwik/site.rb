@@ -112,7 +112,8 @@ module Piwik
       give_access_to(:noaccess, login)
     end
     alias_method :remove_access_from, :give_no_access_to
-    
+
+
     # Returns a hash with a summary of access information for the current site 
     # (visits, unique visitors, actions / pageviews, maximum actions per visit, 
     # bounces and total time spent in all visits in seconds), filtered by the 
@@ -175,8 +176,7 @@ module Piwik
     end
     alias_method :pageviews, :actions
 
-    # Returns a string with the javascript tracking code for the supplied site, identified 
-    # by it's Id in <tt>site_id</tt>.
+    # Returns a string with the javascript tracking code for the current site.
     # 
     # Equivalent Piwik API call: SitesManager.getJavascriptTag (idSite)
     def get_javascript_tag
@@ -185,6 +185,19 @@ module Piwik
       #puts "get_javascript_tag #{result.to_s}"
       result['value']
     end    
+
+    # Returns a big Array of Hashes with all page titles along with standard Actions metrics for each row, for the current site.
+    #
+    # Example result:
+    # => [{"label"=>" Izdelava spletnih strani | Spletnik d.o.o.", "nb_visits"=>36, "nb_uniq_visitors"=>35, "nb_hits"=>41, "sum_time_spent"=>240, "entry_nb_uniq_visitors"=>"33", "entry_nb_visits"=>"36", "entry_nb_actions"=>"92", "entry_sum_visit_length"=>"3422", "entry_bounce_count"=>"20", "exit_nb_uniq_visitors"=>"19", "exit_nb_visits"=>"22", "avg_time_on_page"=>7, "bounce_rate"=>"56%", "exit_rate"=>"61%"}]
+    #
+    # Equivalent Piwik API call: Actions.getPageTitles (idSite, period, date, segment = '', expanded = '', idSubtable = '')
+    def get_page_titles(period=:day, date=Date.today, segment='', expanded='', idSubtable='')
+      raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
+      result = call('Actions.getPageTitles', :idSite => id, :period => period, :date => date, :segment => segment, :expanded => expanded, :idSubtable => idSubtable)
+      #puts "get_page_titles: #{result}"
+      result
+    end
 
     private
       # Loads the attributes in the instance variables.
