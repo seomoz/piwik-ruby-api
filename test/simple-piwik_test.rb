@@ -81,7 +81,19 @@ class PiwikTest < Test::Unit::TestCase
     assert_equal true, reloaded.destroy
   end  
   
-  
+  def test_get_page_urls
+    assert_equal nil, @site.id
+    @site.save
+    assert_not_equal 0, @site.id
+    assert_not_equal nil, @site.id
+    #TODO: maybe make an actual website visit here, by calling the Piwik tracking REST api, so that Piwik actually records something and the test can become more accurate
+    reloaded = Piwik::Site.load(@site.id)
+    assert_equal reloaded.id, @site.id
+    assert_equal true, reloaded.get_page_urls!=nil
+    assert_equal true, reloaded.get_page_urls.kind_of?(Array)
+    assert_equal true, reloaded.destroy
+  end 
+    
   def test_can_read_standalone_config
     File.open(File.join(ENV["HOME"],".piwik"), "w") { p.puts(File.read("./files/config/piwik/yml")) } unless File.join(ENV["HOME"],".piwik")
     assert_nothing_raised do

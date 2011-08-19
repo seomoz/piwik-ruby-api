@@ -192,10 +192,27 @@ module Piwik
     # => [{"label"=>" Izdelava spletnih strani | Spletnik d.o.o.", "nb_visits"=>36, "nb_uniq_visitors"=>35, "nb_hits"=>41, "sum_time_spent"=>240, "entry_nb_uniq_visitors"=>"33", "entry_nb_visits"=>"36", "entry_nb_actions"=>"92", "entry_sum_visit_length"=>"3422", "entry_bounce_count"=>"20", "exit_nb_uniq_visitors"=>"19", "exit_nb_visits"=>"22", "avg_time_on_page"=>7, "bounce_rate"=>"56%", "exit_rate"=>"61%"}]
     #
     # Equivalent Piwik API call: Actions.getPageTitles (idSite, period, date, segment = '', expanded = '', idSubtable = '')
-    def get_page_titles(period=:day, date=Date.today, segment='', expanded='', idSubtable='')
+    def get_page_titles(params={})
       raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
-      result = call('Actions.getPageTitles', :idSite => id, :period => period, :date => date, :segment => segment, :expanded => expanded, :idSubtable => idSubtable)
+      result = call('Actions.getPageTitles', {:idSite => id, :period => :day, :date => Date.today, :segment => '', :expanded => '', :idSubtable => ''}.update(params))
       #puts "get_page_titles: #{result}"
+      result
+    end
+
+    # Returns a big Array of Hashes with all page urls along with standard Actions metrics for each row, for the current site.
+    #
+    # Example result:
+    # => [{"label"=>"spletnik", "nb_visits"=>69, "nb_hits"=>87, "sum_time_spent"=>4762, "entry_nb_visits"=>40, "entry_nb_actions"=>101, "entry_sum_visit_length"=>6752, "entry_bounce_count"=>26, "exit_nb_visits"=>39, "avg_time_on_page"=>69, "bounce_rate"=>"65%", "exit_rate"=>"57%", "idsubdatatable"=>1}]
+    #
+    # Example call:
+    #  
+    # Piwik::Site.load(203).get_page_urls(:expanded=>1)
+    #
+    # Equivalent Piwik API call: Actions.getPageUrls (idSite, period, date, segment = '', expanded = '', idSubtable = '')
+    def get_page_urls(params={})
+      raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
+      result = call('Actions.getPageUrls', { :idSite => id, :period => :day, :date => Date.today, :segment => '', :expanded => '', :idSubtable => '' }.update(params))
+      #puts "get_page_urls: #{result}"
       result
     end
 
