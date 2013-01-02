@@ -1,4 +1,4 @@
-# Autometal::Piwik
+# Autometal::Piwik [![Build Status](https://travis-ci.org/Achillefs/autometal-piwik.png?branch=v1.x)](https://travis-ci.org/Achillefs/autometal-piwik)
 
 A simple Ruby client for the Piwik API. This gem's 0.x versions are based on Rodrigo Tassinari de Oliveira’s piwik gem (github.com/riopro/piwik). Since it hasn’t been updated since 2008, I took the liberty to fork it, and finish it up.
 
