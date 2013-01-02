@@ -1,4 +1,0 @@
-
-For more information on piwik, see http://piwik.rubyforge.org or 
-http://github.com/Achillefs/piwik/
-

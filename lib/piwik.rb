@@ -1,10 +1,9 @@
 $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
-require 'piwik/base.rb'
-require 'piwik/site.rb'
-require 'piwik/user.rb'
-require 'piwik/trackable.rb'
+require 'active_support/core_ext'
+Dir[File.join(File.dirname(__FILE__),'piwik','*.rb')].each { |r| require r }
+
 module Piwik
-  VERSION = "0.4.4"
+  # Your code goes here...
 end

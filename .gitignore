@@ -1,2 +1,6 @@
 pkg/*
 nbproject
+*.tmproj
+.rvmrc
+.rspec
+.elscripto

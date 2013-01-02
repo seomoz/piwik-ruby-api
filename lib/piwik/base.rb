@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'cgi'
-require 'active_support'
+require 'yaml'
 require 'rest_client'
 require 'xmlsimple'
 
@@ -92,3 +92,4 @@ EOF
     end
   end
 end
+
