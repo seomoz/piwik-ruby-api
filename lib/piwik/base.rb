@@ -65,6 +65,9 @@ EOF
     
     # Checks for the config, creates it if not found
     def self.load_config_from_file
+      # Useful for testing or embedding credentials - although as always 
+      # it is not recommended to embed any kind of credentials in source code for security reasons
+      return { :piwik_url => PIWIK_URL, :auth_token => PIWIK_TOKEN } if PIWIK_URL.present? and PIWIK_TOKEN.present?
       config = {}
       if defined?(RAILS_ROOT) and RAILS_ROOT != nil
         home =  RAILS_ROOT

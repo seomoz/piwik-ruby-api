@@ -45,3 +45,6 @@ def stub_api_calls
     xml
   end
 end
+
+PIWIK_URL = 'http://piwik.test'
+PIWIK_TOKEN = 'testtoken'
