@@ -59,4 +59,11 @@ describe 'Piwik::Referers' do
     it { subject.get_socials(params).size.should eq(0) }
     it { subject.get_socials(params).empty?.should eq(true) }
   end
+  
+  describe "#get_urls_for_social" do
+    it { subject.get_urls_for_social(params).should_not raise_error(NoMethodError) }
+    it { subject.get_urls_for_social(params).each.should be_a(Enumerator) }
+    it { subject.get_urls_for_social(params).size.should eq(0) }
+    it { subject.get_urls_for_social(params).empty?.should eq(true) }
+  end
 end

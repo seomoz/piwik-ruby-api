@@ -7,6 +7,18 @@
 		<id>pagerank</id>
 	</row>
 	<row>
+		<label>Google indexed pages</label>
+		<rank>22400</rank>
+		<logo>plugins/Referers/images/searchEngines/google.com.png</logo>
+		<id>google-index</id>
+	</row>
+	<row>
+		<label>Bing indexed pages</label>
+		<rank>9820</rank>
+		<logo>plugins/Referers/images/searchEngines/bing.com.png</logo>
+		<id>bing-index</id>
+	</row>
+	<row>
 		<label>Alexa Rank</label>
 		<rank>6422</rank>
 		<logo>plugins/Referers/images/searchEngines/alexa.com.png</logo>
@@ -14,7 +26,7 @@
 	</row>
 	<row>
 		<label>Domain Age</label>
-		<rank />
+		<rank>5 years 169 days</rank>
 		<logo>plugins/SEO/images/whois.png</logo>
 		<id>domain-age</id>
 	</row>

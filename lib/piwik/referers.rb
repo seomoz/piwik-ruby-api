@@ -12,6 +12,7 @@ module Piwik
       getKeywordsFromCampaignId
       getWebsites
       getSocials
+      getUrlsForSocial
       getUrlsFromWebsiteId
       getNumberOfDistinctSearchEngines
       getNumberOfDistinctKeywords
@@ -19,10 +20,6 @@ module Piwik
       getNumberOfDistinctWebsites
       getNumberOfDistinctWebsitesUrls
     }
-    
-    def available_methods
-      self::AVAILABLE_METHODS
-    end
     
     AVAILABLE_METHODS.each do |method|
       class_eval %{
