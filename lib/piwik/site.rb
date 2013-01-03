@@ -146,7 +146,7 @@ module Piwik
     def visits(period=:day, date=Date.today)
       raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
       result = call('VisitsSummary.getVisits', :idSite => id, :period => period, :date => date)
-      result.to_i
+      result['value']
     end
     
     # Returns the amount of unique visitors for the current site, filtered by 
@@ -159,7 +159,7 @@ module Piwik
     def unique_visitors(period=:day, date=Date.today)
       raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
       result = call('VisitsSummary.getUniqueVisitors', :idSite => id, :period => period, :date => date)
-      result.to_i
+      result['value']
     end
     
     # Returns the amount of actions (pageviews) for the current site, filtered 
