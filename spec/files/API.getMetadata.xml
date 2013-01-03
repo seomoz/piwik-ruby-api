@@ -1,49 +1,42 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <result>
 	<row>
-		<category>Visitors</category>
-		<name>Country</name>
+		<category>Besucher</category>
+		<name>Land</name>
 		<module>UserCountry</module>
 		<action>getCountry</action>
-		<dimension>Country</dimension>
+		<dimension>Land</dimension>
 		<metrics>
-			<nb_visits>Visits</nb_visits>
-			<nb_uniq_visitors>Unique visitors</nb_uniq_visitors>
-			<nb_actions>Actions</nb_actions>
-
+			<nb_visits>Besuche</nb_visits>
+			<nb_uniq_visitors>Eindeutige Besucher</nb_uniq_visitors>
+			<nb_actions>Aktionen</nb_actions>
 		</metrics>
 		<processedMetrics>
-			<nb_actions_per_visit>Actions per Visit</nb_actions_per_visit>
-			<avg_time_on_site>Avg. Time on Website</avg_time_on_site>
-			<bounce_rate>Bounce Rate</bounce_rate>
-
+			<nb_actions_per_visit>Aktionen pro Besuch</nb_actions_per_visit>
+			<avg_time_on_site>Durchschnittszeit auf der Webseite</avg_time_on_site>
+			<bounce_rate>Absprungsrate</bounce_rate>
 		</processedMetrics>
 		<metricsDocumentation>
-			<nb_visits>If a visitor comes to your website for the first time or if he visits a page more than 30 minutes after his last page view, this will be recorded as a new visit.</nb_visits>
-			<nb_uniq_visitors>The number of unduplicated visitors coming to your website. Every user is only counted once, even if he visits the website multiple times a day.</nb_uniq_visitors>
-			<nb_actions>The number of actions performed by your visitors. Actions can be page views, downloads or outlinks.</nb_actions>
-			<nb_actions_per_visit>The average number of actions (page views, downloads or outlinks) that were performed during the visits.</nb_actions_per_visit>
-			<avg_time_on_site>The average duration of a visit.</avg_time_on_site>
-			<bounce_rate>The percentage of visits that only had a single pageview. This means, that the visitor left the website directly from the entrance page.</bounce_rate>
-			<conversion_rate>The percentage of visits that triggered a goal conversion.</conversion_rate>
-			<avg_time_on_page>The average amount of time visitors spent on this page (only the page, not the entire website).</avg_time_on_page>
-			<nb_hits>The number of times this page was visited.</nb_hits>
-			<exit_rate>The percentage of visits that left the website after viewing this page.</exit_rate>
-
+			<nb_visits>Wenn ein Besucher zum ersten Mal die Webseite besucht oder seit dem letzen Seitenaufruf mehr als 30 Minuten vergangen sind, wird dies als neuer Besuch gewertet.</nb_visits>
+			<nb_uniq_visitors>Die Anzahl der eindeutigen Besucher auf der Webseite. Jeder Benutzer wird nur einmal gezählt, auch wenn er die Webseite mehrmals täglich besucht hat.</nb_uniq_visitors>
+			<nb_actions>Die Anzahl der Aktionen, die ein Besucher durchgeführt hat. Aktionen sind Seitenansichten, Downloads und der Aufruf von externen Links.</nb_actions>
+			<nb_actions_per_visit>Die durchschnittliche Anzahl der Aktionen (Seitenaufrufe, Downloads oder Outlinks), die während der Besuche durchgeführt wurden.</nb_actions_per_visit>
+			<avg_time_on_site>Durchschnittslänge eines Besuches.</avg_time_on_site>
+			<bounce_rate>Der Anteil der Besuche, bei denen nur eine Seite aufgerufen wurde. Dies bedeutet, dass der Besucher die Website auf der Eingangsseite sofort wieder verlassen hat.</bounce_rate>
+			<conversion_rate>Prozentsatz der Besucher, die ein Zeil erreicht haben.</conversion_rate>
+			<avg_time_on_page>Die durchschnittliche Besuchdauer einer Seite (nur die einzelne Seite, nicht die gesamte Webseite)</avg_time_on_page>
+			<nb_hits>Die Anzahl, wie häufig diese Seite besucht wurde.</nb_hits>
+			<exit_rate>Der Anteil der Besuche, welche die Webseite nach dieser Seite verlassen haben.</exit_rate>
 		</metricsDocumentation>
 		<metricsGoal>
-			<nb_conversions>Conversions</nb_conversions>
-			<revenue>Revenue</revenue>
-
+			<nb_conversions>Konversionen</nb_conversions>
+			<revenue>Umsatz</revenue>
 		</metricsGoal>
 		<processedMetricsGoal>
-			<revenue_per_visit>Revenue per Visit</revenue_per_visit>
-
+			<revenue_per_visit>Umsatz pro Besuch</revenue_per_visit>
 		</processedMetricsGoal>
-		<imageGraphUrl>index.php?module=API&amp;method=ImageGraph.get&amp;idSite=1&amp;apiModule=UserCountry&amp;apiAction=getCountry&amp;token_auth=90871c8584ddf2265f54553a305b6ae1&amp;period=day&amp;date=yesterday</imageGraphUrl>
-		<imageGraphEvolutionUrl>index.php?module=API&amp;method=ImageGraph.get&amp;idSite=1&amp;apiModule=UserCountry&amp;apiAction=getCountry&amp;token_auth=90871c8584ddf2265f54553a305b6ae1&amp;period=day&amp;date=2012-12-04,2013-01-02</imageGraphEvolutionUrl>
+		<imageGraphUrl>index.php?module=API&amp;method=ImageGraph.get&amp;idSite=7&amp;apiModule=UserCountry&amp;apiAction=getCountry&amp;token_auth=anonymous&amp;period=day&amp;date=yesterday</imageGraphUrl>
+		<imageGraphEvolutionUrl>index.php?module=API&amp;method=ImageGraph.get&amp;idSite=7&amp;apiModule=UserCountry&amp;apiAction=getCountry&amp;token_auth=anonymous&amp;period=day&amp;date=2012-12-04,2013-01-02</imageGraphEvolutionUrl>
 		<uniqueId>UserCountry_getCountry</uniqueId>
-
 	</row>
-
 </result>

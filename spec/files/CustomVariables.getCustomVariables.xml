@@ -1,2 +1,32 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<result />
+<result>
+	<row>
+		<label>Forum status</label>
+		<nb_uniq_visitors>857</nb_uniq_visitors>
+		<nb_visits>955</nb_visits>
+		<nb_actions>2375</nb_actions>
+		<max_actions>102</max_actions>
+		<sum_visit_length>143407</sum_visit_length>
+		<bounce_count>648</bounce_count>
+		<goals>
+			<row idgoal='1'>
+				<nb_conversions>34</nb_conversions>
+				<nb_visits_converted>34</nb_visits_converted>
+				<revenue>102</revenue>
+			</row>
+			<row idgoal='2'>
+				<nb_conversions>44</nb_conversions>
+				<nb_visits_converted>44</nb_visits_converted>
+				<revenue>44</revenue>
+			</row>
+			<row idgoal='3'>
+				<nb_conversions>4</nb_conversions>
+				<nb_visits_converted>4</nb_visits_converted>
+				<revenue>4</revenue>
+			</row>
+		</goals>
+		<nb_conversions>82</nb_conversions>
+		<revenue>150</revenue>
+		<idsubdatatable>358</idsubdatatable>
+	</row>
+</result>

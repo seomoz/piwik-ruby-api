@@ -1,2 +1,55 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<result />
+<result>
+	<row>
+		<label>1 Besuch</label>
+		<nb_conversions>66</nb_conversions>
+	</row>
+	<row>
+		<label>2 Besuche</label>
+		<nb_conversions>6</nb_conversions>
+	</row>
+	<row>
+		<label>3 Besuche</label>
+		<nb_conversions>3</nb_conversions>
+	</row>
+	<row>
+		<label>4 Besuche</label>
+		<nb_conversions>1</nb_conversions>
+	</row>
+	<row>
+		<label>5 Besuche</label>
+		<nb_conversions>2</nb_conversions>
+	</row>
+	<row>
+		<label>6 Besuche</label>
+		<nb_conversions>0</nb_conversions>
+	</row>
+	<row>
+		<label>7 Besuche</label>
+		<nb_conversions>0</nb_conversions>
+	</row>
+	<row>
+		<label>8 Besuche</label>
+		<nb_conversions>0</nb_conversions>
+	</row>
+	<row>
+		<label>9-14 Besuche</label>
+		<nb_conversions>0</nb_conversions>
+	</row>
+	<row>
+		<label>15-25 Besuche</label>
+		<nb_conversions>3</nb_conversions>
+	</row>
+	<row>
+		<label>26-50 Besuche</label>
+		<nb_conversions>0</nb_conversions>
+	</row>
+	<row>
+		<label>51-100 Besuche</label>
+		<nb_conversions>0</nb_conversions>
+	</row>
+	<row>
+		<label>101+ Besuche</label>
+		<nb_conversions>1</nb_conversions>
+	</row>
+</result>

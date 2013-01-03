@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <result>
-	<nb_uniq_visitors>0</nb_uniq_visitors>
-	<nb_visits>0</nb_visits>
-	<nb_actions>0</nb_actions>
-	<max_actions>0</max_actions>
-	<bounce_rate>0%</bounce_rate>
-	<nb_actions_per_visit>0</nb_actions_per_visit>
-	<avg_time_on_site>0</avg_time_on_site>
-	<nb_visits_returning>0</nb_visits_returning>
-	<nb_actions_returning>0</nb_actions_returning>
-	<nb_uniq_visitors_returning>0</nb_uniq_visitors_returning>
-	<bounce_rate_returning>0%</bounce_rate_returning>
-	<nb_actions_per_visit_returning>0</nb_actions_per_visit_returning>
-	<avg_time_on_site_returning>0</avg_time_on_site_returning>
-	<nb_conversions>0</nb_conversions>
-	<nb_visits_converted>0</nb_visits_converted>
-	<conversion_rate>0</conversion_rate>
-	<revenue>0</revenue>
-	<nb_pageviews>0</nb_pageviews>
-	<nb_uniq_pageviews>0</nb_uniq_pageviews>
-	<nb_downloads>0</nb_downloads>
-	<nb_uniq_downloads>0</nb_uniq_downloads>
-	<nb_outlinks>0</nb_outlinks>
-	<nb_uniq_outlinks>0</nb_uniq_outlinks>
+	<nb_uniq_visitors>854</nb_uniq_visitors>
+	<nb_visits>955</nb_visits>
+	<nb_actions>2375</nb_actions>
+	<max_actions>102</max_actions>
+	<bounce_rate>68%</bounce_rate>
+	<nb_actions_per_visit>2,5</nb_actions_per_visit>
+	<avg_time_on_site>150</avg_time_on_site>
+	<nb_visits_returning>216</nb_visits_returning>
+	<nb_actions_returning>764</nb_actions_returning>
+	<nb_uniq_visitors_returning>165</nb_uniq_visitors_returning>
+	<bounce_rate_returning>54%</bounce_rate_returning>
+	<nb_actions_per_visit_returning>3,5</nb_actions_per_visit_returning>
+	<avg_time_on_site_returning>253</avg_time_on_site_returning>
+	<nb_conversions>82</nb_conversions>
+	<nb_visits_converted>56</nb_visits_converted>
+	<conversion_rate>5,86</conversion_rate>
+	<revenue>150</revenue>
+	<nb_pageviews>2270</nb_pageviews>
+	<nb_uniq_pageviews>1730</nb_uniq_pageviews>
+	<nb_downloads>3</nb_downloads>
+	<nb_uniq_downloads>3</nb_uniq_downloads>
+	<nb_outlinks>100</nb_outlinks>
+	<nb_uniq_outlinks>93</nb_uniq_outlinks>
 	<nb_searches>0</nb_searches>
 	<nb_keywords>0</nb_keywords>
 </result>

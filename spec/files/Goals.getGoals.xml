@@ -1,2 +1,39 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<result />
+<result>
+	<row key="1">
+		<idsite>7</idsite>
+		<idgoal>1</idgoal>
+		<name>New user registration</name>
+		<match_attribute>url</match_attribute>
+		<pattern>register.php</pattern>
+		<pattern_type>contains</pattern_type>
+		<case_sensitive>0</case_sensitive>
+		<allow_multiple>0</allow_multiple>
+		<revenue>3</revenue>
+		<deleted>0</deleted>
+	</row>
+	<row key="2">
+		<idsite>7</idsite>
+		<idgoal>2</idgoal>
+		<name>User login</name>
+		<match_attribute>url</match_attribute>
+		<pattern>login.php</pattern>
+		<pattern_type>contains</pattern_type>
+		<case_sensitive>0</case_sensitive>
+		<allow_multiple>0</allow_multiple>
+		<revenue>1</revenue>
+		<deleted>0</deleted>
+	</row>
+	<row key="3">
+		<idsite>7</idsite>
+		<idgoal>3</idgoal>
+		<name>Read the &quot;Please read&quot; post</name>
+		<match_attribute>url</match_attribute>
+		<pattern>http://forum.piwik.org/read.php?2,71214</pattern>
+		<pattern_type>contains</pattern_type>
+		<case_sensitive>0</case_sensitive>
+		<allow_multiple>0</allow_multiple>
+		<revenue>1</revenue>
+		<deleted>0</deleted>
+	</row>
+</result>

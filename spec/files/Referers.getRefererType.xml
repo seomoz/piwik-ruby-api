@@ -1,2 +1,82 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<result />
+<result>
+	<row>
+		<label>Suchmaschinen</label>
+		<nb_uniq_visitors>649</nb_uniq_visitors>
+		<nb_visits>665</nb_visits>
+		<nb_actions>1146</nb_actions>
+		<max_actions>102</max_actions>
+		<sum_visit_length>72361</sum_visit_length>
+		<bounce_count>510</bounce_count>
+		<goals>
+			<row idgoal='1'>
+				<nb_conversions>8</nb_conversions>
+				<nb_visits_converted>8</nb_visits_converted>
+				<revenue>24</revenue>
+			</row>
+			<row idgoal='2'>
+				<nb_conversions>10</nb_conversions>
+				<nb_visits_converted>10</nb_visits_converted>
+				<revenue>10</revenue>
+			</row>
+			<row idgoal='3'>
+				<nb_conversions>3</nb_conversions>
+				<nb_visits_converted>3</nb_visits_converted>
+				<revenue>3</revenue>
+			</row>
+		</goals>
+		<nb_conversions>21</nb_conversions>
+		<revenue>37</revenue>
+	</row>
+	<row>
+		<label>Direkte Zugriffe</label>
+		<nb_uniq_visitors>127</nb_uniq_visitors>
+		<nb_visits>151</nb_visits>
+		<nb_actions>636</nb_actions>
+		<max_actions>50</max_actions>
+		<sum_visit_length>35549</sum_visit_length>
+		<bounce_count>79</bounce_count>
+		<goals>
+			<row idgoal='1'>
+				<nb_conversions>16</nb_conversions>
+				<nb_visits_converted>16</nb_visits_converted>
+				<revenue>48</revenue>
+			</row>
+			<row idgoal='2'>
+				<nb_conversions>16</nb_conversions>
+				<nb_visits_converted>16</nb_visits_converted>
+				<revenue>16</revenue>
+			</row>
+		</goals>
+		<nb_conversions>32</nb_conversions>
+		<revenue>64</revenue>
+	</row>
+	<row>
+		<label>Webseiten</label>
+		<nb_uniq_visitors>138</nb_uniq_visitors>
+		<nb_visits>139</nb_visits>
+		<nb_actions>593</nb_actions>
+		<max_actions>89</max_actions>
+		<sum_visit_length>35497</sum_visit_length>
+		<bounce_count>59</bounce_count>
+		<goals>
+			<row idgoal='1'>
+				<nb_conversions>10</nb_conversions>
+				<nb_visits_converted>10</nb_visits_converted>
+				<revenue>30</revenue>
+			</row>
+			<row idgoal='2'>
+				<nb_conversions>18</nb_conversions>
+				<nb_visits_converted>18</nb_visits_converted>
+				<revenue>18</revenue>
+			</row>
+			<row idgoal='3'>
+				<nb_conversions>1</nb_conversions>
+				<nb_visits_converted>1</nb_visits_converted>
+				<revenue>1</revenue>
+			</row>
+		</goals>
+		<nb_conversions>29</nb_conversions>
+		<revenue>49</revenue>
+	</row>
+</result>

@@ -1,2 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<result />
+<result>
+	<row>
+		<label>piwik.org</label>
+		<nb_visits>2</nb_visits>
+		<nb_hits>2</nb_hits>
+		<sum_time_spent>26</sum_time_spent>
+		<exit_nb_visits>1</exit_nb_visits>
+		<idsubdatatable>68</idsubdatatable>
+	</row>
+	<row>
+		<label>blogosys.com</label>
+		<nb_visits>1</nb_visits>
+		<nb_hits>1</nb_hits>
+		<sum_time_spent>0</sum_time_spent>
+		<exit_nb_visits>1</exit_nb_visits>
+		<idsubdatatable>70</idsubdatatable>
+	</row>
+</result>

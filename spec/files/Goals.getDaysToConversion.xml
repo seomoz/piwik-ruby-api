@@ -1,2 +1,59 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<result />
+<result>
+	<row>
+		<label>0 Tage</label>
+		<nb_conversions>74</nb_conversions>
+	</row>
+	<row>
+		<label>1 Tag</label>
+		<nb_conversions>0</nb_conversions>
+	</row>
+	<row>
+		<label>2 Tage</label>
+		<nb_conversions>0</nb_conversions>
+	</row>
+	<row>
+		<label>3 Tage</label>
+		<nb_conversions>0</nb_conversions>
+	</row>
+	<row>
+		<label>4 Tage</label>
+		<nb_conversions>0</nb_conversions>
+	</row>
+	<row>
+		<label>5 Tage</label>
+		<nb_conversions>1</nb_conversions>
+	</row>
+	<row>
+		<label>6 Tage</label>
+		<nb_conversions>0</nb_conversions>
+	</row>
+	<row>
+		<label>7 Tage</label>
+		<nb_conversions>0</nb_conversions>
+	</row>
+	<row>
+		<label>8-14 Tage</label>
+		<nb_conversions>0</nb_conversions>
+	</row>
+	<row>
+		<label>15-30 Tage</label>
+		<nb_conversions>2</nb_conversions>
+	</row>
+	<row>
+		<label>31-60 Tage</label>
+		<nb_conversions>4</nb_conversions>
+	</row>
+	<row>
+		<label>61-120 Tage</label>
+		<nb_conversions>0</nb_conversions>
+	</row>
+	<row>
+		<label>121-364 Tage</label>
+		<nb_conversions>1</nb_conversions>
+	</row>
+	<row>
+		<label>365+ Tage</label>
+		<nb_conversions>0</nb_conversions>
+	</row>
+</result>
