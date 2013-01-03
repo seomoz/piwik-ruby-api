@@ -1,5 +1,5 @@
 module Piwik
-  class User < Piwik::Base
+  class User < Base
     attr_accessor :login, :password, :email, :user_alias
     attr_reader :created_at, :config
     

@@ -1,5 +1,5 @@
 module Piwik
-  class Site < Piwik::Base
+  class Site < Base
     attr_accessor :name, :main_url
     attr_reader :id, :created_at, :config
     

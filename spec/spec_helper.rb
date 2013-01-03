@@ -42,5 +42,5 @@ def stub_api_calls
   end
 end
 
-PIWIK_URL = 'http://piwik.test'
-PIWIK_TOKEN = 'testtoken'
+PIWIK_URL = 'http://piwik.local'
+PIWIK_TOKEN = '90871c8584ddf2265f54553a305b6ae1'
