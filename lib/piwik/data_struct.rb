@@ -21,20 +21,26 @@ module Piwik
     # Catch incoming method calls and try to format them and send them over to the api
     def self.method_missing(method, *args, &block)
       formatted_method = method.to_s.camelize(:lower)
+      # connect to API if this is a valid-looking method in the current class context
       if self::AVAILABLE_METHODS.include?(formatted_method)
-        method_name = "#{self.to_s.gsub('Piwik::','')}.#{formatted_method}"
-        config = load_config_from_file
-        xml = self.call(method_name, args.first, config[:piwik_url], config[:auth_token])
-        data = XmlSimple.xml_in(xml, {'ForceArray' => false})
-        if data.is_a?(String)
-          self.new(:data => [], :value => data)
-        elsif data['row'].present?
-          self.new(:data => data['row'])
-        else
-          self.new(:data => [])
-        end
+        handle_api_call(formatted_method, args.first)
       else
         super
+      end
+    end
+  protected
+    # Attempt an API call request
+    def self.handle_api_call method, params
+      method_name = "#{self.to_s.gsub('Piwik::','')}.#{method}"
+      config = load_config_from_file
+      xml = self.call(method_name, params, config[:piwik_url], config[:auth_token])
+      data = XmlSimple.xml_in(xml, {'ForceArray' => false})
+      if data.is_a?(String)
+        self.new(:data => [], :value => data)
+      elsif data['row'].present?
+        self.new(:data => data['row'])
+      else
+        self.new(:data => [])
       end
     end
   end
