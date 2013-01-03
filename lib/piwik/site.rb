@@ -216,6 +216,18 @@ module Piwik
       result
     end
 
+    def bounce_count(period=:day, date=Date.today)
+      raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
+      result = call('VisitsSummary.getBounceCount', :idSite => id, :period => period, :date => date)
+      result['value']
+    end
+
+    def sum_visits_length(period=:day, date=Date.today)
+      raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
+      result = call('VisitsSummary.getSumVisitsLength', :idSite => id, :period => period, :date => date)
+      result['value']
+    end
+
     private
       # Loads the attributes in the instance variables.
       def load_attributes(attributes)
