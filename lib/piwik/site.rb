@@ -228,6 +228,11 @@ module Piwik
       result['value']
     end
 
+    def website_referrers(period=:day, date=Date.today)
+      raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
+      call('Referers.getWebsites', :idSite => id, :period => period, :date => date)
+    end
+
     private
       # Loads the attributes in the instance variables.
       def load_attributes(attributes)
