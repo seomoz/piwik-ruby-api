@@ -27,7 +27,6 @@ describe 'Piwik::User' do
       @user = build(:user) 
       @user.save
     }
-    after { @user.destroy }
     it { expect {Piwik::User.load(@user.login)}.to_not raise_error }
   end
 end
