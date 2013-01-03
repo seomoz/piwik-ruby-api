@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<result>
+	<row>
+		<login>anonymous</login>
+		<password />
+		<alias>anonymous</alias>
+		<email>anonymous@example.org</email>
+		<token_auth>anonymous</token_auth>
+		<date_registered>2013-01-02 13:56:27</date_registered>
+	</row>
+</result>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<result>
+	<row>
+		<pageviewsInline>%s pageviews</pageviewsInline>
+		<loopsInline>%s page reloads</loopsInline>
+		<fromPreviousPages>From Internal Pages</fromPreviousPages>
+		<fromPreviousPagesInline>%s from internal pages</fromPreviousPagesInline>
+		<fromPreviousSiteSearches>From Internal Search</fromPreviousSiteSearches>
+		<fromPreviousSiteSearchesInline>%s from internal searches</fromPreviousSiteSearchesInline>
+		<fromSearchEngines>From Search Engines</fromSearchEngines>
+		<fromSearchEnginesInline>%s from search engines</fromSearchEnginesInline>
+		<fromWebsites>From Websites</fromWebsites>
+		<fromWebsitesInline>%s from websites</fromWebsitesInline>
+		<fromCampaigns>From Campaigns</fromCampaigns>
+		<fromCampaignsInline>%s from campaigns</fromCampaignsInline>
+		<directEntries>Direct Entries</directEntries>
+		<directEntriesInline>%s direct entries</directEntriesInline>
+		<toFollowingPages>To Internal Pages</toFollowingPages>
+		<toFollowingPagesInline>%s to internal pages</toFollowingPagesInline>
+		<toFollowingSiteSearches>Internal Searches</toFollowingSiteSearches>
+		<toFollowingSiteSearchesInline>%s internal searches</toFollowingSiteSearchesInline>
+		<downloads>Downloads</downloads>
+		<downloadsInline>%s downloads</downloadsInline>
+		<outlinks>Outlinks</outlinks>
+		<outlinksInline>%s outlinks</outlinksInline>
+		<exits>Exits</exits>
+		<exitsInline>%s exits</exitsInline>
+		<bouncesInline>%s bounces</bouncesInline>
+		<XOfY>%s (out of %s)</XOfY>
+		<XOfAllPageviews>%s of all views of this page</XOfAllPageviews>
+		<NoDataForAction>There's no data for %s</NoDataForAction>
+		<NoDataForActionDetails>Either the action had no pageviews during the period %s or it is invalid.</NoDataForActionDetails>
+		<NoDataForActionBack>Go back to the previous action</NoDataForActionBack>
+		<ShareOfAllPageviews>This page had %s pageviews (%s of all pageviews)</ShareOfAllPageviews>
+		<DateRange>Date range:</DateRange>
+	</row>
+</result>

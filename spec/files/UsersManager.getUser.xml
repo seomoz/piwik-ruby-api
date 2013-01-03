@@ -1,0 +1,10 @@
+<result>
+  <row>
+    <login>test_user</login>
+    <password>4cb9c8a8048fd02294477fcb1a41191a</password>
+    <alias>test_user</alias>
+    <email>user@test.local</email>
+    <token_auth>07bf7e82aa205c84c6aa308431f53c56</token_auth>
+    <date_registered>2013-01-03 16:02:57</date_registered>
+  </row>
+</result>

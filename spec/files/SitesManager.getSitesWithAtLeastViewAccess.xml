@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<result>
+	<row>
+		<idsite>1</idsite>
+		<name>Humbucker</name>
+		<main_url>http://humbuckercode.co.uk</main_url>
+		<ts_created>2013-01-02 13:57:20</ts_created>
+		<ecommerce>0</ecommerce>
+		<sitesearch>1</sitesearch>
+		<sitesearch_keyword_parameters />
+		<sitesearch_category_parameters />
+		<timezone>Europe/London</timezone>
+		<currency>USD</currency>
+		<excluded_ips />
+		<excluded_parameters />
+		<group />
+	</row>
+</result>

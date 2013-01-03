@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<result>
+	<row>
+		<label>Google PageRank</label>
+		<rank>7</rank>
+		<logo>plugins/Referers/images/searchEngines/google.com.png</logo>
+		<id>pagerank</id>
+	</row>
+	<row>
+		<label>Alexa Rank</label>
+		<rank>6422</rank>
+		<logo>plugins/Referers/images/searchEngines/alexa.com.png</logo>
+		<id>alexa</id>
+	</row>
+	<row>
+		<label>Domain Age</label>
+		<rank />
+		<logo>plugins/SEO/images/whois.png</logo>
+		<id>domain-age</id>
+	</row>
+</result>

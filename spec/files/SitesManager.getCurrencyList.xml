@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<result>
+	<row>
+		<USD>US dollar ($)</USD>
+		<EUR>Euro (€)</EUR>
+		<JPY>Japanese yen (¥)</JPY>
+		<GBP>British pound (£)</GBP>
+		<CHF>Swiss franc (Fr)</CHF>
+		<AFN>Afghan afghani (؋)</AFN>
+		<ALL>Albanian lek (L)</ALL>
+		<DZD>Algerian dinar (د.ج)</DZD>
+		<AOA>Angolan kwanza (Kz)</AOA>
+		<ARS>Argentine peso ($)</ARS>
+		<AMD>Armenian dram (դր.)</AMD>
+		<AWG>Aruban florin (ƒ)</AWG>
+		<AUD>Australian dollar ($)</AUD>
+		<AZN>Azerbaijani manat (m)</AZN>
+		<BSD>Bahamian dollar ($)</BSD>
+		<BHD>Bahraini dinar (.د.ب)</BHD>
+		<BDT>Bangladeshi taka (৳)</BDT>
+		<BBD>Barbadian dollar ($)</BBD>
+		<BYR>Belarusian ruble (Br)</BYR>
+		<BZD>Belize dollar ($)</BZD>
+		<BMD>Bermudian dollar ($)</BMD>
+		<BTN>Bhutanese ngultrum (Nu.)</BTN>
+		<BOB>Bolivian boliviano (Bs.)</BOB>
+		<BAM>Bosnia Herzegovina mark (KM)</BAM>
+		<BWP>Botswana pula (P)</BWP>
+		<BRL>Brazilian real (R$)</BRL>
+		<BND>Brunei dollar ($)</BND>
+		<BGN>Bulgarian lev (лв)</BGN>
+		<BIF>Burundian franc (Fr)</BIF>
+		<KHR>Cambodian riel (៛)</KHR>
+		<CAD>Canadian dollar ($)</CAD>
+		<CVE>Cape Verdean escudo ($)</CVE>
+		<KYD>Cayman Islands dollar ($)</KYD>
+		<XAF>Central African CFA franc (Fr)</XAF>
+		<CLP>Chilean peso ($)</CLP>
+		<CNY>Chinese yuan (元)</CNY>
+		<COP>Colombian peso ($)</COP>
+		<KMF>Comorian franc (Fr)</KMF>
+		<CDF>Congolese franc (Fr)</CDF>
+		<CRC>Costa Rican colón (₡)</CRC>
+		<HRK>Croatian kuna (kn)</HRK>
+		<XPF>CFP franc (F)</XPF>
+		<CUC>Cuban convertible peso ($)</CUC>
+		<CUP>Cuban peso ($)</CUP>
+		<CMG>Curaçao and Sint Maarten guilder (ƒ)</CMG>
+		<CZK>Czech koruna (Kč)</CZK>
+		<DKK>Danish krone (kr)</DKK>
+		<DJF>Djiboutian franc (Fr)</DJF>
+		<DOP>Dominican peso ($)</DOP>
+		<XCD>East Caribbean dollar ($)</XCD>
+		<EGP>Egyptian pound (ج.م)</EGP>
+		<ERN>Eritrean nakfa (Nfk)</ERN>
+		<EEK>Estonian kroon (kr)</EEK>
+		<ETB>Ethiopian birr (Br)</ETB>
+		<FKP>Falkland Islands pound (£)</FKP>
+		<FJD>Fijian dollar ($)</FJD>
+		<GMD>Gambian dalasi (D)</GMD>
+		<GEL>Georgian lari (ლ)</GEL>
+		<GHS>Ghanaian cedi (₵)</GHS>
+		<GIP>Gibraltar pound (£)</GIP>
+		<GTQ>Guatemalan quetzal (Q)</GTQ>
+		<GNF>Guinean franc (Fr)</GNF>
+		<GYD>Guyanese dollar ($)</GYD>
+		<HTG>Haitian gourde (G)</HTG>
+		<HNL>Honduran lempira (L)</HNL>
+		<HKD>Hong Kong dollar ($)</HKD>
+		<HUF>Hungarian forint (Ft)</HUF>
+		<ISK>Icelandic króna (kr)</ISK>
+		<INR>Indian rupee (‎₹)</INR>
+		<IDR>Indonesian rupiah (Rp)</IDR>
+		<IRR>Iranian rial (﷼)</IRR>
+		<IQD>Iraqi dinar (ع.د)</IQD>
+		<ILS>Israeli new shekel (₪)</ILS>
+		<JMD>Jamaican dollar ($)</JMD>
+		<JOD>Jordanian dinar (د.ا)</JOD>
+		<KZT>Kazakhstani tenge (₸)</KZT>
+		<KES>Kenyan shilling (Sh)</KES>
+		<KWD>Kuwaiti dinar (د.ك)</KWD>
+		<KGS>Kyrgyzstani som (лв)</KGS>
+		<LAK>Lao kip (₭)</LAK>
+		<LVL>Latvian lats (Ls)</LVL>
+		<LBP>Lebanese pound (ل.ل)</LBP>
+		<LSL>Lesotho loti (L)</LSL>
+		<LRD>Liberian dollar ($)</LRD>
+		<LYD>Libyan dinar (ل.د)</LYD>
+		<LTL>Lithuanian litas (Lt)</LTL>
+		<MOP>Macanese pataca (P)</MOP>
+		<MKD>Macedonian denar (ден)</MKD>
+		<MGA>Malagasy ariary (Ar)</MGA>
+		<MWK>Malawian kwacha (MK)</MWK>
+		<MYR>Malaysian ringgit (RM)</MYR>
+		<MVR>Maldivian rufiyaa (ރ.)</MVR>
+		<MRO>Mauritanian ouguiya (UM)</MRO>
+		<MUR>Mauritian rupee (₨)</MUR>
+		<MXN>Mexican peso ($)</MXN>
+		<MDL>Moldovan leu (L)</MDL>
+		<MNT>Mongolian tögrög (₮)</MNT>
+		<MAD>Moroccan dirham (د.م.)</MAD>
+		<MZN>Mozambican metical (MTn)</MZN>
+		<MMK>Myanma kyat (K)</MMK>
+		<NAD>Namibian dollar ($)</NAD>
+		<NPR>Nepalese rupee (₨)</NPR>
+		<ANG>Netherlands Antillean guilder (ƒ)</ANG>
+		<TWD>New Taiwan dollar ($)</TWD>
+		<NZD>New Zealand dollar ($)</NZD>
+		<NIO>Nicaraguan córdoba (C$)</NIO>
+		<NGN>Nigerian naira (₦)</NGN>
+		<KPW>North Korean won (₩)</KPW>
+		<NOK>Norwegian krone (kr)</NOK>
+		<OMR>Omani rial (ر.ع.)</OMR>
+		<PKR>Pakistani rupee (₨)</PKR>
+		<PAB>Panamanian balboa (B/.)</PAB>
+		<PGK>Papua New Guinean kina (K)</PGK>
+		<PYG>Paraguayan guaraní (₲)</PYG>
+		<PEN>Peruvian nuevo sol (S/.)</PEN>
+		<PHP>Philippine peso (₱)</PHP>
+		<PLN>Polish złoty (zł)</PLN>
+		<QAR>Qatari riyal (ر.ق)</QAR>
+		<RON>Romanian leu (L)</RON>
+		<RUB>Russian ruble (руб.)</RUB>
+		<RWF>Rwandan franc (Fr)</RWF>
+		<SHP>Saint Helena pound (£)</SHP>
+		<SVC>Salvadoran colón (₡)</SVC>
+		<WST>Samoan tala (T)</WST>
+		<STD>São Tomé and Príncipe dobra (Db)</STD>
+		<SAR>Saudi riyal (ر.س)</SAR>
+		<RSD>Serbian dinar (дин. or din.)</RSD>
+		<SCR>Seychellois rupee (₨)</SCR>
+		<SLL>Sierra Leonean leone (Le)</SLL>
+		<SGD>Singapore dollar ($)</SGD>
+		<SBD>Solomon Islands dollar ($)</SBD>
+		<SOS>Somali shilling (Sh)</SOS>
+		<ZAR>South African rand (R)</ZAR>
+		<KRW>South Korean won (₩)</KRW>
+		<LKR>Sri Lankan rupee (Rs)</LKR>
+		<SDG>Sudanese pound (جنيه سوداني)</SDG>
+		<SRD>Surinamese dollar ($)</SRD>
+		<SZL>Swazi lilangeni (L)</SZL>
+		<SEK>Swedish krona (kr)</SEK>
+		<SYP>Syrian pound (ل.س)</SYP>
+		<TJS>Tajikistani somoni (ЅМ)</TJS>
+		<TZS>Tanzanian shilling (Sh)</TZS>
+		<THB>Thai baht (฿)</THB>
+		<TOP>Tongan paʻanga (T$)</TOP>
+		<TTD>Trinidad and Tobago dollar ($)</TTD>
+		<TND>Tunisian dinar (د.ت)</TND>
+		<TRY>Turkish lira (TL)</TRY>
+		<TMM>Turkmenistani manat (m)</TMM>
+		<UGX>Ugandan shilling (Sh)</UGX>
+		<UAH>Ukrainian hryvnia (₴)</UAH>
+		<AED>United Arab Emirates dirham (د.إ)</AED>
+		<UYU>Uruguayan peso ($)</UYU>
+		<UZS>Uzbekistani som (лв)</UZS>
+		<VUV>Vanuatu vatu (Vt)</VUV>
+		<VEF>Venezuelan bolívar (Bs F)</VEF>
+		<VND>Vietnamese đồng (₫)</VND>
+		<XOF>West African CFA franc (Fr)</XOF>
+		<YER>Yemeni rial (﷼)</YER>
+		<ZMK>Zambian kwacha (ZK)</ZMK>
+		<ZWL>Zimbabwean dollar ($)</ZWL>
+	</row>
+</result>

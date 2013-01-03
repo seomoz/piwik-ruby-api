@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<result>
+  <row>
+    <idsite>65</idsite>
+    <name>Test Site</name>
+    <main_url>http://test.local</main_url>
+    <ts_created>2013-01-03 16:17:00</ts_created>
+    <ecommerce>0</ecommerce>
+    <sitesearch>1</sitesearch>
+    <sitesearch_keyword_parameters/>
+    <sitesearch_category_parameters/>
+    <timezone>Europe/London</timezone>
+    <currency>USD</currency>
+    <excluded_ips/>
+    <excluded_parameters/>
+    <group/>
+  </row>
+</result>

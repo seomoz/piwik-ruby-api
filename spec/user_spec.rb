@@ -1,5 +1,12 @@
 require 'spec_helper'
 describe 'Piwik::User' do  
+  before do
+    stub_api_calls
+    # add a few specific stubs
+    Piwik::Base.stub(:call).with('UsersManager.getUser',{:userLogin => 'mike_ness'},/.*/,/.*/) { raise Piwik::ApiError, 'mock api error' }
+  end
+  
+  
   subject { build(:user) }
   
   its(:login) { should eq('test_user') }
