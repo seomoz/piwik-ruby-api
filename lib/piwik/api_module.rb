@@ -1,23 +1,5 @@
 module Piwik
-  class DataStruct < Base
-    attr_accessor :data,:value
-    
-    def empty?
-      data.blank? and value.blank?
-    end
-    
-    def initialize opts = {}
-      opts.map {|k,v| self.send(:"#{k}=",v) }
-    end
-    
-    def method_missing(method, *args, &block)
-      if self.data.respond_to?(method)
-        self.data.send(method,*args,&block)
-      else
-        super
-      end
-    end
-    
+  class ApiModule < Base
     # Catch incoming method calls and try to format them and send them over to the api
     def self.method_missing(method, *args, &block)
       formatted_method = method.to_s.camelize(:lower)
@@ -28,6 +10,13 @@ module Piwik
         super
       end
     end
+    
+    # This is a method
+    def self.api_call_to_const string, full = false
+      # We can get rid of the get prefix
+      string = string.gsub('get', '').gsub('.', '::')
+      full ? "Piwik::#{string}" : string
+    end
   protected
     # Attempt an API call request
     def self.handle_api_call method, params
@@ -36,11 +25,11 @@ module Piwik
       xml = self.call(method_name, params, config[:piwik_url], config[:auth_token])
       data = XmlSimple.xml_in(xml, {'ForceArray' => false})
       if data.is_a?(String)
-        self.new(:data => [], :value => data)
+        api_call_to_const(method_name,true).constantize.new(:data => [], :value => data)
       elsif data['row'].present?
-        self.new(:data => data['row'])
+        api_call_to_const(method_name,true).constantize.new(:data => data['row'])
       else
-        self.new(:data => [])
+        api_call_to_const(method_name,true).constantize.new(:data => [])
       end
     end
   end

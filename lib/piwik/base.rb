@@ -29,8 +29,7 @@ EOF
       result
     end
     def parse_xml xml; self.class.parse_xml xml; end
-  
-
+    
     # Calls the supplied Piwik API method, with the supplied parameters.
     # 
     # Returns a string containing the XML reply from Piwik, or raises a 
