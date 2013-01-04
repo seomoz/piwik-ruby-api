@@ -1,2 +1,87 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<result />
+<result>
+	<row>
+		<label>0h</label>
+		<nb_uniq_visitors>19</nb_uniq_visitors>
+		<nb_visits>19</nb_visits>
+		<nb_actions>34</nb_actions>
+		<max_actions>7</max_actions>
+		<sum_visit_length>443</sum_visit_length>
+		<bounce_count>15</bounce_count>
+		<nb_visits_converted>0</nb_visits_converted>
+	</row>
+	<row>
+		<label>1h</label>
+		<nb_uniq_visitors>16</nb_uniq_visitors>
+		<nb_visits>17</nb_visits>
+		<nb_actions>39</nb_actions>
+		<max_actions>16</max_actions>
+		<sum_visit_length>1492</sum_visit_length>
+		<bounce_count>13</bounce_count>
+		<goals>
+			<row idgoal='1'>
+				<nb_conversions>1</nb_conversions>
+				<nb_visits_converted>1</nb_visits_converted>
+				<revenue>3</revenue>
+			</row>
+		</goals>
+		<nb_conversions>1</nb_conversions>
+		<revenue>3</revenue>
+	</row>
+	<row>
+		<label>2h</label>
+		<nb_uniq_visitors>17</nb_uniq_visitors>
+		<nb_visits>17</nb_visits>
+		<nb_actions>28</nb_actions>
+		<max_actions>4</max_actions>
+		<sum_visit_length>703</sum_visit_length>
+		<bounce_count>11</bounce_count>
+		<nb_visits_converted>0</nb_visits_converted>
+	</row>
+	<row>
+		<label>3h</label>
+		<nb_uniq_visitors>17</nb_uniq_visitors>
+		<nb_visits>19</nb_visits>
+		<nb_actions>31</nb_actions>
+		<max_actions>11</max_actions>
+		<sum_visit_length>525</sum_visit_length>
+		<bounce_count>16</bounce_count>
+		<goals>
+			<row idgoal='1'>
+				<nb_conversions>3</nb_conversions>
+				<nb_visits_converted>3</nb_visits_converted>
+				<revenue>9</revenue>
+			</row>
+			<row idgoal='2'>
+				<nb_conversions>1</nb_conversions>
+				<nb_visits_converted>1</nb_visits_converted>
+				<revenue>1</revenue>
+			</row>
+		</goals>
+		<nb_conversions>4</nb_conversions>
+		<revenue>10</revenue>
+	</row>
+	<row>
+		<label>4h</label>
+		<nb_uniq_visitors>25</nb_uniq_visitors>
+		<nb_visits>25</nb_visits>
+		<nb_actions>92</nb_actions>
+		<max_actions>23</max_actions>
+		<sum_visit_length>5515</sum_visit_length>
+		<bounce_count>14</bounce_count>
+		<goals>
+			<row idgoal='1'>
+				<nb_conversions>5</nb_conversions>
+				<nb_visits_converted>5</nb_visits_converted>
+				<revenue>15</revenue>
+			</row>
+			<row idgoal='2'>
+				<nb_conversions>5</nb_conversions>
+				<nb_visits_converted>5</nb_visits_converted>
+				<revenue>5</revenue>
+			</row>
+		</goals>
+		<nb_conversions>10</nb_conversions>
+		<revenue>20</revenue>
+	</row>
+</result>

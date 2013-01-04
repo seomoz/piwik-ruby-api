@@ -4,7 +4,7 @@ $:.unshift(File.dirname(__FILE__)) unless
 require 'active_support/core_ext'
 %W{ 
   base api_module api_response version 
-  seo referers transitions user_country
+  seo referers transitions user_country visit_time
   site user
 }.each { |r| require "piwik/#{r}" }
 
