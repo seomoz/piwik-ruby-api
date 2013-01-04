@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<result>
+	<row>
+		<date>yesterday</date>
+		<note>test</note>
+		<starred>0</starred>
+		<user>admin</user>
+		<idNote>0</idNote>
+		<canEditOrDelete>1</canEditOrDelete>
+	</row>
+</result>

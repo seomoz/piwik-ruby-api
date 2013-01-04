@@ -3,6 +3,7 @@ require 'cgi'
 require 'yaml'
 require 'rest_client'
 require 'xmlsimple'
+require 'ostruct'
 
 module Piwik
   class ApiError < StandardError; end
@@ -22,6 +23,25 @@ module Piwik
 piwik_url: 
 auth_token: 
 EOF
+    
+    # common constructor, using ostruct for attribute storage
+    attr_accessor :attributes
+    def initialize params
+      @attributes = OpenStruct.new
+      params.map do |k,v|
+        @attributes.send(:"#{k}=",typecast(v))
+      end
+    end
+    
+    # delegate attribute calls to @attributes storage
+    def method_missing(method,*args,&block)
+      if self.attributes.respond_to?(method)
+        self.attributes.send(method)
+      else
+        super
+      end
+    end
+    
     # This is required to normalize the API responses when the Rails XmlSimple version is used
     def self.parse_xml xml
       result = XmlSimple.xml_in(xml, {'ForceArray' => false})
@@ -91,6 +111,15 @@ EOF
 
         end
         config
+      end
+    end
+  
+  private
+    def typecast(thing)
+      if thing.is_a?(String) and thing =~ /^[0-9]+$/
+        thing.to_i
+      else
+        thing
       end
     end
   end

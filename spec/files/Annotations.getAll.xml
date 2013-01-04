@@ -1,2 +1,34 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<result />
+<result>
+	<row>
+		<row>
+			<date>today</date>
+			<note>another test</note>
+			<starred>0</starred>
+			<user>admin</user>
+			<idNote>2</idNote>
+			<canEditOrDelete>1</canEditOrDelete>
+
+		</row>
+		<row>
+			<date>yesterday</date>
+			<note>test</note>
+			<starred>0</starred>
+			<user>admin</user>
+			<idNote>0</idNote>
+			<canEditOrDelete>1</canEditOrDelete>
+
+		</row>
+		<row>
+			<date>yesterday</date>
+			<note>another test</note>
+			<starred>0</starred>
+			<user>admin</user>
+			<idNote>1</idNote>
+			<canEditOrDelete>1</canEditOrDelete>
+
+		</row>
+
+	</row>
+
+</result>
