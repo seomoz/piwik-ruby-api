@@ -1,2 +1,39 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<result />
+<result>
+	<row>
+		<label>Chrome 23.0</label>
+		<nb_uniq_visitors>337</nb_uniq_visitors>
+		<nb_visits>363</nb_visits>
+		<nb_actions>771</nb_actions>
+		<max_actions>36</max_actions>
+		<sum_visit_length>47700</sum_visit_length>
+		<bounce_count>250</bounce_count>
+		<nb_visits_converted>13</nb_visits_converted>
+		<logo>plugins/UserSettings/images/browsers/CH.gif</logo>
+		<shortLabel>Chrome 23.0</shortLabel>
+	</row>
+	<row>
+		<label>Firefox 17.0</label>
+		<nb_uniq_visitors>259</nb_uniq_visitors>
+		<nb_visits>289</nb_visits>
+		<nb_actions>613</nb_actions>
+		<max_actions>47</max_actions>
+		<sum_visit_length>45944</sum_visit_length>
+		<bounce_count>209</bounce_count>
+		<nb_visits_converted>13</nb_visits_converted>
+		<logo>plugins/UserSettings/images/browsers/FF.gif</logo>
+		<shortLabel>Firefox 17.0</shortLabel>
+	</row>
+	<row>
+		<label>Internet Explorer 9.0</label>
+		<nb_uniq_visitors>45</nb_uniq_visitors>
+		<nb_visits>48</nb_visits>
+		<nb_actions>91</nb_actions>
+		<max_actions>18</max_actions>
+		<sum_visit_length>7887</sum_visit_length>
+		<bounce_count>32</bounce_count>
+		<nb_visits_converted>2</nb_visits_converted>
+		<logo>plugins/UserSettings/images/browsers/IE.gif</logo>
+		<shortLabel>IE 9.0</shortLabel>
+	</row>
+</result>

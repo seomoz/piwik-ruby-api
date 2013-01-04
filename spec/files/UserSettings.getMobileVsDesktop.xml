@@ -1,2 +1,36 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<result />
+<result>
+	<row>
+		<label>Desktop</label>
+		<nb_uniq_visitors>879</nb_uniq_visitors>
+		<nb_visits>957</nb_visits>
+		<nb_actions>2094</nb_actions>
+		<max_actions>47</max_actions>
+		<sum_visit_length>141993</sum_visit_length>
+		<bounce_count>670</bounce_count>
+		<nb_visits_converted>42</nb_visits_converted>
+		<logo>plugins/UserSettings/images/screens/normal.gif</logo>
+	</row>
+	<row>
+		<label>Mobile</label>
+		<nb_uniq_visitors>34</nb_uniq_visitors>
+		<nb_visits>36</nb_visits>
+		<nb_actions>65</nb_actions>
+		<max_actions>21</max_actions>
+		<sum_visit_length>1959</sum_visit_length>
+		<bounce_count>32</bounce_count>
+		<nb_visits_converted>2</nb_visits_converted>
+		<logo>plugins/UserSettings/images/screens/mobile.gif</logo>
+	</row>
+	<row>
+		<label>Unknown</label>
+		<nb_uniq_visitors>2</nb_uniq_visitors>
+		<nb_visits>2</nb_visits>
+		<nb_actions>2</nb_actions>
+		<max_actions>1</max_actions>
+		<sum_visit_length>0</sum_visit_length>
+		<bounce_count>2</bounce_count>
+		<nb_visits_converted>0</nb_visits_converted>
+		<logo>plugins/UserSettings/images/os/UNK.gif</logo>
+	</row>
+</result>

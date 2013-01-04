@@ -1,2 +1,33 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<result />
+<result>
+	<row>
+		<label>1920x1080</label>
+		<nb_uniq_visitors>178</nb_uniq_visitors>
+		<nb_visits>191</nb_visits>
+		<nb_actions>381</nb_actions>
+		<max_actions>31</max_actions>
+		<sum_visit_length>21610</sum_visit_length>
+		<bounce_count>133</bounce_count>
+		<nb_visits_converted>2</nb_visits_converted>
+	</row>
+	<row>
+		<label>1366x768</label>
+		<nb_uniq_visitors>142</nb_uniq_visitors>
+		<nb_visits>158</nb_visits>
+		<nb_actions>322</nb_actions>
+		<max_actions>30</max_actions>
+		<sum_visit_length>25686</sum_visit_length>
+		<bounce_count>115</bounce_count>
+		<nb_visits_converted>13</nb_visits_converted>
+	</row>
+	<row>
+		<label>1680x1050</label>
+		<nb_uniq_visitors>97</nb_uniq_visitors>
+		<nb_visits>105</nb_visits>
+		<nb_actions>185</nb_actions>
+		<max_actions>15</max_actions>
+		<sum_visit_length>12463</sum_visit_length>
+		<bounce_count>75</bounce_count>
+		<nb_visits_converted>1</nb_visits_converted>
+	</row>
+</result>

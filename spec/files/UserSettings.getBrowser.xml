@@ -1,2 +1,47 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<result />
+<result>
+	<row>
+		<label>Chrome</label>
+		<nb_uniq_visitors>386</nb_uniq_visitors>
+		<nb_visits>416</nb_visits>
+		<nb_actions>849</nb_actions>
+		<max_actions>36</max_actions>
+		<sum_visit_length>52616</sum_visit_length>
+		<bounce_count>292</bounce_count>
+		<nb_visits_converted>14</nb_visits_converted>
+		<logo>plugins/UserSettings/images/browsers/CH.gif</logo>
+	</row>
+	<row>
+		<label>Firefox</label>
+		<nb_uniq_visitors>339</nb_uniq_visitors>
+		<nb_visits>372</nb_visits>
+		<nb_actions>898</nb_actions>
+		<max_actions>47</max_actions>
+		<sum_visit_length>65164</sum_visit_length>
+		<bounce_count>266</bounce_count>
+		<nb_visits_converted>21</nb_visits_converted>
+		<logo>plugins/UserSettings/images/browsers/FF.gif</logo>
+	</row>
+	<row>
+		<label>Internet Explorer</label>
+		<nb_uniq_visitors>105</nb_uniq_visitors>
+		<nb_visits>109</nb_visits>
+		<nb_actions>213</nb_actions>
+		<max_actions>21</max_actions>
+		<sum_visit_length>13804</sum_visit_length>
+		<bounce_count>74</bounce_count>
+		<nb_visits_converted>6</nb_visits_converted>
+		<logo>plugins/UserSettings/images/browsers/IE.gif</logo>
+	</row>
+	<row>
+		<label>Safari</label>
+		<nb_uniq_visitors>55</nb_uniq_visitors>
+		<nb_visits>65</nb_visits>
+		<nb_actions>141</nb_actions>
+		<max_actions>21</max_actions>
+		<sum_visit_length>8465</sum_visit_length>
+		<bounce_count>47</bounce_count>
+		<nb_visits_converted>3</nb_visits_converted>
+		<logo>plugins/UserSettings/images/browsers/SF.gif</logo>
+	</row>
+</result>

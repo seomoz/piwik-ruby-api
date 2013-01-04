@@ -5,6 +5,7 @@ require 'active_support/core_ext'
 %W{ 
   base data_methods api_module api_response version
   seo referers transitions user_country visit_time visitor_interest visits_summary
+  user_settings
   site user
 }.each { |r| require "piwik/#{r}" }
 

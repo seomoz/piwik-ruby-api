@@ -1,2 +1,58 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<result />
+<result>
+	<row>
+		<label>WebKit (Safari, Chrome)</label>
+		<nb_uniq_visitors>443</nb_uniq_visitors>
+		<nb_visits>483</nb_visits>
+		<nb_actions>999</nb_actions>
+		<max_actions>36</max_actions>
+		<sum_visit_length>63255</sum_visit_length>
+		<bounce_count>339</bounce_count>
+		<nb_visits_converted>17</nb_visits_converted>
+		<shortLabel>Webkit</shortLabel>
+	</row>
+	<row>
+		<label>Gecko (Firefox)</label>
+		<nb_uniq_visitors>342</nb_uniq_visitors>
+		<nb_visits>375</nb_visits>
+		<nb_actions>909</nb_actions>
+		<max_actions>47</max_actions>
+		<sum_visit_length>65193</sum_visit_length>
+		<bounce_count>268</bounce_count>
+		<nb_visits_converted>21</nb_visits_converted>
+		<shortLabel>Gecko</shortLabel>
+	</row>
+	<row>
+		<label>Trident (IE)</label>
+		<nb_uniq_visitors>105</nb_uniq_visitors>
+		<nb_visits>109</nb_visits>
+		<nb_actions>213</nb_actions>
+		<max_actions>21</max_actions>
+		<sum_visit_length>13804</sum_visit_length>
+		<bounce_count>74</bounce_count>
+		<nb_visits_converted>6</nb_visits_converted>
+		<shortLabel>Ie</shortLabel>
+	</row>
+	<row>
+		<label>Presto (Opera)</label>
+		<nb_uniq_visitors>24</nb_uniq_visitors>
+		<nb_visits>27</nb_visits>
+		<nb_actions>39</nb_actions>
+		<max_actions>5</max_actions>
+		<sum_visit_length>1700</sum_visit_length>
+		<bounce_count>22</bounce_count>
+		<nb_visits_converted>0</nb_visits_converted>
+		<shortLabel>Opera</shortLabel>
+	</row>
+	<row>
+		<label>Unknown</label>
+		<nb_uniq_visitors>1</nb_uniq_visitors>
+		<nb_visits>1</nb_visits>
+		<nb_actions>1</nb_actions>
+		<max_actions>1</max_actions>
+		<sum_visit_length>0</sum_visit_length>
+		<bounce_count>1</bounce_count>
+		<nb_visits_converted>0</nb_visits_converted>
+		<shortLabel>Unknown</shortLabel>
+	</row>
+</result>
