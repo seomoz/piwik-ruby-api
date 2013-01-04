@@ -8,9 +8,7 @@ describe 'Piwik::Transitions' do
   subject { Piwik::Transitions }
   
   describe "#get_translations" do
-    it { subject.get_translations(params).should_not raise_error(NoMethodError) }
+    assert_data_integrity(:get_translations)
     it { subject.get_translations(params).size.should eq(32) }
-    it { subject.get_translations(params).each.should be_a(Enumerator) }
-    it { subject.get_translations(params).empty?.should eq(false) }
   end
 end

@@ -2,7 +2,7 @@ module Piwik
   class ApiModule < Base
     # Catch incoming method calls and try to format them and send them over to the api
     def self.method_missing(method, *args, &block)
-      formatted_method = method.to_s.camelize(:lower)
+      formatted_method = method.to_s.camelize(:lower).gsub(/Ip$/,'IP') # Lame! I hate real life
       # connect to API if this is a valid-looking method in the current class context
       if self::AVAILABLE_METHODS.include?(formatted_method)
         handle_api_call(formatted_method, args.first)

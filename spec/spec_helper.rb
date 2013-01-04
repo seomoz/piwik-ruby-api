@@ -42,5 +42,16 @@ def stub_api_calls
   end
 end
 
+def assert_data_integrity method
+  it { subject.send(method,params).should_not raise_error(NoMethodError) }
+  it { subject.send(method,params).each.should be_a(Enumerator) }
+  it { subject.send(method,params).empty?.should eq(false) }
+end
+
+def assert_value_integrity method
+  it { subject.send(method,params).should_not raise_error(NoMethodError) }
+  it { subject.send(method,params).empty?.should eq(false) }
+end
+
 PIWIK_URL = 'http://piwik.local'
 PIWIK_TOKEN = '90871c8584ddf2265f54553a305b6ae1'

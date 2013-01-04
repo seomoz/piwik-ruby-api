@@ -1,14 +1,14 @@
-# Autometal::Piwik [![Build Status](https://travis-ci.org/Achillefs/autometal-piwik.png?branch=v1.x)](https://travis-ci.org/Achillefs/autometal-piwik)
+# Piwiker [![Build Status](https://travis-ci.org/Achillefs/autometal-piwik.png?branch=v1.x)](https://travis-ci.org/Achillefs/autometal-piwik)
 
-A simple Ruby client for the Piwik API. This gem's 0.x versions are based on Rodrigo Tassinari de Oliveira’s piwik gem (github.com/riopro/piwik). Since it hasn’t been updated since 2008, I took the liberty to fork it, and finish it up.
+Version 1.0.0 is a ground-up rewrite of the older autometal-piwik gem, itself based [on work](http://github.com/riopro/piwik) by Rodrigo Tassinari de Oliveira. It aspires to completely cover the Piwik API and be easily extendable by its users. To achieve that, we will not be making any assumptions on how you wanna use your data, so we will closely mirror Piwik's API structure even if it looks kinda weird to a modern rubyist.
 
-Version 1.0.0 is a rewrite and extension of this work.
+We will also implement an extended `Piwik::Site` meta class that will give you ruby-friendly access to a lot of the data in a way we think is sane, but it will be up to you which interface you want to use.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'autometal-piwik'
+    gem 'piwiker', :require => 'piwik'
 
 And then execute:
 
@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install autometal-piwik
+    $ gem install piwiker
 
 ## Usage
 
@@ -25,7 +25,7 @@ Piwik is an open source web analytics software, written in PHP. It provides an e
     require 'rubygems'
     require 'piwik'
     site = Piwik::Site.load(1, 'http://your.piwi.install', 'some_auth_key')
-    => #<Piwik::Site:0xb74bf994 @name="Example.com", @config={:auth_token=>"some_auth_key", :piwik_url=>"http://your.piwi.install"}, @id=1, @main_url="http://www.example.com", @created_at=Tue Jul 15 18:55:40 -0300 2008>
+    => #<Piwik::Site:0xb74bf994 @name="Example.com", @config={:auth_token=>"some_auth_key", :piwik_url=>"http://your.piwik.install"}, @id=1, @main_url="http://www.example.com", @created_at=Tue Jul 15 18:55:40 -0300 2008>
     site.pageviews(:month, Date.today)
     => 88
     

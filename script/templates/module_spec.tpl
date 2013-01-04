@@ -9,9 +9,8 @@ describe 'Piwik::{{name}}' do
   subject { Piwik::{{name}} }
   
   describe "#a_method" do
-    it { subject.a_method(params).should_not raise_error(NoMethodError) }
-    it { subject.a_method(params).size.should eq(5) }
-    it { subject.a_method(params).each.should be_a(Enumerator) }
-    it { subject.a_method(params).empty?.should eq(false) }
+    assert_data_integrity(:a_method) # for array responses
+    assert_value_integrity(:a_method) # for single value responses
+    it { subject.a_method(params).size.should eq(5) } # other specific tests
   end
 end
