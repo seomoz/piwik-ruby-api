@@ -42,15 +42,21 @@ def stub_api_calls
   end
 end
 
-def assert_data_integrity method
+def assert_data_integrity method, options = {}
   it { subject.send(method,params).should_not raise_error(NoMethodError) }
   it { subject.send(method,params).each.should be_a(Enumerator) }
   it { subject.send(method,params).empty?.should eq(false) }
+  if options[:size].present?
+    it { subject.send(method,params).size.should eq(options[:size]) }
+  end
 end
 
-def assert_value_integrity method
+def assert_value_integrity method, options = {}
   it { subject.send(method,params).should_not raise_error(NoMethodError) }
   it { subject.send(method,params).empty?.should eq(false) }
+  if options[:value].present?
+    it { subject.send(method,params).value.should eq(options[:value].to_s) }
+  end
 end
 
 PIWIK_URL = 'http://piwik.local'

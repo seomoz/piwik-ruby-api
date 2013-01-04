@@ -15,20 +15,19 @@ describe 'Piwik::UserCountry' do
   end
   
   describe '#get_region' do
-    assert_data_integrity(:get_continent)
+    assert_data_integrity(:get_region)
   end
   
   describe '#get_city' do
-    assert_data_integrity(:get_continent)
+    assert_data_integrity(:get_city)
   end
   
   describe '#get_number_of_distinct_countries' do
-    assert_value_integrity(:get_continent)
+    assert_value_integrity(:get_number_of_distinct_countries)
   end
   
   describe "#get_location_from_ip" do
     let(:params) { { :ip => '194.57.91.215' } }
-    assert_value_integrity(:get_continent)
-    it { subject.get_location_from_ip(params).size.should eq(12) }
+    assert_data_integrity(:get_location_from_ip, :size => 12)
   end
 end

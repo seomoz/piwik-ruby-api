@@ -1,5 +1,7 @@
 module Piwik
   class ApiModule < Base
+    include Piwik::DataMethods
+    
     # Catch incoming method calls and try to format them and send them over to the api
     def self.method_missing(method, *args, &block)
       formatted_method = method.to_s.camelize(:lower).gsub(/Ip$/,'IP') # Lame! I hate real life
@@ -28,6 +30,8 @@ module Piwik
         api_call_to_const(method_name,true).constantize.new(:data => [], :value => data)
       elsif data['row'].present?
         api_call_to_const(method_name,true).constantize.new(:data => data['row'])
+      elsif data.is_a?(Hash)
+        api_call_to_const(method_name,true).constantize.new(:data => data)
       else
         api_call_to_const(method_name,true).constantize.new(:data => [])
       end

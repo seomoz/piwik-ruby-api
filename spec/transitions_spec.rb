@@ -8,7 +8,6 @@ describe 'Piwik::Transitions' do
   subject { Piwik::Transitions }
   
   describe "#get_translations" do
-    assert_data_integrity(:get_translations)
-    it { subject.get_translations(params).size.should eq(32) }
+    assert_data_integrity(:get_translations, :size => 32)
   end
 end

@@ -8,8 +8,7 @@ describe 'Piwik::Referers' do
   subject { Piwik::Referers }
   
   describe "#get_keywords" do
-    assert_data_integrity(:get_keywords)
-    it { subject.get_keywords(params).size.should eq(10) }
+    assert_data_integrity(:get_keywords, :size => 10)
   end
   
   describe "#get_campaigns" do
@@ -18,28 +17,23 @@ describe 'Piwik::Referers' do
   end
   
   describe "#get_referer_type" do
-    assert_data_integrity(:get_referer_type)
-    it { subject.get_referer_type(params).size.should eq(3) }
+    assert_data_integrity(:get_referer_type, :size => 3)
   end
   
   describe "#get_number_of_distinct_keywords" do
-    assert_value_integrity(:get_number_of_distinct_keywords)
-    it { subject.get_number_of_distinct_keywords(params).value.to_i.should eq(207) }
+    assert_value_integrity(:get_number_of_distinct_keywords, :value => 207)
   end
   
   describe "#get_number_of_distinct_search_engines" do
-    assert_value_integrity(:get_number_of_distinct_search_engines)
-    it { subject.get_number_of_distinct_search_engines(params).value.to_i.should eq(7) }
+    assert_value_integrity(:get_number_of_distinct_search_engines, :value => 7)
   end
   
   describe "#get_number_of_distinct_websites" do
-    assert_value_integrity(:get_number_of_distinct_websites)
-    it { subject.get_number_of_distinct_websites(params).value.to_i.should eq(27) }
+    assert_value_integrity(:get_number_of_distinct_websites, :value => 27)
   end
   
   describe "#get_search_engines" do
-    assert_data_integrity(:get_search_engines)
-    it { subject.get_search_engines(params).size.should eq(7) }
+    assert_data_integrity(:get_search_engines, :size => 7)
   end
   
   describe "#get_socials" do
