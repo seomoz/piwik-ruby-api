@@ -4,7 +4,8 @@ describe 'Piwik::{{name}}' do
     stub_api_calls
   }
   
-  let(:params) { # TODO: Set any API params here }
+  # TODO: Specify required params
+  let(:params) { {:idSite => 1, :period => 'day', :date => 'yesterday'} }
   subject { Piwik::{{name}} }
   
   describe "#a_method" do
