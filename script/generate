@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'active_support/core_ext'
+require 'optparse'
+require 'nutrun-string'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: ./script/generate [options]"
+
+  opts.on("-m", "--module [NAME]", String, "Generate a new Piwik::Module with the given name") do |m|
+    options[:module]= m
+  end
+end.parse!
+
+if options[:module].present?
+  class_filename = File.join(File.dirname(__FILE__),'..','lib','piwik', "#{options[:module].underscore}.rb")
+  spec_filename = File.join(File.dirname(__FILE__),'..','spec', "#{options[:module].underscore}_spec.rb")
+  if File.exist? class_filename
+    puts "exists: #{class_filename}".red
+  else
+    template = File.read(File.join(File.dirname(__FILE__),'templates','module.tpl'))
+    File.open(class_filename,'w') {|f| f.write(template.gsub('{{name}}',options[:module].camelize))}
+    puts "created: #{class_filename}".green
+  end
+  
+  if File.exist? spec_filename
+    puts "exists: #{spec_filename}".red
+  else
+    template = File.read(File.join(File.dirname(__FILE__),'templates','module_spec.tpl'))
+    File.open(spec_filename,'w') {|f| f.write(template.gsub('{{name}}',options[:module].camelize))}
+    puts "created: #{spec_filename}".green
+  end
+end
