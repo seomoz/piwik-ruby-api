@@ -4,12 +4,12 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name        = "simple-piwik"
+    gem.name        = "autometal-piwik"
     gem.summary     = %Q{A ruby client for the Piwik API.}
     gem.description = %Q{Provides simple access to the Piwik API.}
-    gem.email       = "mihael.ploh@gmail.com"
-    gem.homepage    = "http://github.com/mihael/simple-piwik"
-    gem.authors     = ["mihael"]
+    gem.email       = "ac@humbuckercode.co.uk"
+    gem.homepage    = "https://github.com/Achillefs/autometal-piwik"
+    gem.authors     = ['Achillefs Charmpilas', 'mihael']
     gem.add_dependency "activesupport", ">= 3.0.9"
     gem.add_dependency "rest-client",   ">= 1.6.1"
     gem.add_dependency "json",          ">= 1.4.6"
