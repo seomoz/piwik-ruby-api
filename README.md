@@ -50,7 +50,8 @@ Configuring with initializer config/initializers/simple-piwik.rb :
 
 ## CHANGELOG:
   * 0.6.0 
-  Merged a few update from [Mihael's fork](https://github.com/Achillefs/autometal-piwik/pull/5)
+  Merged a few updates from [Mihael's fork](https://github.com/Achillefs/autometal-piwik/pull/5)
+  Gem now works with Rails 3.x, and the credentials specification strategy changed slightly
   * 0.4.2
   Final fix for inconsistent API outputs caused by Rails using its own version of XmlSimple.
   * 0.4.1
@@ -73,7 +74,7 @@ Configuring with initializer config/initializers/simple-piwik.rb :
 ## LICENSE:
 (The MIT License)
 
-Copyright © 2011 Achillefs Charmpilas, Humbucker Ltd
+Copyright © 2010-2013 Achillefs Charmpilas, Humbucker Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the ‘Software’), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
