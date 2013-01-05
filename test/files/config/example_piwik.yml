@@ -1,0 +1,4 @@
+# Before running rake test, please rename this file to piwik.yml and fill in the fields.
+# See test_helper.stub_rails_env.
+auth_token: yourpiwikauthkey
+piwik_url: http://<yourpiwikdomain>

@@ -57,14 +57,15 @@ module Piwik
     @@use_async = false
     cattr_accessor :use_async
     
-    @@url = Piwik::Base.load_config_from_file[:piwik_url]
-    cattr_accessor :url
-    
     @@environments = ["production","development"]
     cattr_accessor :environments
 
     @@formats = [:html, :all]
     cattr_accessor :formats
+
+    def self.url
+      Piwik.piwik_url
+    end
 
 =begin rdoc
   Checks whether the model can be tracked using piwik by checking for a piwik_id and domain fields.
@@ -72,7 +73,7 @@ module Piwik
   https://github.com/Achillefs/piwik_analytics/ (this file is actually swiped from that plugin)
 =end
     def self.enabled?(format)
-      raise Piwik::MissingConfiguration if url.blank?
+      raise Piwik::MissingConfiguration if self.url.blank?
       environments.include?(Rails.env) && formats.include?(format.to_sym)
     end
   end

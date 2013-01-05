@@ -18,7 +18,7 @@ module Piwik
     def initialize(attributes={}, piwik_url=nil, auth_token=nil)
       raise ArgumentError, "expected an attributes Hash, got #{attributes.inspect}" unless attributes.is_a?(Hash)
       @config = if piwik_url.nil? || auth_token.nil?
-        self.class.load_config_from_file
+        self.class.load_config
       else
         {:piwik_url => piwik_url, :auth_token => auth_token}
       end
@@ -47,11 +47,12 @@ module Piwik
       raise ArgumentError, "Email can not be blank" if email.blank?
       user_alias = login if user_alias.blank?
       
-      xml = call('UsersManager.addUser', :userLogin => login, :password => password, :email => email, :alias => user_alias)
-      result = parse_xml(xml)
+      result = call('UsersManager.addUser', :userLogin => login, :password => password, :email => email, :alias => user_alias)
       @created_at = Time.current
-      if result["success"]
-        result["success"]["message"] == "ok" ? true : false
+      #puts "\n create #{result} \n"
+        
+      if result["result"]
+        result['message'] == 'ok' ? true : false
       else
         false
       end
@@ -67,9 +68,8 @@ module Piwik
       raise ArgumentError, "Email can not be blank" if email.blank?
       user_alias = login if user_alias.blank?
       
-      xml = call('UsersManager.updateUser', :userLogin => login, :password => password, :email => email, :alias => user_alias)
-      result = parse_xml(xml)
-      result['success'] ? true : false
+      result = call('UsersManager.updateUser', :userLogin => login, :password => password, :email => email, :alias => user_alias)
+      result['result'] == 'success' ? true : false
     end
     
     # Deletes the current user from Piwik.
@@ -77,10 +77,9 @@ module Piwik
     # Equivalent Piwik API call: UsersManager.deleteUser (userLogin)
     def destroy
       raise UnknownUser, "User not existent in Piwik yet, call 'save' first" if new?
-      xml = call('UsersManager.deleteUser', :userLogin => login)
-      result = parse_xml(xml)
+      result = call('UsersManager.deleteUser', :userLogin => login)
       freeze
-      result['success'] ? true : false
+      result['result'] == 'success' ? true : false
     end
     
     # Returns an instance of <tt>Piwik::User</tt> representing the user identified by 
@@ -95,7 +94,7 @@ module Piwik
     def self.load(user_login, piwik_url=nil, auth_token=nil)
       raise ArgumentError, "expected a user Login" if user_login.nil?
       @config = if piwik_url.nil? || auth_token.nil?
-        load_config_from_file
+        load_config
       else
         {:piwik_url => piwik_url, :auth_token => auth_token}
       end
@@ -118,14 +117,14 @@ module Piwik
     # 
     # Equivalent Piwik API call: UsersManager.getUser (userLogin)
     def self.get_user_attributes_by_login(user_login, piwik_url, auth_token)
-      xml = call('UsersManager.getUser', {:userLogin => user_login}, piwik_url, auth_token)
-      result = parse_xml(xml)
+      result = call('UsersManager.getUser', {:userLogin => user_login}, piwik_url, auth_token)
+      #puts "\n get_user_attributes_by_login #{result} \n"
       attributes = {
-        :login => result['row']['login'],
-        :user_alias => result['row']['alias'],
-        :email => result['row']['email'],
-        :password => result['row']['password'],
-        :created_at => Time.parse(result['row']['date_registered'])
+        :login => result[0]['login'],
+        :user_alias => result[0]['alias'],
+        :email => result[0]['email'],
+        :password => result[0]['password'],
+        :created_at => Time.parse(result[0]['date_registered'])
       }
       attributes
     end

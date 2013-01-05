@@ -16,7 +16,7 @@ module Piwik
     def initialize(attributes={}, piwik_url=nil, auth_token=nil)
       raise ArgumentError, "expected an attributes Hash, got #{attributes.inspect}" unless attributes.is_a?(Hash)
       @config = if piwik_url.nil? || auth_token.nil?
-        self.class.load_config_from_file
+        self.class.load_config
       else
         {:piwik_url => piwik_url, :auth_token => auth_token}
       end
@@ -35,7 +35,7 @@ module Piwik
     def self.load(site_id, piwik_url=nil, auth_token=nil)
       raise ArgumentError, "expected a site Id" if site_id.nil?
       @config = if piwik_url.nil? || auth_token.nil?
-        load_config_from_file
+        load_config
       else
         {:piwik_url => piwik_url, :auth_token => auth_token}
       end
@@ -62,9 +62,8 @@ module Piwik
       raise ArgumentError, "Site already exists in Piwik, call 'update' instead" unless new?
       raise ArgumentError, "Name can not be blank" if name.blank?
       raise ArgumentError, "Main URL can not be blank" if main_url.blank?
-      xml = call('SitesManager.addSite', :siteName => name, :urls => main_url)
-      result = parse_xml(xml)
-      @id = result.to_i
+      result = call('SitesManager.addSite', :siteName => name, :urls => main_url)
+      @id = result['value'].to_i
       @created_at = Time.current
       id && id > 0 ? true : false
     end
@@ -76,9 +75,8 @@ module Piwik
       raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
       raise ArgumentError, "Name can not be blank" if name.blank?
       raise ArgumentError, "Main URL can not be blank" if main_url.blank?
-      xml = call('SitesManager.updateSite', :idSite => id, :siteName => name, :urls => main_url)
-      result = parse_xml(xml)
-      result['success'] ? true : false
+      result = call('SitesManager.updateSite', :idSite => id, :siteName => name, :urls => main_url)
+      result['result'] == 'success' ? true : false
     end
     
     def reload
@@ -90,10 +88,10 @@ module Piwik
     # Equivalent Piwik API call: SitesManager.deleteSite (idSite)
     def destroy
       raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
-      xml = call('SitesManager.deleteSite', :idSite => id)
-      result = parse_xml(xml)
+      result = call('SitesManager.deleteSite', :idSite => id)
+      #puts "\n destroy #{result} \n"
       freeze
-      result['success'] ? true : false
+      result['result'] == 'success' ? true : false
     end
     
     # Gives read access (<tt>'view'</tt>) to the supplied user login for the current
@@ -114,7 +112,8 @@ module Piwik
       give_access_to(:noaccess, login)
     end
     alias_method :remove_access_from, :give_no_access_to
-    
+
+
     # Returns a hash with a summary of access information for the current site 
     # (visits, unique visitors, actions / pageviews, maximum actions per visit, 
     # bounces and total time spent in all visits in seconds), filtered by the 
@@ -126,8 +125,7 @@ module Piwik
     # Equivalent Piwik API call: VisitsSummary.get (idSite, period, date)
     def summary(period=:day, date=Date.today)
       raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
-      xml = call('VisitsSummary.get', :idSite => id, :period => period, :date => date)
-      result = parse_xml(xml)
+      result = call('VisitsSummary.get', :idSite => id, :period => period, :date => date)
       {
         :visits => result['nb_visits'].to_i,
         :unique_visitors => result['nb_uniq_visitors'].to_i,
@@ -147,8 +145,7 @@ module Piwik
     # Equivalent Piwik API call: VisitsSummary.getVisits (idSite, period, date)
     def visits(period=:day, date=Date.today)
       raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
-      xml = call('VisitsSummary.getVisits', :idSite => id, :period => period, :date => date)
-      result = parse_xml(xml)
+      result = call('VisitsSummary.getVisits', :idSite => id, :period => period, :date => date)
       result.to_i
     end
     
@@ -161,8 +158,7 @@ module Piwik
     # Equivalent Piwik API call: VisitsSummary.getUniqueVisitors (idSite, period, date)
     def unique_visitors(period=:day, date=Date.today)
       raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
-      xml = call('VisitsSummary.getUniqueVisitors', :idSite => id, :period => period, :date => date)
-      result = parse_xml(xml)
+      result = call('VisitsSummary.getUniqueVisitors', :idSite => id, :period => period, :date => date)
       result.to_i
     end
     
@@ -175,12 +171,51 @@ module Piwik
     # Equivalent Piwik API call: VisitsSummary.getActions (idSite, period, date)
     def actions(period=:day, date=Date.today)
       raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
-      xml = call('VisitsSummary.getActions', :idSite => id, :period => period, :date => date)
-      result = parse_xml(xml)
+      result = call('VisitsSummary.getActions', :idSite => id, :period => period, :date => date)
       result.to_i
     end
     alias_method :pageviews, :actions
-    
+
+    # Returns a string with the javascript tracking code for the current site.
+    # 
+    # Equivalent Piwik API call: SitesManager.getJavascriptTag (idSite)
+    def get_javascript_tag
+      raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
+      result = call('SitesManager.getJavascriptTag', :idSite => id)
+      #puts "get_javascript_tag #{result.to_s}"
+      result['value']
+    end    
+
+    # Returns a big Array of Hashes with all page titles along with standard Actions metrics for each row, for the current site.
+    #
+    # Example result:
+    # => [{"label"=>" Izdelava spletnih strani | Spletnik d.o.o.", "nb_visits"=>36, "nb_uniq_visitors"=>35, "nb_hits"=>41, "sum_time_spent"=>240, "entry_nb_uniq_visitors"=>"33", "entry_nb_visits"=>"36", "entry_nb_actions"=>"92", "entry_sum_visit_length"=>"3422", "entry_bounce_count"=>"20", "exit_nb_uniq_visitors"=>"19", "exit_nb_visits"=>"22", "avg_time_on_page"=>7, "bounce_rate"=>"56%", "exit_rate"=>"61%"}]
+    #
+    # Equivalent Piwik API call: Actions.getPageTitles (idSite, period, date, segment = '', expanded = '', idSubtable = '')
+    def get_page_titles(params={})
+      raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
+      result = call('Actions.getPageTitles', {:idSite => id, :period => :day, :date => Date.today, :segment => '', :expanded => '', :idSubtable => ''}.update(params))
+      #puts "get_page_titles: #{result}"
+      result
+    end
+
+    # Returns a big Array of Hashes with all page urls along with standard Actions metrics for each row, for the current site.
+    #
+    # Example result:
+    # => [{"label"=>"spletnik", "nb_visits"=>69, "nb_hits"=>87, "sum_time_spent"=>4762, "entry_nb_visits"=>40, "entry_nb_actions"=>101, "entry_sum_visit_length"=>6752, "entry_bounce_count"=>26, "exit_nb_visits"=>39, "avg_time_on_page"=>69, "bounce_rate"=>"65%", "exit_rate"=>"57%", "idsubdatatable"=>1}]
+    #
+    # Example call:
+    #  
+    # Piwik::Site.load(203).get_page_urls(:expanded=>1)
+    #
+    # Equivalent Piwik API call: Actions.getPageUrls (idSite, period, date, segment = '', expanded = '', idSubtable = '')
+    def get_page_urls(params={})
+      raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
+      result = call('Actions.getPageUrls', { :idSite => id, :period => :day, :date => Date.today, :segment => '', :expanded => '', :idSubtable => '' }.update(params))
+      #puts "get_page_urls: #{result}"
+      result
+    end
+
     private
       # Loads the attributes in the instance variables.
       def load_attributes(attributes)
@@ -198,9 +233,9 @@ module Piwik
       # Equivalent Piwik API call: UsersManager.setUserAccess (userLogin, access, idSites)
       def give_access_to(access, login)
         raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
-        xml = call('UsersManager.setUserAccess', :idSites => id, :access => access.to_s, :userLogin => login.to_s)
-        result = parse_xml(xml)
-        result['success'] ? true : false
+        result = call('UsersManager.setUserAccess', :idSites => id, :access => access.to_s, :userLogin => login.to_s)
+        #result['success'] ? true : false
+        result['result'] == 'success' ? true : false  
       end
 
       # Returns a hash with the attributes of the supplied site, identified 
@@ -208,15 +243,17 @@ module Piwik
       # 
       # Equivalent Piwik API call: SitesManager.getSiteFromId (idSite)
       def self.get_site_attributes_by_id(site_id, piwik_url, auth_token)
-        xml = call('SitesManager.getSiteFromId', {:idSite => site_id}, piwik_url, auth_token)
-        result = parse_xml(xml)
+        result = call('SitesManager.getSiteFromId', {:idSite => site_id}, piwik_url, auth_token)
+        #puts "get_site_attributes_by_id #{result.to_s}"
+        raise UnknownSite, "Site not existent in Piwik" if result.kind_of?(Hash) && result['value'] == false
         attributes = {
-          :id => result['row']['idsite'].to_i,
-          :name => result['row']['name'],
-          :main_url => result['row']['main_url'],
-          :created_at => Time.parse(result['row']['ts_created'])
+          :id => result[0]['idsite'].to_i,
+          :name => result[0]['name'],
+          :main_url => result[0]['main_url'],
+          :created_at => Time.parse(result[0]['ts_created'])
         }
         attributes
       end
+
   end
 end

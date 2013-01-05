@@ -1,2 +1,8 @@
-pkg/*
-nbproject
+*.sw?
+.DS_Store
+coverage
+rdoc
+pkg
+.rvmrc
+*~
+test/files/config/piwik.yml
