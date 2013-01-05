@@ -5,8 +5,6 @@ RSpec.configure do |config|
   Dir[File.join(File.dirname(__FILE__),'spec','support''**','*.rb')].each {|f| require f}
   config.mock_with :rspec
   config.order = "random"
-  config.include FactoryGirl::Syntax::Methods
-  FactoryGirl.find_definitions
 end
 
 def stub_rails_env &block
@@ -56,6 +54,17 @@ def assert_value_integrity method, options = {}
   it { subject.send(method,params).empty?.should eq(false) }
   if options[:value].present?
     it { subject.send(method,params).value.should eq(options[:value].to_s) }
+  end
+end
+
+def build(object, attrs = {})
+  case object
+  when :name
+    def_attrs = { :login => "test_user", :password => "changeme", :email => "user@test.local", :user_alias => "Test User" }
+    Piwik::User.new(def_attrs.merge(attrs))
+  when :site
+    def_attrs = { :main_url => "http://test.local", :name => "Test Site" }
+    Piwik::Site.new(def_attrs.merge(attrs))
   end
 end
 
