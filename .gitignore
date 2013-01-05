@@ -6,3 +6,6 @@ pkg
 .rvmrc
 *~
 test/files/config/piwik.yml
+.rspec
+.travis
+Gemfile.lock
