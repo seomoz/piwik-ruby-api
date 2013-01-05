@@ -1,12 +1,8 @@
 require 'rubygems'
 require 'test/unit'
-#require 'stringio'
-#require 'open-uri'
-#require 'shoulda'
-
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'simple-piwik'
+require 'piwik'
 
 class Test::Unit::TestCase
   def stub_rails_env &block

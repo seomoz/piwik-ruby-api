@@ -172,7 +172,7 @@ module Piwik
     def actions(period=:day, date=Date.today)
       raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
       result = call('VisitsSummary.getActions', :idSite => id, :period => period, :date => date)
-      result.to_i
+      result['value']
     end
     alias_method :pageviews, :actions
 
