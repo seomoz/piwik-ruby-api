@@ -49,6 +49,11 @@ Configuring with initializer config/initializers/simple-piwik.rb :
     gem install simple-piwik
 
 ## CHANGELOG:
+  * 0.6.1
+  New methods (pulled from [yehezkielbs' fork](https://github.com/Achillefs/autometal-piwik/pull/6))
+    * `Site#bounce_count`
+    * `Site#sum_visits_length`
+    * `Site#website_referrers`
   * 0.6.0 
   Merged a few updates from [Mihael's fork](https://github.com/Achillefs/autometal-piwik/pull/5)
   Gem now works with Rails 3.x, and the credentials specification strategy changed slightly
