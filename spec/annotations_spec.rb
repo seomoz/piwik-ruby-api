@@ -6,7 +6,7 @@ describe 'Piwik::Annotations' do
   
   context "crud" do
     let(:params) { {:idSite => 1, :note => 'test', :date => 'yesterday'} }
-    before { Piwik::ApiModule.stub(:call).with('add',params,/.*/,/.*/).and_return(File.read('./spec/files/Annotations.add.xml')) }
+    before { Piwik::ApiModule.stub(:call).with('Annotations.add',params,/.*/,/.*/).and_return(File.read('./spec/files/Annotations.add.xml')) }
     subject { Piwik::Annotations.add(params) }
     
     describe '#add' do
@@ -21,15 +21,15 @@ describe 'Piwik::Annotations' do
     describe '#save' do
       let(:params) { {:date => "yesterday", :note => "test", :starred => 0, :user => "admin", :idNote => 0, :canEditOrDelete => 1} }
       before { 
-        Piwik::ApiModule.stub(:call).with('save',params,/.*/,/.*/).and_return(File.read('./spec/files/Annotations.add.xml'))
+        Piwik::ApiModule.stub(:call).with('Annotations.save',params,/.*/,/.*/).and_return(File.read('./spec/files/Annotations.add.xml'))
       }
-      it { subject.save.should be_a(Piwik::Annotation) }
+      it { subject.save.should be(true) }
     end
 
     describe '#delete' do
       let(:params) { {:date => "yesterday", :note => "test", :starred => 0, :user => "admin", :idNote => 0, :canEditOrDelete => 1} }
       before { 
-        Piwik::ApiModule.stub(:call).with('delete',params,/.*/,/.*/).and_return(success_response)
+        Piwik::ApiModule.stub(:call).with('Annotations.delete',params,/.*/,/.*/).and_return(success_response)
       }
       it { subject.delete.should eq(true) }
     end

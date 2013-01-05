@@ -7,52 +7,9 @@ describe 'Piwik::SitesManager' do
   # TODO: Specify required params
   let(:params) { {:idSite => 1, :period => 'day', :date => 'yesterday'} }
   subject { Piwik::SitesManager }
-  
-=begin rdoc
-  getJavascriptTag
-  getSitesFromGroup
-  getSitesGroups
-  getSiteFromId
-  getSiteUrlsFromId
-  getAllSites
-  getAllSitesId
-  getSitesIdWithVisits
-  getSitesWithAdminAccess
-  getSitesWithViewAccess
-  getSitesWithAtLeastViewAccess
-  getSitesIdWithAdminAccess
-  getSitesIdWithViewAccess
-  getSitesIdWithAtLeastViewAccess
-  getSitesIdFromSiteUrl
-  addSite
-  deleteSite
-  addSiteAliasUrls
-  getIpsForRange
-  setGlobalExcludedIps
-  setGlobalSearchParameters
-  getSearchKeywordParametersGlobal
-  getSearchCategoryParametersGlobal
-  getExcludedQueryParametersGlobal
-  getExcludedUserAgentsGlobal
-  setGlobalExcludedUserAgents
-  isSiteSpecificUserAgentExcludeEnabled
-  setSiteSpecificUserAgentExcludeEnabled
-  setGlobalExcludedQueryParameters
-  getExcludedIpsGlobal
-  getDefaultCurrency
-  setDefaultCurrency
-  getDefaultTimezone
-  setDefaultTimezone
-  updateSite
-  getCurrencyList
-  getCurrencySymbols
-  getTimezonesList
-  getUniqueSiteTimezones
-  getPatternMatchSites
-=end
 
   describe "#get" do
-    assert_data_integrity(:get) # for array responses
+    it { subject.get(params).should be_a(Piwik::Site) }
   end
   
   describe "#get_sites_with_admin_access" do

@@ -40,6 +40,7 @@ def stub_api_calls
 end
 
 def assert_data_integrity method, options = {}
+  it { puts subject.inspect } if options[:debug]
   it { subject.send(method,params).should_not raise_error(NoMethodError) }
   it { subject.send(method,params).each.should be_a(Enumerator) }
   it { subject.send(method,params).empty?.should eq(false) }
@@ -49,6 +50,7 @@ def assert_data_integrity method, options = {}
 end
 
 def assert_value_integrity method, options = {}
+  it { puts subject.inspect } if options[:debug]
   it { subject.send(method,params).should_not raise_error(NoMethodError) }
   it { subject.send(method,params).empty?.should eq(false) }
   if options[:value].present?
@@ -58,7 +60,7 @@ end
 
 def build(object, attrs = {})
   case object
-  when :name
+  when :user
     def_attrs = { :login => "test_user", :password => "changeme", :email => "user@test.local", :user_alias => "Test User" }
     Piwik::User.new(def_attrs.merge(attrs))
   when :site

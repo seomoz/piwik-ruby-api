@@ -4,7 +4,52 @@
 		<idsite>1</idsite>
 		<name>Humbucker</name>
 		<main_url>http://humbuckercode.co.uk</main_url>
-		<ts_created>2013-01-02 13:57:20</ts_created>
+		<ts_created>2012-12-26 10:10:15</ts_created>
+		<ecommerce>0</ecommerce>
+		<sitesearch>1</sitesearch>
+		<sitesearch_keyword_parameters />
+		<sitesearch_category_parameters />
+		<timezone>Europe/London</timezone>
+		<currency>USD</currency>
+		<excluded_ips />
+		<excluded_parameters />
+		<group />
+	</row>
+	<row>
+		<idsite>67</idsite>
+		<name>Test Site</name>
+		<main_url>http://test.local</main_url>
+		<ts_created>2013-01-03 16:18:40</ts_created>
+		<ecommerce>0</ecommerce>
+		<sitesearch>1</sitesearch>
+		<sitesearch_keyword_parameters />
+		<sitesearch_category_parameters />
+		<timezone>Europe/London</timezone>
+		<currency>USD</currency>
+		<excluded_ips />
+		<excluded_parameters />
+		<group />
+	</row>
+	<row>
+		<idsite>68</idsite>
+		<name>Karate Site</name>
+		<main_url>http://test.local</main_url>
+		<ts_created>2013-01-03 16:19:30</ts_created>
+		<ecommerce>0</ecommerce>
+		<sitesearch>1</sitesearch>
+		<sitesearch_keyword_parameters />
+		<sitesearch_category_parameters />
+		<timezone>Europe/London</timezone>
+		<currency>USD</currency>
+		<excluded_ips />
+		<excluded_parameters />
+		<group />
+	</row>
+	<row>
+		<idsite>64</idsite>
+		<name>Test Site</name>
+		<main_url>http://test.local</main_url>
+		<ts_created>2013-01-03 16:16:48</ts_created>
 		<ecommerce>0</ecommerce>
 		<sitesearch>1</sitesearch>
 		<sitesearch_keyword_parameters />

@@ -1,9 +1,16 @@
 module Piwik
   class Annotations < ApiModule
     AVAILABLE_METHODS = %W{
+      get
+      add
       getAll
       getAnnotationCountForDates
     }
+    
+    def self.get params
+      resp = self.api_call('get',params)
+      Piwik::Annotation.new(resp)
+    end
     
     def self.add params
       resp = self.api_call('add',params)

@@ -26,28 +26,63 @@ EOF
     
     # common constructor, using ostruct for attribute storage
     attr_accessor :attributes
-    def initialize params
+    def initialize params = {}
       @attributes = OpenStruct.new
       params.map do |k,v|
         @attributes.send(:"#{k}=",typecast(v))
       end
     end
     
+    def save
+      if new?
+        resp = collection.add(attributes)
+        attributes = resp.attributes
+        true
+      else
+        collection.save(attributes)
+      end
+      
+    end
+    alias :update :save
+    
+    def delete
+      collection.delete(attributes)
+    end
+    alias :destroy :delete
+    
+    # Returns <tt>true</tt> if the current site does not exists in the Piwik yet.
+    def new?
+      begin
+        if respond_to?(:id)
+          id.nil? && created_at.blank?
+        else
+          created_at.blank?
+        end
+        
+      rescue Exception => e
+        nil
+      end
+    end
+    
+    #id will try and return the value of the Piwik item id if it exists
+    def id
+      attributes.send(:"id#{self.class.to_s.gsub('Piwik::','')}") rescue nil
+    end
+    
+    #created_at will try and return the value of the Piwik item id if it exists
+    def created_at
+      attributes.send(:ts_created) rescue nil
+    end
+    
     # delegate attribute calls to @attributes storage
     def method_missing(method,*args,&block)
       if self.attributes.respond_to?(method)
-        self.attributes.send(method)
+        self.attributes.send(method,*args,&block)
       else
         super
       end
     end
     
-    # This is required to normalize the API responses when the Rails XmlSimple version is used
-    def self.parse_xml xml
-      result = XmlSimple.xml_in(xml, {'ForceArray' => false})
-      result = result['result'] if result['result']
-      result
-    end
     def parse_xml xml; self.class.parse_xml xml; end
     
     # Calls the supplied Piwik API method, with the supplied parameters.
@@ -59,7 +94,31 @@ EOF
       self.class.call(method, params, config[:piwik_url], config[:auth_token])
     end
     
+    def config
+      @config ||= self.class.load_config_from_file
+    end
+    
+    def collection
+      self.class.collection
+    end
+    
     class << self
+      def collection
+        "#{self.to_s.pluralize}".safe_constantize
+      end
+      
+      # This is required to normalize the API responses when the Rails XmlSimple version is used
+      def parse_xml xml
+        result = XmlSimple.xml_in(xml, {'ForceArray' => false})
+        result = result['result'] if result['result']
+        result
+      end
+      
+      def load id
+        collection.get(id_attr => id)
+      end
+      alias :reload :load
+      
       # Calls the supplied Piwik API method, with the supplied parameters.
       # 
       # Returns a string containing the XML reply from Piwik, or raises a 
@@ -72,7 +131,6 @@ EOF
         params.each { |k, v| url << "&#{k}=#{CGI.escape(v.to_s)}" }
         verbose_obj_save = $VERBOSE
         $VERBOSE = nil # Suppress "warning: peer certificate won't be verified in this SSL session"
-        puts url
         xml = RestClient.get(url)
         $VERBOSE = verbose_obj_save
         if xml =~ /error message=/
@@ -113,7 +171,7 @@ EOF
         config
       end
     end
-  
+    
   private
     def typecast(thing)
       if thing.is_a?(String) and thing =~ /^[0-9]+$/

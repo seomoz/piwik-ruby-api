@@ -14,10 +14,15 @@ module Piwik
       end
     end
     
-    # This is a method
     def self.api_call_to_const string, full = false
       # We can get rid of the get prefix
-      string = string.gsub('get', '').gsub('.', '::').camelize
+      string = case string
+      when /[A-Z]{1}[a-z]*\.[get|add|delete|save]$/,'get','add','delete','save'
+        string.camelize
+      else
+        string.gsub(/get|save|add|delete/, '')
+      end
+      string = string.gsub('.', '::').camelize
       full ? "Piwik::#{string}" : string
     end
   protected
@@ -40,11 +45,12 @@ module Piwik
     
     # Attempt an API call request
     def self.api_call method, params
+      method_name = "#{self.to_s.gsub('Piwik::','')}.#{method}"
       config = load_config_from_file
       if params.is_a?(OpenStruct)
         params = params.marshal_dump
       end
-      xml = self.call(method, params, config[:piwik_url], config[:auth_token])
+      xml = self.call(method_name, params, config[:piwik_url], config[:auth_token])
       data = XmlSimple.xml_in(xml, {'ForceArray' => false})
       if data.is_a?(String)
         data

@@ -1,101 +1,5 @@
 module Piwik
   class Site < Base
-    attr_accessor :name, :main_url
-    attr_reader :id, :created_at, :config
-    
-    # Initializes a new <tt>Piwik::Site</tt> object, with the supplied attributes. 
-    # 
-    # You can pass the URL for your Piwik install and an authorization token as 
-    # the second and third parameters. If you don't, than it will try to find 
-    # them in a <tt>'~/.piwik'</tt> or <tt>RAILS_ROOT/config/piwik.yml</tt> 
-    # (and create the file with an empty template if it doesn't exists).
-    # 
-    # Valid (and required) attributes are:
-    # * <tt>:name</tt> - the site's name
-    # * <tt>:main_url</tt> - the site's url
-    def initialize(attributes={}, piwik_url=nil, auth_token=nil)
-      raise ArgumentError, "expected an attributes Hash, got #{attributes.inspect}" unless attributes.is_a?(Hash)
-      @config = if piwik_url.nil? || auth_token.nil?
-        self.class.load_config_from_file
-      else
-        {:piwik_url => piwik_url, :auth_token => auth_token}
-      end
-      load_attributes(attributes)
-    end
-  
-    # Returns an instance of <tt>Piwik::Site</tt> representing the site identified by 
-    # the supplied <tt>site_id</tt>. Raises a <tt>Piwik::ApiError</tt> if the site doesn't 
-    # exists or if the user associated with the supplied auth_token does not 
-    # have at least 'view' access to the site.
-    # 
-    # You can pass the URL for your Piwik install and an authorization token as 
-    # the second and third parameters. If you don't, than it will try to find 
-    # them in a <tt>'~/.piwik'</tt> (and create the file with an empty template if it 
-    # doesn't exists).
-    def self.load(site_id, piwik_url=nil, auth_token=nil)
-      raise ArgumentError, "expected a site Id" if site_id.nil?
-      @config = if piwik_url.nil? || auth_token.nil?
-        load_config_from_file
-      else
-        {:piwik_url => piwik_url, :auth_token => auth_token}
-      end
-      attributes = get_site_attributes_by_id(site_id, @config[:piwik_url], @config[:auth_token])
-      new(attributes, @config[:piwik_url], @config[:auth_token])
-    end
-    
-    # Returns <tt>true</tt> if the current site does not exists in the Piwik yet.
-    def new?
-      id.nil? && created_at.nil?
-    end
-    
-    # Saves the current site in Piwik.
-    # 
-    # Calls <tt>create</tt> it it's a new site, <tt>update</tt> otherwise.
-    def save
-      new? ? create : update
-    end
-    
-    # Saves the current new site in Piwik.
-    # 
-    # Equivalent Piwik API call: SitesManager.addSite (siteName, urls)
-    def create
-      raise ArgumentError, "Site already exists in Piwik, call 'update' instead" unless new?
-      raise ArgumentError, "Name can not be blank" if name.blank?
-      raise ArgumentError, "Main URL can not be blank" if main_url.blank?
-      xml = call('SitesManager.addSite', :siteName => name, :urls => main_url)
-      result = parse_xml(xml)
-      @id = result.to_i
-      @created_at = Time.current
-      id && id > 0 ? true : false
-    end
-    
-    # Saves the current site in Piwik, updating it's data.
-    # 
-    # Equivalent Piwik API call: SitesManager.updateSite (idSite, siteName, urls)
-    def update
-      raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
-      raise ArgumentError, "Name can not be blank" if name.blank?
-      raise ArgumentError, "Main URL can not be blank" if main_url.blank?
-      xml = call('SitesManager.updateSite', :idSite => id, :siteName => name, :urls => main_url)
-      result = parse_xml(xml)
-      result['success'] ? true : false
-    end
-    
-    def reload
-      #TODO
-    end
-    
-    # Deletes the current site from Piwik.
-    # 
-    # Equivalent Piwik API call: SitesManager.deleteSite (idSite)
-    def destroy
-      raise UnknownSite, "Site not existent in Piwik yet, call 'save' first" if new?
-      xml = call('SitesManager.deleteSite', :idSite => id)
-      result = parse_xml(xml)
-      freeze
-      result['success'] ? true : false
-    end
-    
     # Gives read access (<tt>'view'</tt>) to the supplied user login for the current
     # site.
     def give_view_access_to(login)
@@ -181,15 +85,17 @@ module Piwik
     end
     alias_method :pageviews, :actions
     
-    private
-      # Loads the attributes in the instance variables.
-      def load_attributes(attributes)
-        @id = attributes[:id]
-        @name = attributes[:name]
-        @main_url = attributes[:main_url] ? attributes[:main_url].gsub(/\/$/, '') : nil
-        @created_at = attributes[:created_at]
+    class << self
+      def collection
+        Piwik::SitesManager
       end
-
+      
+      def id_attr
+        :idSite
+      end
+    end
+    
+    private
       # Gives the supplied access for the supplied user, for the current site.
       # 
       # * <tt>access</tt> can be one of <tt>:view</tt>, <tt>:admin</tt> or <tt>:noaccess</tt>
@@ -201,23 +107,6 @@ module Piwik
         xml = call('UsersManager.setUserAccess', :idSites => id, :access => access.to_s, :userLogin => login.to_s)
         result = parse_xml(xml)
         result['success'] ? true : false
-      end
-
-      # Returns a hash with the attributes of the supplied site, identified 
-      # by it's Id in <tt>site_id</tt>.
-      # 
-      # Equivalent Piwik API call: SitesManager.getSiteFromId (idSite)
-      def self.get_site_attributes_by_id(site_id, piwik_url, auth_token)
-        xml = call('SitesManager.getSiteFromId', {:idSite => site_id}, piwik_url, auth_token)
-        result = parse_xml(xml)
-        raise UnknownSite, "site with id #{site_id} not found" if result == '0'
-        attributes = {
-          :id => result['row']['idsite'].to_i,
-          :name => result['row']['name'],
-          :main_url => result['row']['main_url'],
-          :created_at => Time.parse(result['row']['ts_created'])
-        }
-        attributes
       end
   end
 end
