@@ -7,5 +7,5 @@ describe 'Piwik::PdfReports' do
   let(:params) { {:idSite => 1, :period => 'day', :date => 'yesterday'} }
   subject { Piwik::PdfReports }
   
-  assert_data_integrity(:getReports, :size => 24)
+  assert_data_integrity(:getReports)
 end
