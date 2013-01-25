@@ -6,7 +6,7 @@ require 'active_support/core_ext'
   base data_methods api_module api_response version
   seo referers transitions user_country visit_time visitor_interest visits_summary
   user_settings annotations sites_manager users_manager
-  site user annotation actions
+  site user annotation actions live
 }.each { |r| require "piwik/#{r}" }
 
 module Piwik
