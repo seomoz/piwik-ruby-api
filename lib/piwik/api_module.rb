@@ -31,8 +31,10 @@ module Piwik
       method_name = "#{self.to_s.gsub('Piwik::','')}.#{method}"
       config = load_config_from_file
       xml = self.call(method_name, params, config[:piwik_url], config[:auth_token])
-      data = XmlSimple.xml_in(xml, {'ForceArray' => false})
-      if data.is_a?(String)
+      data = (xml.is_a?(String) && xml.is_binary_data?) ? xml : XmlSimple.xml_in(xml, {'ForceArray' => false})
+      if data.is_a?(String) && data.is_binary_data?
+        api_call_to_const(method_name,true).constantize.new(:data => [], :value => data)
+      elsif data.is_a?(String)
         api_call_to_const(method_name,true).constantize.new(:data => [], :value => data)
       elsif data['row'].present?
         api_call_to_const(method_name,true).constantize.new(:data => data['row'])

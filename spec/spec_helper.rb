@@ -30,12 +30,14 @@ def stub_api_calls
     else
       File.read File.join(success_response)
     end
-
-    if xml =~ /error message=/
+    if xml.is_a?(String) && xml.force_encoding('BINARY').is_binary_data?
+      xml.force_encoding('BINARY')
+    elsif xml =~ /error message=/
       result = XmlSimple.xml_in(xml, {'ForceArray' => false})
       raise Piwik::ApiError, result['error']['message'] if result['error']
+    else
+      xml
     end
-    xml
   end
 end
 

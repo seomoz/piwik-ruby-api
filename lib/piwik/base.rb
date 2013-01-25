@@ -133,11 +133,14 @@ EOF
         $VERBOSE = nil # Suppress "warning: peer certificate won't be verified in this SSL session"
         xml = RestClient.get(url)
         $VERBOSE = verbose_obj_save
-        if xml =~ /error message=/
+        if xml.is_a?(String) && xml.force_encoding('BINARY').is_binary_data?
+          xml.force_encoding('BINARY')
+        elsif xml =~ /error message=/
           result = XmlSimple.xml_in(xml, {'ForceArray' => false})
           raise ApiError, result['error']['message'] if result['error']
+        else
+          xml
         end
-        xml
       end
       
       # Checks for the config, creates it if not found
