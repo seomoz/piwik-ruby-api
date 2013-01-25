@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+libs =  '-rubygems'
+libs =  ' -r irb/completion'
+libs << ' -r ./lib/piwik'
+exec "irb #{libs}"
