@@ -7,10 +7,20 @@ module Piwik
       formatted_method = method.to_s.camelize(:lower)
       formatted_method = formatted_method.gsub(/ip$/i,'IP').gsub(/os/i,'OS') # Lame
       # connect to API if this is a valid-looking method in the current class context
-      if self::AVAILABLE_METHODS.include?(formatted_method)
+      if @available_methods.include?(formatted_method)
         handle_api_call(formatted_method, args.first)
       else
         super
+      end
+    end
+    
+    def self.available_methods method_array
+      @available_methods = method_array
+      @available_methods.each do |method|
+        class_eval %{
+          class #{self.api_call_to_const(method)} < Piwik::ApiResponse
+          end
+        }, __FILE__, __LINE__
       end
     end
     

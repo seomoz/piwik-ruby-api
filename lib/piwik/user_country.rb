@@ -1,6 +1,6 @@
 module Piwik
   class UserCountry < ApiModule
-    AVAILABLE_METHODS = %W{
+    available_methods %W{
       getCountry
       getContinent
       getRegion
@@ -8,12 +8,5 @@ module Piwik
       getLocationFromIP
       getNumberOfDistinctCountries
     }
-    
-    AVAILABLE_METHODS.each do |method|
-      class_eval %{
-        class #{self.api_call_to_const(method)} < Piwik::ApiResponse
-        end
-      }, __FILE__, __LINE__
-    end
   end
 end

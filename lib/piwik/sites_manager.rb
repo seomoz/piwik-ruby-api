@@ -1,6 +1,6 @@
 module Piwik
   class SitesManager < ApiModule
-    AVAILABLE_METHODS = %W{
+    available_methods %W{
       getJavascriptTag
       getSitesFromGroup
       getSitesGroups
@@ -65,13 +65,6 @@ module Piwik
     
     def self.delete params
       self.api_call('deleteSite',params)
-    end
-    
-    AVAILABLE_METHODS.each do |method|
-      class_eval %{
-        class #{self.api_call_to_const(method)} < Piwik::ApiResponse
-        end
-      }, __FILE__, __LINE__
     end
   end
 end

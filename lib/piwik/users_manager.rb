@@ -1,6 +1,6 @@
 module Piwik
   class UsersManager < ApiModule
-    AVAILABLE_METHODS = %W{
+    available_methods %W{
       setUserPreference
       getUserPreference
       getUsers
@@ -47,13 +47,6 @@ module Piwik
     # so a bit or hunting down is in ortder sometime
     def self.user_exists(params)
       Piwik::UsersManager::UserExists.new(:value => self.api_call('userExists',params))
-    end
-    
-    AVAILABLE_METHODS.each do |method|
-      class_eval %{
-        class #{self.api_call_to_const(method)} < Piwik::ApiResponse
-        end
-      }, __FILE__, __LINE__
     end
   end
 end
