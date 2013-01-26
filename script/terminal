@@ -1,5 +1,32 @@
 #!/usr/bin/env ruby
+require 'optparse'
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: ./script/terminal [options]"
+
+  opts.on("-u", "--url [URL]", "Piwik URL") do |url|
+    options[:piwik_url] = url
+  end
+  
+  opts.on("-t", "--token [TOKEN]", "Piwik Auth Token") do |token|
+    options[:token_auth] = token
+  end
+  
+end.parse!
+
+unless options.empty?
+  code = %{
+IRB.conf[:AT_EXIT].push proc { exec("rm -f .piwik.rc.rb") }
+Piwik::PIWIK_URL = '#{options[:piwik_url]}'
+Piwik::PIWIK_TOKEN = '#{options[:token_auth]}'
+}
+
+  File.open('./.piwik.rc.rb','w') { |f| f.puts(code) }
+  
+end
+
 libs =  '-rubygems'
 libs =  ' -r irb/completion'
 libs << ' -r ./lib/piwik'
+libs << ' -r ./.piwik.rc.rb'
 exec "irb #{libs}"
