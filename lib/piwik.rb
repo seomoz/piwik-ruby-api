@@ -7,6 +7,8 @@ require 'active_support/core_ext'
   seo referers transitions user_country visit_time visitor_interest visits_summary
   user_settings annotations sites_manager users_manager string
   site user annotation actions live pdf_reports image_graph
+  provider visit_frequency multi_sites mobile_messaging
+  custom_variables languages_manager goals example_api api
 }.each { |r| require "piwik/#{r}" }
 
 module Piwik
