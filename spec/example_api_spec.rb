@@ -4,8 +4,7 @@ describe 'Piwik::ExampleApi' do
     stub_api_calls
   }
   
-  # TODO: Specify required params
-  let(:params) { {} }
+  let(:params) {}
   subject { Piwik::ExampleApi }
   
   assert_value_integrity(:get_piwik_version, :value => '1.10.1')
