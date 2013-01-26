@@ -32,7 +32,7 @@ module Piwik
       else
         string.gsub(/get|save|add|delete/, '')
       end
-      string = string.gsub('.', '::').camelize
+      string = string.split('.').map {|s| s.camelize }.join('::')
       full ? "Piwik::#{string}" : string
     end
   protected

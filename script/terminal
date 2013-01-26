@@ -1,9 +1,8 @@
 #!/usr/bin/env ruby
+# Example usage: ./script/terminal -u http://demo.piwik.org -t anonymous
 require 'optparse'
 options = {}
 OptionParser.new do |opts|
-  opts.banner = "Usage: ./script/terminal [options]"
-
   opts.on("-u", "--url [URL]", "Piwik URL") do |url|
     options[:piwik_url] = url
   end
@@ -28,5 +27,5 @@ end
 libs =  '-rubygems'
 libs =  ' -r irb/completion'
 libs << ' -r ./lib/piwik'
-libs << ' -r ./.piwik.rc.rb'
+libs << ' -r ./.piwik.rc.rb' if File.exists?('./.piwik.rc.rb')
 exec "irb #{libs}"
