@@ -124,10 +124,12 @@ EOF
       # Returns a string containing the XML reply from Piwik, or raises a 
       # <tt>Piwik::ApiError</tt> exception with the error message returned by Piwik 
       # in case it receives an error.
-      def call(method, params={}, piwik_url=nil, auth_token=nil)
+      def call(method, params, piwik_url=nil, auth_token=nil)
+        params ||= {}
         raise MissingConfiguration, "Please edit ~/.piwik to include your piwik url and auth_key" if piwik_url.nil? || auth_token.nil?
-        url = "#{piwik_url}/?module=API&format=xml&method=#{method}"
-        url << "&token_auth=#{auth_token}" unless auth_token.nil?
+        url = "#{piwik_url}/?"
+        params.merge!({:module => 'API', :format => 'xml', :method => method})
+        params.merge!({:token_auth => auth_token}) unless auth_token.nil?
         params.each { |k, v| url << "&#{k}=#{CGI.escape(v.to_s)}" }
         verbose_obj_save = $VERBOSE
         $VERBOSE = nil # Suppress "warning: peer certificate won't be verified in this SSL session"
