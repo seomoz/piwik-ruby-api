@@ -1,8 +1,10 @@
 # Autometal-Piwik [![Build Status](https://travis-ci.org/Achillefs/autometal-piwik.png?branch=master)](https://travis-ci.org/Achillefs/autometal-piwik)
 
-Version 1.0.0 is a ground-up rewrite of the older [autometal-piwik gem](https://github.com/Achillefs/autometal-piwik/tree/v0.6.1), itself based [on work](http://github.com/riopro/piwik) by Rodrigo Tassinari de Oliveira. It aspires to completely cover the Piwik API and be easily extendable by its users. To achieve that, we will not be making any assumptions on how you wanna use your data, so we will closely mirror Piwik's API structure even if it looks kinda weird to a modern rubyist.
+Version 1.0.0 is a ground-up rewrite of the [autometal-piwik gem](https://github.com/Achillefs/autometal-piwik/tree/v0.6.1). It completely covers the Piwik API and should be easily extendable by users. We made no assumptions on how you wanna use your data, so we closely mirrored Piwik's API structure even if it looks kinda weird to a modern rubyist.
 
 We will also implement an extended `Piwik::Site` wrapper class that will give you ruby-friendly access to a lot of the data in a way we think is sane, but it will be up to you which interface you want to use.
+
+**Please note that this release is not backward compatible. People using an older version of this gem should stick with version 0.6.1**
 
 ## Features
   * Simple ruby-friendly api
