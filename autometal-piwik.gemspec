@@ -8,9 +8,9 @@ Gem::Specification.new do |s|
   s.version       = Piwik::VERSION
   s.authors       = ["Achilles Charmpilas"]
   s.email         = ["ac@humbuckercode.co.uk"]
-  s.description   = %q{A simple Ruby client for the Piwik API}
-  s.summary       = %q{A simple Ruby client for the Piwik API}
-  s.homepage      = "http://humbuckercode.co.uk/licks/ss/piwik/"
+  s.description   = %q{A complete Ruby client for the Piwik API}
+  s.summary       = %q{A complete Ruby client for the Piwik API}
+  s.homepage      = "http://humbuckercode.co.uk/licks/gems/piwik/"
   s.license       = 'MIT'
   s.files         = `git ls-files`.split($/)
   s.executables   = s.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
