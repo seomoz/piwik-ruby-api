@@ -1,49 +1,24 @@
 module Piwik
   class Site < Base
     api_scope :referers
+    api_scope :visits, :class_name => 'VisitsSummary'
+    api_scope :actions
     
-    # Gives read access (<tt>'view'</tt>) to the supplied user login for the current
-    # site.
+    # Gives read access (<tt>'view'</tt>) to the supplied user login for the current site.
     def give_view_access_to(login)
       give_access_to(:view, login)
     end
     
-    # Gives read and write access (<tt>'admin'</tt>) for the supplied user login for the 
-    # current site.
+    # Gives read and write access (<tt>'admin'</tt>) for the supplied user login for the current site.
     def give_admin_access_to(login)
       give_access_to(:admin, login)
     end
     
-    # Removes all access (gives an <tt>'noaccess'</tt>) for the supplied user login for 
-    # the current site.
+    # Removes all access (gives a <tt>'noaccess'</tt>) for the supplied user login for the current site.
     def give_no_access_to(login)
       give_access_to(:noaccess, login)
     end
     alias_method :remove_access_for, :give_no_access_to
-    
-    def summary(period=:day, date=Date.today)
-      VisitsSummary.get(id_attr => self.id, :period => period, :date => date)
-    end
-    
-    def visits(period=:day, date=Date.today)
-      Piwik::VisitsSummary.getVisits(id_attr => id, :period => period, :date => date).value
-    end
-    
-    def unique_visitors(period=:day, date=Date.today)
-      Piwik::VisitsSummary.getUniqueVisitors(id_attr => id, :period => period, :date => date).value
-    end
-    
-    def actions(period=:day, date=Date.today)
-      Piwik::VisitsSummary.getActions(id_attr => id, :period => period, :date => date).value
-    end
-    
-    def bounce_count(period=:day, date=Date.today)
-      Piwik::VisitsSummary.getBounceCount(id_attr => id, :period => period, :date => date).value
-    end
-    
-    def sum_visits_length(period=:day, date=Date.today)
-      Piwik::VisitsSummary.getSumVisitsLength(id_attr => id, :period => period, :date => date).value
-    end
     
     def annotations
       Piwik::Annotations.getAll(id_attr => id)

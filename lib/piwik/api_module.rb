@@ -14,6 +14,18 @@ module Piwik
       end
     end
     
+    # allows the addition of scoped methods. It's basically a class << self wrapper
+    # mostly added to make ApiModule code more self-explanatory
+    # the @obj instance variable is set in the api_scope call. This is not very clean or anything,
+    # and I am still researching a better way to do it, 
+    # but the Piwik::Site API is certainly much better to work with due to this
+    def self.scoped_methods &block
+      if block_given?
+        extension =  Module.new(&Proc.new)
+        self.extend(extension)
+      end
+    end
+    
     def self.available_methods method_array
       @available_methods = method_array
       @available_methods.each do |method|
