@@ -1,5 +1,5 @@
 module Piwik
-  # <tt>Piwik::Site</tt> is a metaclass used to expose a more ruby-friendly (and sane) interface to the Piwik API.
+  # <tt>Piwik::Site</tt> is a wrapper class used to expose a more ruby-friendly (and sane) interface to the Piwik API.
   # The Piwik API is under development, and there are quite a few incosistencies that are ironed out 
   # when it is used through the <tt>Piwik::Site</tt> metaclass.
   #
@@ -21,7 +21,7 @@ module Piwik
   #   > site.referers.website_count
   #   => 12
   #
-  # So the way this class works, is it created site-aware proxies (called API scopes) to the various client classes.
+  # This class creates site-aware proxies (called <tt>api_scopes</tt>) to the various client classes.
   # This lets you call api methods for a selected site without having to resubmit the site id all the time.
   # Furthermore, API methods are redefined as proxy_methods, 
   # allowing for ruby-friendlier names, default parameters and other nice things.

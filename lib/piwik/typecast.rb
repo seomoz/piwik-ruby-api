@@ -1,4 +1,5 @@
 module Piwik
+  # used to do basic typecasting to API response values
   module Typecast
     def self.included(base)
       base.send(:include, InstanceMethods)

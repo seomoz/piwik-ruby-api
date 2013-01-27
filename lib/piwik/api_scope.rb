@@ -1,6 +1,13 @@
 module Piwik
+  # Used to extend a wrapper class with class-aware api calls, allowing users to use a more DRY api interface.
+  # Example:
+  #
+  #   site = Piwik::Site.load(7)
+  #   p = site.actions # returns an extended version of the Piwik::Actions api module
+  #   => Piwik::Actions
+  #   p.outlinks # equivalent to Piwik::Actions.getOutlinks(:idSite => 7)
+  #   => #<Piwik::Actions::Outlinks @data=[snip]>
   module ApiScope
-    
     def self.included(base)
       base.extend ClassMethods
     end

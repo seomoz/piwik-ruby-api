@@ -1,5 +1,5 @@
 module Piwik
-  # Provides are more intuitive interface to API responses.
+  # Provides a more intuitive interface to API responses.
   # Responses may return a value or structured data, and objects will figure out what kind or response they are getting,
   # and stick them in the appropriate instance variable.
   # Value responses are accessed directly:
