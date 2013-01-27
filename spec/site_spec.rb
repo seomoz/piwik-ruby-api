@@ -27,15 +27,7 @@ describe 'Piwik::Site' do
   
   describe '#visits' do
     subject { build(:site).visits }
-    it "visits summary should be accessible" do
-      subject.summary.should be_a(Piwik::VisitsSummary)
-      subject.summary.nb_visits.should eq(995)
-      subject.summary.nb_uniq_visitors.should eq(914)
-      subject.summary.nb_actions.should eq(2161)
-      subject.summary.max_actions.should eq(47)
-      subject.summary.bounce_count.should eq(704)
-      subject.summary.sum_visit_length.should eq(143952)
-    end
+    it { subject.summary.should be_a(Piwik::VisitsSummary) }
 
     it { subject.count.should eq(200) }
     it { subject.actions.should eq(55) }

@@ -22,7 +22,7 @@ module Piwik
       # try to pass method to the data variable
       def method_missing(method, *args, &block)
         if self.data.respond_to?(method)
-          self.data.send(method,*args,&block)
+          typecast(self.data.send(method,*args,&block))
         elsif self.data.is_a?(Hash) && self.data.key?(method.to_s)
           typecast(self.data[method.to_s])
         else
