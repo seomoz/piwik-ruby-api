@@ -22,13 +22,23 @@ describe 'Piwik::Site' do
     xit { expect {Piwik::Site.load(666)}.to raise_error(Piwik::UnknownSite) }
   end
   
-  it { subject.annotations.first.size.should eq(2) }
   it { subject.seo_info.first['rank'].to_i.should eq(7) }
+  
+  describe '#annotations' do
+    subject { build(:site).annotations }
+    
+    it { subject.all.size.should eq(2) }
+    it { subject.update(1,{:pattern => 2}).should_not raise_error(Piwik::ApiError) }
+    it { subject.delete(1).should_not raise_error(Piwik::ApiError) }
+    it { subject.add(:name => 'test', :note => 'meah', :starred => 1).size.should eq(6) }
+    it { subject.count_for_dates.should_not raise_error(Piwik::ApiError) }
+    
+  end
   
   describe '#visits' do
     subject { build(:site).visits }
+    
     it { subject.summary.should be_a(Piwik::VisitsSummary) }
-
     it { subject.count.should eq(200) }
     it { subject.actions.should eq(55) }
     it { subject.uniques.should eq(100) }
@@ -44,7 +54,6 @@ describe 'Piwik::Site' do
     
     it { subject.summary.should be_a(Piwik::Actions) }
     it { subject.urls.size.should eq(7) }
-    it { subject.url('/index.html').nb_visits.should eq(48) }
     it { subject.entry_urls.size.should eq(5) }
     it { subject.exit_urls.size.should eq(5) }
     it { subject.downloads.size.should eq(2) }

@@ -3,27 +3,39 @@ module Piwik
     available_methods %W{
       get
       add
+      save
+      delete
       getAll
       getAnnotationCountForDates
     }
     
-    def self.get params
-      resp = self.api_call('get',params)
-      Piwik::Annotation.new(resp)
-    end
-    
-    def self.add params
-      resp = self.api_call('add',params)
-      Piwik::Annotation.new(resp)
-    end
-    
-    def self.save params
-      resp = self.api_call('save',params)
-      Piwik::Annotation.new(resp)
-    end
-    
-    def self.delete params
-      self.api_call('delete',params)
+    scoped_methods do
+      def load note_id
+        get(defaults.merge(:idNote => note_id))
+      end
+      
+      def all params = {}
+        getAll(defaults.merge(params))
+      end
+      
+      # params: ( date, note, starred = '0')
+      def add params = {}
+        super(defaults.merge(params))
+      end
+      
+      # params:  (date = '', note = '', starred = '')
+      def update note_id, params = {}
+        save(defaults.merge(params).merge(:idNote => note_id))
+      end
+
+      def delete note_id
+        super(defaults.merge(:idNote => note_id))
+      end
+      
+      # params: (date, period, lastN = '', getAnnotationText = '')
+      def count_for_dates params = {}
+        getAnnotationCountForDates(defaults.merge(params))
+      end
     end
   end
 end

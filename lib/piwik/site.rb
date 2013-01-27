@@ -28,10 +28,6 @@ module Piwik
     end
     alias_method :remove_access_for, :give_no_access_to
     
-    def annotations
-      Piwik::Annotations.getAll(id_attr => id)
-    end
-    
     class << self
       def collection
         Piwik::SitesManager
