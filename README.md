@@ -1,14 +1,21 @@
-# Piwiker [![Build Status](https://travis-ci.org/Achillefs/autometal-piwik.png?branch=v1.x)](https://travis-ci.org/Achillefs/autometal-piwik)
+# Autometal-Piwik [![Build Status](https://travis-ci.org/Achillefs/autometal-piwik.png?branch=v1.x)](https://travis-ci.org/Achillefs/autometal-piwik)
 
-Version 1.0.0 is a ground-up rewrite of the older [autometal-piwik gem](https://rubygems.org/gems/autometal-piwik), itself based [on work](http://github.com/riopro/piwik) by Rodrigo Tassinari de Oliveira. It aspires to completely cover the Piwik API and be easily extendable by its users. To achieve that, we will not be making any assumptions on how you wanna use your data, so we will closely mirror Piwik's API structure even if it looks kinda weird to a modern rubyist.
+Version 1.0.0 is a ground-up rewrite of the older [autometal-piwik gem](https://github.com/Achillefs/autometal-piwik/tree/v0.6.1), itself based [on work](http://github.com/riopro/piwik) by Rodrigo Tassinari de Oliveira. It aspires to completely cover the Piwik API and be easily extendable by its users. To achieve that, we will not be making any assumptions on how you wanna use your data, so we will closely mirror Piwik's API structure even if it looks kinda weird to a modern rubyist.
 
 We will also implement an extended `Piwik::Site` wrapper class that will give you ruby-friendly access to a lot of the data in a way we think is sane, but it will be up to you which interface you want to use.
 
+## Features
+  * Simple ruby-friendly api
+  * Full API implementation
+  * `piwik-terminal` binary, allowing shell access.
+  * Works on MRI Jruby and RBX 1.8.* and 1.9.*
+  * Tested
+  
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'piwiker', :require => 'piwik'
+    gem 'autometal-piwik', :require => 'piwik'
 
 And then execute:
 
@@ -16,15 +23,23 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install piwiker
+    $ gem install autometal-piwik
 
 ## Usage
+### Use the binary
+Open an extended irb session to a Piwik installation:
+
+    $ piwik-console -u http://demo.piwik.org -t anonymous
+    :001 > Piwik::Site.load 7
+    => #<Piwik::Site[snip]>
 
 ### Initialize it
-    require 'rubygems'
-    require 'piwiker'
+Unless you are using the binary, or if you are using the binary without credentials, you need to specify a url and a security token.
+
     Piwik::PIWIK_URL = 'http://demo.piwik.org'
     Piwik::PIWIK_TOKEN = 'anonymous'
+
+This can take place in your script or a rails initializer or whatever.
 
 ### Use the wrapper class
 Fastest way to get to know the client is by using the Piwik::Site wrapper class:
@@ -44,10 +59,10 @@ Fastest way to get to know the client is by using the Piwik::Site wrapper class:
     summary.nb_pageviews
     => 236 
     summary.nb_uniq_pageviews
-     => 170
+    => 170
 
 Not all methods are implemented on the wrapper class, although if you find yourself adding methods, please submit a pull request.
-You can have a look at [site_spec.rb](https://github.com/Achillefs/autometal-piwik/blob/v1.x/spec/site_spec.rb) for an up-to-date list of available methods.
+You can have a look at [site_spec.rb](https://github.com/Achillefs/autometal-piwik/blob/master/spec/site_spec.rb) for an up-to-date list of available methods.
 
 ### Use the 'native' API
 This client also allows you to interact with the API the way its designers wanted it. Any method in the [api reference](http://piwik.org/docs/analytics-api/reference/) is made available almost verbatim:
