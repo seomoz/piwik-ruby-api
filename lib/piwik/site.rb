@@ -1,4 +1,30 @@
 module Piwik
+  # <tt>Piwik::Site</tt> is a metaclass used to expose a more ruby-friendly (and sane) interface to the Piwik API.
+  # The Piwik API is under development, and there are quite a few incosistencies that are ironed out 
+  # when it is used through the <tt>Piwik::Site</tt> metaclass.
+  #
+  # Example usage using the bundled terminal script. Uses the official Piwik demo server as a sandbox
+  #
+  #   $ ./script/terminal -u http://demo.piwik.org -t anonymous
+  #   > site = Piwik::Site.load(7)
+  #   => #<Piwik::Site[snip]> 
+  #   > summary = site.visits.summary
+  #   => #<Piwik::VisitsSummary[snip]>
+  #   > summary.bounce_rate
+  #   => "68%"
+  #   > site.visits.count
+  #   => 467
+  #   > site.annotations.all
+  #   => #<Piwik::Annotations::All[snip]>
+  #   > site.annotations.add(:date => 'today', :note => 'twitter account online', :starred => '1')
+  #   => Piwik::ApiError: The current user is not allowed to add notes for site #7
+  #   > site.referers.website_count
+  #   => 12
+  #
+  # So the way this class works, is it created site-aware proxies (called API scopes) to the various client classes.
+  # This lets you call api methods for a selected site without having to resubmit the site id all the time.
+  # Furthermore, API methods are redefined as proxy_methods, 
+  # allowing for ruby-friendlier names, default parameters and other nice things.
   class Site < Base
     api_scope :referers
     api_scope :visits, :class_name => 'VisitsSummary'
