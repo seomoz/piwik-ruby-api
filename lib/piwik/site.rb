@@ -3,6 +3,7 @@ module Piwik
     api_scope :referers
     api_scope :visits, :class_name => 'VisitsSummary'
     api_scope :actions
+    api_scope :transitions
     
     # Gives read access (<tt>'view'</tt>) to the supplied user login for the current site.
     def give_view_access_to(login)

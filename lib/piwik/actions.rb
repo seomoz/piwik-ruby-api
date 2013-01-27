@@ -23,28 +23,36 @@ module Piwik
     }
     
     scoped_methods do
-      def summary(period=:day, date=Date.today)
-        get(@obj.id_attr => @obj.id, :period => period, :date => date)
+      def summary params = {}
+        get(defaults.merge(params))
       end
       
-      def urls(period=:day, date=Date.today)
-        getPageUrls(@obj.id_attr => @obj.id, :period => period, :date => date)
+      def urls params = {}
+        getPageUrls(defaults.merge(params))
       end
       
-      def entry_urls(period=:day, date=Date.today)
-        getEntryPageUrls(@obj.id_attr => @obj.id, :period => period, :date => date)
+      def url(page_url, params = {})
+        getPageUrl(defaults.merge(params).merge(:pageUrl => page_url))
       end
       
-      def exit_urls(period=:day, date=Date.today)
-        getExitPageUrls(@obj.id_attr => @obj.id, :period => period, :date => date)
+      def entry_urls params = {}
+        getEntryPageUrls(defaults.merge(params))
       end
       
-      def downloads(period=:day, date=Date.today)
-        getDownloads(@obj.id_attr => @obj.id, :period => period, :date => date)
+      def exit_urls params = {}
+        getExitPageUrls(defaults.merge(params))
       end
       
-      def outlinks(period=:day, date=Date.today)
-        getOutlinks(@obj.id_attr => @obj.id, :period => period, :date => date)
+      def downloads params = {}
+        getDownloads(defaults.merge(params))
+      end
+      
+      def outlinks params = {}
+        getOutlinks(defaults.merge(params))
+      end
+      
+      def outlink(outlink_url, params = {})
+        getOutlink(defaults.merge(params).merge(:outlinkUrl => outlink_url))
       end
     end
   end

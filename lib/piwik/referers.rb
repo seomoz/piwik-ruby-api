@@ -22,40 +22,40 @@ module Piwik
     }
     
     scoped_methods do
-      def websites(period=:day, date=Date.today)
-        getWebsites(@obj.id_attr => @obj.id, :period => period, :date => date)
+      def websites params = {}
+        getWebsites(defaults.merge(params))
       end
       
-      def websites_count(period=:day, date=Date.today)
-        getNumberOfDistinctWebsites(@obj.id_attr => @obj.id, :period => period, :date => date).value
+      def websites_count params = {}
+        getNumberOfDistinctWebsites(defaults.merge(params)).value
       end
       
-      def keywords(period=:day, date=Date.today)
-        getKeywords(@obj.id_attr => @obj.id, :period => period, :date => date)
+      def keywords params = {}
+        getKeywords(defaults.merge(params))
       end
       
-      def keywords_for_title(title, period=:day, date=Date.today)
-        getKeywordsForPageTitle(@obj.id_attr => @obj.id, :title => title, :period => period, :date => date)
+      def keywords_for_title(title, params = {})
+        getKeywordsForPageTitle(defaults.merge(params).merge(:pageTitle => title))
       end
       
-      def keywords_for_url(url, period=:day, date=Date.today)
-        getKeywordsForPageUrl(@obj.id_attr => @obj.id, :url => url, :period => period, :date => date)
+      def keywords_for_url(url, params = {})
+        getKeywordsForPageUrl(defaults.merge(params).merge(:pageUrl => url))
       end
       
-      def keywords_count(period=:day, date=Date.today)
-        getNumberOfDistinctKeywords(@obj.id_attr => @obj.id, :period => period, :date => date).value
+      def keywords_count params = {}
+        getNumberOfDistinctKeywords(defaults.merge(params)).value
       end
       
-      def search_engines(period=:day, date=Date.today)
-        getSearchEngines(@obj.id_attr => @obj.id, :period => period, :date => date)
+      def search_engines params = {}
+        getSearchEngines(defaults.merge(params))
       end
       
-      def search_engines_count(period=:day, date=Date.today)
-        getNumberOfDistinctSearchEngines(@obj.id_attr => @obj.id, :period => period, :date => date).value
+      def search_engines_count params = {}
+        getNumberOfDistinctSearchEngines(defaults.merge(params)).value
       end
 
-      def socials(period=:day, date=Date.today)
-        getSocials(@obj.id_attr => @obj.id, :period => period, :date => date)
+      def socials params = {}
+        getSocials(defaults.merge(params))
       end
     end
   end

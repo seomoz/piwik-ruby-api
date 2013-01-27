@@ -10,7 +10,7 @@ module Piwik
         name = name.to_sym
         class_name = "Piwik::#{scope_options[:class_name] ? scope_options[:class_name] : name.to_s.camelize}"
         extension =  Module.new(&Proc.new) if block_given?
-        instance_eval do
+        instance_eval do          
           define_method name do
             klass = class_name.constantize
             klass.extend(extension) if block_given?

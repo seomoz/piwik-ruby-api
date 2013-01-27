@@ -56,6 +56,7 @@ describe 'Piwik::Site' do
     it { subject.exit_urls.size.should eq(5) }
     it { subject.downloads.size.should eq(2) }
     it { subject.outlinks.size.should eq(11) }
+    it { subject.outlink('http://mysite.com').exit_nb_visits.should eq(5) }
   end
   
   describe '#referers' do
@@ -70,6 +71,15 @@ describe 'Piwik::Site' do
     it { subject.search_engines.size.should eq(7) }
     it { subject.search_engines_count.should eq(7) }
     it { subject.socials.size.should eq(0) }
+  end
+  
+  describe '#transitions' do
+    subject { build(:site).transitions }
+    
+    it { subject.for_action('name','type').should be_a(Piwik::Transitions::TransitionsForAction) }
+    it { subject.for_title('My page title').should be_a(Piwik::Transitions::TransitionsForPageTitle) }
+    it { subject.for_url('http://mysite.com').should be_a(Piwik::Transitions::TransitionsForPageUrl) }
+    it { subject.translations.size.should eq(32) }
   end
   
   describe "that exists" do

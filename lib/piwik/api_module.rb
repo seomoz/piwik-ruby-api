@@ -2,6 +2,11 @@ module Piwik
   class ApiModule < Base
     include Piwik::DataMethods
     
+    # returns default API params, used all over the place, especially in <tt>scoped_methods</tt>
+    def self.defaults
+      {:period => :day, :date => Date.today, @obj.id_attr => @obj.id}
+    end
+    
     # Catch incoming method calls and try to format them and send them over to the api
     def self.method_missing(method, *args, &block)
       formatted_method = method.to_s.camelize(:lower)
