@@ -23,6 +23,7 @@ describe 'Piwik::Site' do
   end
   
   it { subject.annotations.first.size.should eq(2) }
+  it { subject.seo_info.first['rank'].to_i.should eq(7) }
   
   describe '#visits' do
     subject { build(:site).visits }
@@ -71,6 +72,16 @@ describe 'Piwik::Site' do
     it { subject.search_engines.size.should eq(7) }
     it { subject.search_engines_count.should eq(7) }
     it { subject.socials.size.should eq(0) }
+  end
+  
+  describe '#goals' do
+    subject { build(:site).goals }
+    
+    it { subject.all.size.should eq(3) }
+    it { subject.load(1).nb_conversions.should eq(82) }
+    it { subject.update(1,{:pattern => 2}).should_not raise_error(Piwik::ApiError) }
+    it { subject.delete(1).should_not raise_error(Piwik::ApiError) }
+    it { subject.add(:name => 'test', 'matchAttribute' => '/', :pattern => '/', :patternType => 1).should_not raise_error(Piwik::ApiError) }
   end
   
   describe '#transitions' do

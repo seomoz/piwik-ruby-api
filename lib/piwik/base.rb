@@ -10,6 +10,7 @@ module Piwik
   class MissingConfiguration < ArgumentError; end
   class UnknownSite < ArgumentError; end
   class UnknownUser < ArgumentError; end
+  class UnknownGoal < ArgumentError; end
   
   class Base
     include Piwik::Typecast

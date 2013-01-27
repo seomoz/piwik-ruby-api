@@ -4,6 +4,13 @@ module Piwik
     api_scope :visits, :class_name => 'VisitsSummary'
     api_scope :actions
     api_scope :transitions
+    api_scope :annotations
+    api_scope :goals
+    
+    # Returns search engine information for site home
+    def seo_info
+      Piwik::SEO.getRank(:url => self.main_url)
+    end
     
     # Gives read access (<tt>'view'</tt>) to the supplied user login for the current site.
     def give_view_access_to(login)
