@@ -12,6 +12,8 @@ module Piwik
   class UnknownUser < ArgumentError; end
   
   class Base
+    include Piwik::Typecast
+    include Piwik::ApiScope
     @@template  = <<-EOF
 # .piwik
 # 
@@ -31,6 +33,10 @@ EOF
       params.map do |k,v|
         @attributes.send(:"#{k}=",typecast(v))
       end
+    end
+    
+    def id_attr
+      self.class.id_attr
     end
     
     def save
@@ -66,7 +72,15 @@ EOF
     
     #id will try and return the value of the Piwik item id if it exists
     def id
-      attributes.send(:"id#{self.class.to_s.gsub('Piwik::','')}") rescue nil
+      begin
+        if self.class == Piwik::Site
+          self.idsite
+        else
+          attributes.send(:"id#{self.class.to_s.gsub('Piwik::','')}")
+        end
+      rescue Exception => e
+        $stderr.puts e
+      end
     end
     
     #created_at will try and return the value of the Piwik item id if it exists
@@ -174,15 +188,6 @@ EOF
 
         end
         config
-      end
-    end
-    
-  private
-    def typecast(thing)
-      if thing.is_a?(String) and thing =~ /^[0-9]+$/
-        thing.to_i
-      else
-        thing
       end
     end
   end

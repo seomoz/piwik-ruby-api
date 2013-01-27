@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <result>
-	<row>
+	<row key="1">
 		<row>
 			<date>today</date>
 			<note>another test</note>

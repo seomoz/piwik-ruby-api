@@ -57,7 +57,7 @@ def assert_value_integrity method, options = {}
   it { subject.send(method,params).should_not raise_error(NoMethodError) }
   it { subject.send(method,params).empty?.should eq(false) }
   if options[:value].present?
-    it { subject.send(method,params).value.should eq(options[:value].to_s) }
+    it { subject.send(method,params).value.should eq(options[:value]) }
   end
 end
 
@@ -67,7 +67,7 @@ def build(object, attrs = {})
     def_attrs = { :login => "test_user", :password => "changeme", :email => "user@test.local", :user_alias => "Test User" }
     Piwik::User.new(def_attrs.merge(attrs))
   when :site
-    def_attrs = { :main_url => "http://test.local", :name => "Test Site" }
+    def_attrs = { :idsite => 1, :main_url => "http://test.local", :name => "Test Site" }
     Piwik::Site.new(def_attrs.merge(attrs))
   end
 end
