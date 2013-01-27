@@ -26,6 +26,6 @@ end
 
 libs =  '-rubygems'
 libs =  ' -r irb/completion'
-libs << ' -r ./lib/piwik'
+libs << ' -r piwik'
 libs << ' -r ./.piwik.rc.rb' if File.exists?('./.piwik.rc.rb')
 exec "irb #{libs}"
