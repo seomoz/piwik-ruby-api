@@ -65,7 +65,7 @@ describe 'Piwik::Site' do
     it { subject.referers.keywords_for_url('http://mysite.com/page.html').size.should eq(5) }
     it { subject.referers.keywords_count.should eq(207) }
     it { subject.referers.search_engines.size.should eq(7) }
-    it { subject.referers.search_engines_count.size.should eq(8) }
+    it { subject.referers.search_engines_count.should eq(7) }
     it { subject.referers.socials.size.should eq(0) }
   end
 end
