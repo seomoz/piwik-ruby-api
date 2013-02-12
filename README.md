@@ -33,7 +33,7 @@ Open an extended irb session to a Piwik installation:
 
     $ piwik-console -u http://demo.piwik.org -t anonymous
     :001 > Piwik::Site.load 7
-    => #<Piwik::Site[snip]>
+    #=> #<Piwik::Site[snip]>
 
 ### Initialize it
 Unless you are using the binary, or if you are using the binary without credentials, you need to specify a url and a security token.
@@ -47,21 +47,21 @@ This can take place in your script or a rails initializer or whatever.
 Fastest way to get to know the client is by using the Piwik::Site wrapper class:
     
     site = Piwik::Site.load(7)
-    => #<Piwik::Site[snip]>
+    #=> #<Piwik::Site[snip]>
     
     site.annotations.all
-    => #<Piwik::Annotations[snip]>
+    #=> #<Piwik::Annotations[snip]>
     site.annotations.add(:date => 'today', :starred => 1)
-    => Piwik::ApiError: Please specify a value for 'note'.
+    #=> Piwik::ApiError: Please specify a value for 'note'.
     site.annotations.add(:note => 'meep', :date => 'today', :starred => 1)
-    => #<Piwik::Annotations[snip]>
+    #=> #<Piwik::Annotations[snip]>
     
     summary = site.actions.summary
-    => #<Piwik::Actions[snip]>
+    #=> #<Piwik::Actions[snip]>
     summary.nb_pageviews
-    => 236 
+    #=> 236 
     summary.nb_uniq_pageviews
-    => 170
+    #=> 170
 
 Not all methods are implemented on the wrapper class, although if you find yourself adding methods, please submit a pull request.
 You can have a look at [site_spec.rb](https://github.com/Achillefs/autometal-piwik/blob/master/spec/site_spec.rb) for an up-to-date list of available methods.
@@ -72,11 +72,11 @@ This client also allows you to interact with the API the way its designers wante
     # http://piwik.org/docs/analytics-api/reference/#Actions
     # Actions.getPageUrls (idSite, period, date, segment = '', expanded = '', idSubtable = '')
     require 'rubygems'
-    require 'piwiker'
+    require 'piwik'
     Piwik::PIWIK_URL = 'http://demo.piwik.org'
     Piwik::PIWIK_TOKEN = 'anonymous'
     Piwik::Actions.getPageUrls(:idSite => 7, :period => :day, :date => 'yesterday')
-    => #<Piwik::Actions::PageUrls @data=[snip]>
+    #=> #<Piwik::Actions::PageUrls @data=[snip]>
 
 That last call is exactly the same as calling `site.actions.page_urls(:period => :day, :date => 'yesterday')`
 
