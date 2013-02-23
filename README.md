@@ -1,6 +1,6 @@
 # Autometal-Piwik [![Build Status](https://travis-ci.org/piwik/piwik-ruby-api.png?branch=master)](https://travis-ci.org/piwik/piwik-ruby-api)
 
-Version 1.0.0 is a ground-up rewrite of the [autometal-piwik gem](https://github.com/piwik/piwik-ruby-api/tree/v0.6.1). It completely covers the Piwik API and should be easily extendable by users. We made no assumptions on how you wanna use your data, so we closely mirrored Piwik's API structure even if it looks kinda weird to a modern rubyist.
+This is now the official Ruby client for Piwik. It completely covers the Piwik API and should be easily extendable by users. We made no assumptions on how you wanna use your data, so we closely mirrored Piwik's API structure even if it looks kinda weird to a modern rubyist.
 
 We will also implement an extended `Piwik::Site` wrapper class that will give you ruby-friendly access to a lot of the data in a way we think is sane, but it will be up to you which interface you want to use.
 
